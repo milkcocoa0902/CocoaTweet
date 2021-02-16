@@ -6,15 +6,17 @@
 #include "cocoatweet/api/interface.h"
 //#include "cocoatweet/oauth/oauth.h"
 
-namespace CocoaTweet::API::Statuses{
-class Update :public Interface{
+namespace CocoaTweet::API::Statuses {
+class Update : public Interface {
 public:
-		Update();
-		void status(const std::string _status);
-		void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth, std::function<void(std::string)> _callback);
+  Update();
+  void status(const std::string _status);
+  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
+               std::function<void(std::string)> _callback);
+
 private:
-		std::string status_;
+  std::string status_;
 };
-}
+} // namespace CocoaTweet::API::Statuses
 
 #endif
