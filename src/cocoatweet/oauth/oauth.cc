@@ -26,7 +26,7 @@ std::map<std::string, std::string> OAuth1::signature(
   std::vector<std::string> tmp;
   for (const auto& [key, value] : _param) {
     tmp.push_back(key + "=" + value);
-		std::cout << (key + "=" + value) << std::endl;
+    std::cout << (key + "=" + value) << std::endl;
   }
   std::ostringstream os;
   std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<std::string>(os, "&"));
@@ -34,14 +34,16 @@ std::map<std::string, std::string> OAuth1::signature(
   query.erase(query.size() - std::char_traits<char>::length("&"));
 
   auto significateKey  = key().consumerSecret() + "&" + key().accessTokenSecret();
-  auto significateBase = _method + "&" + CocoaTweet::Util::urlEncode(_url) + "&" + CocoaTweet::Util::urlEncode(query);
-  auto k64Sha1          = hmacSha1(significateKey, significateBase);
+  auto significateBase = _method + "&" + CocoaTweet::Util::urlEncode(_url) + "&" +
+                         CocoaTweet::Util::urlEncode(query);
+  auto k64Sha1 = hmacSha1(significateKey, significateBase);
 
   std::cout << "significate key : " << significateKey << std::endl;
   std::cout << "significate base : " << significateBase << std::endl;
   std::cout << "hmac-sha1 : " << k64Sha1 << std::endl;
 
-  auto ret = std::map<std::string, std::string>{{"oauth_signature", CocoaTweet::Util::urlEncode(k64Sha1)}};
+  auto ret = std::map<std::string, std::string>{
+      {"oauth_signature", CocoaTweet::Util::urlEncode(k64Sha1)}};
   return ret;
 }
 
@@ -121,23 +123,22 @@ std::string OAuth1::hmacSha1(std::string _key, std::string _data) {
   HMAC(EVP_sha1(), reinterpret_cast<const unsigned char*>(_key.c_str()), _key.length(),
        reinterpret_cast<const unsigned char*>(_data.c_str()), _data.length(), result, &length);
 
-	auto sha1 = std::string(reinterpret_cast<char*>(result), length);
+  auto sha1 = std::string(reinterpret_cast<char*>(result), length);
 
-
-	// base64 encodeもやっちゃえ日産
-	BIO *encoder = BIO_new(BIO_f_base64());
-  BIO *bmem = BIO_new(BIO_s_mem());
-  encoder = BIO_push(encoder,bmem);
+  // base64 encodeもやっちゃえ日産
+  BIO* encoder = BIO_new(BIO_f_base64());
+  BIO* bmem    = BIO_new(BIO_s_mem());
+  encoder      = BIO_push(encoder, bmem);
   BIO_write(encoder, sha1.c_str(), sha1.length());
   BIO_flush(encoder);
 
-  BUF_MEM *bptr;
-  BIO_get_mem_ptr(encoder,&bptr);
-  
-  char *k64 = (char *)std::malloc(bptr->length);
-	std::memcpy(k64, bptr->data, bptr->length-1);
-  k64[bptr->length-1] = 0;
-  
+  BUF_MEM* bptr;
+  BIO_get_mem_ptr(encoder, &bptr);
+
+  char* k64 = (char*)std::malloc(bptr->length);
+  std::memcpy(k64, bptr->data, bptr->length - 1);
+  k64[bptr->length - 1] = 0;
+
   BIO_free_all(encoder);
 
   return static_cast<std::string>(k64);

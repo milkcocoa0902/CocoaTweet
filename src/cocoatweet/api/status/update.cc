@@ -21,15 +21,18 @@ void Update::status(const std::string _status) {
 void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
                      std::function<void(std::string)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
-  auto oauth = _oauth.lock();
-  param_.merge(oauth->oauthParam());
-  auto signature = oauth->signature(param_, "POST", url_);
+  auto oauth       = _oauth.lock();
+  auto oauthParam  = oauth->oauthParam();
+  auto sigingParam = oauthParam;
+  for (const auto [k, v] : param_) {
+    sigingParam.insert_or_assign(k, v);
+  }
+
+  auto signature = oauth->signature(sigingParam, "POST", url_);
 
   // 作成した署名をエンドポイントへのパラメータ及びOAuthパラメータに登録
-  param_.insert_or_assign("oauth_signature", signature["oauth_signature"]);
-  auto header = oauth->oauthParam();
   std::cout << "signature : " << signature["oauth_signature"] << std::endl;
-  header.insert_or_assign("oauth_signature", signature["oauth_signature"]);
+  oauthParam.merge(signature);
 
   // リクエストボディの構築
   std::string requestBody = "";
@@ -43,14 +46,13 @@ void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     requestBody = os.str();
     requestBody.erase(requestBody.size() - std::char_traits<char>::length("&"));
   }
-	requestBody += (std::string("&") + "oauth_signature=" + signature["oauth_signature"]);
   std::cout << "request Body -> " << requestBody << std::endl;
 
   // ヘッダの構築
-  std::string oauthHeader = "Authorization: OAuth ";
+  std::string oauthHeader = "authorization: OAuth ";
   {
     std::vector<std::string> tmp;
-    for (const auto& [key, value] : header) {
+    for (const auto& [key, value] : oauthParam) {
       tmp.push_back(key + "=" + value);
     }
     std::stringstream os;
@@ -58,7 +60,6 @@ void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     oauthHeader += os.str();
     oauthHeader.erase(oauthHeader.size() - std::char_traits<char>::length(","));
   }
-	//oauthHeader += (std::string(",") + "oauth_signature=" + signature["oauth_signature"]);
   std::cout << "OAuth Header -> " << oauthHeader << std::endl;
 
   // do post
@@ -66,20 +67,23 @@ void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   CURLcode res;
   std::string rcv;
   curl = curl_easy_init();
+  url_ = url_ + "?status=" + status_;
   std::cout << "URL : " << url_ << std::endl;
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
     curl_easy_setopt(curl, CURLOPT_POST, 1);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+    // curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody);
+    // curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, 0);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
-    curl_easy_setopt(curl, CURLOPT_PROXY, "");
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
     // Headerを保持するcurl_slist*を初期化
     struct curl_slist* headers = NULL;
     // Authorizationをヘッダに追加
     headers = curl_slist_append(headers, oauthHeader.c_str());
-    curl_easy_setopt(curl, CURLOPT_HEADER, headers);
+    // headers = curl_slist_append(headers, "Content-Type: application/x-www-form-urlencoded");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
   }

@@ -49,7 +49,6 @@ if(ENABLE_CODE_COVERAGE)
 endif()
 
 # Required libraries
-find_package(Boost 1.61.0 COMPONENTS unit_test_framework REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(OpenSSL REQUIRED)
 if(NOT OPENSSL_FOUND)
@@ -62,14 +61,14 @@ find_package(CURL REQUIRED)
 if(NOT CURL_FOUND)
   message(FATAL_ERROR "Fail to find OpenSSL") # exit
 endif()
-message(FATAL_ERROR, "Fail to find libcurl")
 include_directories(${CURL_INCLUDE_DIRS})
 
-enable_testing()
+find_library(cpprest REQUIRED)
+include_directories(${CPP_REST_INCLUDE_DIR})
+
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
-  ${Boost_INCLUDE_DIRS}
 )
 
 add_subdirectory(src)
