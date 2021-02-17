@@ -43,7 +43,7 @@ std::map<std::string, std::string> OAuth1::signature(
   std::cout << "hmac-sha1 : " << k64Sha1 << std::endl;
 
   auto ret = std::map<std::string, std::string>{
-      {"oauth_signature", CocoaTweet::Util::urlEncode(k64Sha1)}};
+      {"oauth_signature", k64Sha1}};
   return ret;
 }
 

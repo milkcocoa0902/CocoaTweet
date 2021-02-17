@@ -53,7 +53,7 @@ void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   {
     std::vector<std::string> tmp;
     for (const auto& [key, value] : oauthParam) {
-      tmp.push_back(key + "=" + value);
+      tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
     }
     std::stringstream os;
     std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<std::string>(os, ","));
