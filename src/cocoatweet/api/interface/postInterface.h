@@ -16,6 +16,6 @@ protected:
   std::string url_;
   static size_t curlCallback_(char* _ptr, size_t _size, size_t _nmemb, std::string* _stream);
 };
-} // namespace CocoaTweet::API
+} // namespace CocoaTweet::API::Interface
 
 #endif

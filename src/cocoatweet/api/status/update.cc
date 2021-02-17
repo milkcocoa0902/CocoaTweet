@@ -67,7 +67,7 @@ void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   CURLcode res;
   std::string rcv;
   curl = curl_easy_init();
-  url_ = url_;// + "?status=" + status_;
+  url_ = url_; // + "?status=" + status_;
   std::cout << "URL : " << url_ << std::endl;
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
