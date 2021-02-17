@@ -2,6 +2,7 @@
 #define COCOATWEET_OAUTH_KEY_H_
 
 #include <map>
+
 namespace CocoaTweet::OAuth {
 class Key {
   const std::string consumerKey_;
@@ -37,6 +38,8 @@ public:
     return std::map<std::string, std::string>{{"oauth_consumer_key", consumerSecret_},
                                               {"oauth_token", accessTokenSecret_}};
   }
+
+	static Key fromJsonFile(const std::string _jsonFile);
 };
 } // namespace CocoaTweet::OAuth
 
