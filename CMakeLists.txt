@@ -69,6 +69,7 @@ include_directories(${CPP_REST_INCLUDE_DIR})
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
+  ${PROJECT_SOURCE_DIR}/third
 )
 
 add_subdirectory(src)
