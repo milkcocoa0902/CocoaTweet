@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "cocoatweet/api/interface.h"
+#include "cocoatweet/api/interface/interface.h"
 //#include "cocoatweet/oauth/oauth.h"
 
 namespace CocoaTweet::API::Statuses {

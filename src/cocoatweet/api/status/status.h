@@ -1,7 +1,7 @@
 #ifndef COCOATWEET_API_STATUSED_H_
 #define COCOATWEET_API_STATUSED_H_
 
-#include "cocoatweet/api/groupInterface.h"
+#include "cocoatweet/api/interface/groupInterface.h"
 #include "cocoatweet/oauth/oauth.h"
 
 namespace CocoaTweet::API::Statuses {
