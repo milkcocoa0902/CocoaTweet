@@ -3,11 +3,11 @@
 
 #include <memory>
 
-#include "cocoatweet/api/interface/interface.h"
+#include "cocoatweet/api/interface/postInterface.h"
 //#include "cocoatweet/oauth/oauth.h"
 
 namespace CocoaTweet::API::Statuses {
-class Update : public Interface {
+class Update : public CocoaTweet::API::Interface::postInterface {
 public:
   Update();
   void status(const std::string _status);
