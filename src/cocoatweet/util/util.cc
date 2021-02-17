@@ -1,5 +1,6 @@
 #include "cocoatweet/util/util.h"
 #include <cctype>
+#include <iomanip>
 
 namespace CocoaTweet::Util {
 std::string urlEncode(const std::string& _str) {
@@ -10,7 +11,7 @@ std::string urlEncode(const std::string& _str) {
         (c == '.' || (c == '_') || (c == '-' || (c == '~')))) {
       out << c;
     } else {
-      out << '%' << std::hex << std::uppercase << static_cast<int>(c);
+      out << '%' << std::setw(2) << std::setfill('0') << std::hex << std::uppercase << (0xFF & static_cast<int>(c));
     }
   }
 
