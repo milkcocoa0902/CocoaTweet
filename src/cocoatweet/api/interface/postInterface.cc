@@ -40,14 +40,7 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     for (const auto& [key, value] : bodyParam_) {
       tmp.push_back(key + "=" + value);
     }
-    
-		/*for(auto v : tmp){
-			requestBody += (v + "&");
-		}
-		if(!requestBody.empty()){
-				requestBody.pop_back();
-		}*/
-		requestBody = CocoaTweet::Util::join(tmp, "&");
+    requestBody = CocoaTweet::Util::join(tmp, "&");
   }
   std::cout << "request Body -> " << requestBody << std::endl;
 
@@ -58,7 +51,7 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     for (const auto& [key, value] : oauthParam) {
       tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
     }
-		oauthHeader += CocoaTweet::Util::join(tmp, ",");
+    oauthHeader += CocoaTweet::Util::join(tmp, ",");
   }
   std::cout << "OAuth Header -> " << oauthHeader << std::endl;
 
@@ -67,15 +60,13 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   CURLcode res;
   std::string rcv;
   curl = curl_easy_init();
-  url_ = url_; // + "?status=" + status_;
+  url_ = url_;
   std::cout << "URL : " << url_ << std::endl;
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
     curl_easy_setopt(curl, CURLOPT_POST, 1);
-	//	if(!requestBody.empty()){
-    	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
-    	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
-//		}
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
@@ -83,7 +74,6 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     struct curl_slist* headers = NULL;
     // Authorizationをヘッダに追加
     headers = curl_slist_append(headers, oauthHeader.c_str());
-    // headers = curl_slist_append(headers, "Content-Type: application/x-www-form-urlencoded");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);

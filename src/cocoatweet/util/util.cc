@@ -20,17 +20,16 @@ std::string urlEncode(const std::string& _str) {
 }
 
 std::string join(const std::vector<std::string> _vec, const std::string& _delim) {
-		std::string str("");
+  std::string str("");
 
-		for(auto v : _vec){
-				str += (v + _delim);
-		}
+  for (auto v : _vec) {
+    str += (v + _delim);
+  }
 
-		if(!str.empty()){
-    	str.pop_back();
-		}
+  if (!str.empty()) {
+    str.pop_back();
+  }
 
-		return str;
-
+  return str;
 }
 } // namespace CocoaTweet::Util
