@@ -7,8 +7,7 @@
 
 namespace CocoaTweet::Util {
 std::string urlEncode(const std::string& _str);
-template <typename T>
-std::string join(const std::vector<T> _vec);
+std::string join(const std::vector<std::string> _vec, const std::string& _delim);
 } // namespace CocoaTweet::Util
 
 #endif

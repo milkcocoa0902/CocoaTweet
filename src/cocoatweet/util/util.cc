@@ -19,6 +19,18 @@ std::string urlEncode(const std::string& _str) {
   return out.str();
 }
 
-template <typename T>
-std::string join(const std::vector<T> _vec) {}
+std::string join(const std::vector<std::string> _vec, const std::string& _delim) {
+		std::string str("");
+
+		for(auto v : _vec){
+				str += (v + _delim);
+		}
+
+		if(!str.empty()){
+    	str.pop_back();
+		}
+
+		return str;
+
+}
 } // namespace CocoaTweet::Util

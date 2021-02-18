@@ -40,10 +40,14 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     for (const auto& [key, value] : bodyParam_) {
       tmp.push_back(key + "=" + value);
     }
-    std::stringstream os;
-    std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<std::string>(os, "&"));
-    requestBody = os.str();
-    requestBody.erase(requestBody.size() - std::char_traits<char>::length("&"));
+    
+		/*for(auto v : tmp){
+			requestBody += (v + "&");
+		}
+		if(!requestBody.empty()){
+				requestBody.pop_back();
+		}*/
+		requestBody = CocoaTweet::Util::join(tmp, "&");
   }
   std::cout << "request Body -> " << requestBody << std::endl;
 
@@ -54,10 +58,7 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     for (const auto& [key, value] : oauthParam) {
       tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
     }
-    std::stringstream os;
-    std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<std::string>(os, ","));
-    oauthHeader += os.str();
-    oauthHeader.erase(oauthHeader.size() - std::char_traits<char>::length(","));
+		oauthHeader += CocoaTweet::Util::join(tmp, ",");
   }
   std::cout << "OAuth Header -> " << oauthHeader << std::endl;
 
@@ -71,8 +72,10 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
     curl_easy_setopt(curl, CURLOPT_POST, 1);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+	//	if(!requestBody.empty()){
+    	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
+    	curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+//		}
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);

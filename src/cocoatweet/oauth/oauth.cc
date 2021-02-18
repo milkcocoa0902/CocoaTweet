@@ -28,10 +28,17 @@ std::map<std::string, std::string> OAuth1::signature(
     tmp.push_back(key + "=" + value);
     std::cout << (key + "=" + value) << std::endl;
   }
-  std::ostringstream os;
-  std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<std::string>(os, "&"));
-  std::string query = os.str();
-  query.erase(query.size() - std::char_traits<char>::length("&"));
+  //std::ostringstream os;
+  //std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<std::string>(os, "&"));
+  //std::string query = os.str();
+	/*std::string query = "";
+	for(auto v : tmp){
+			query += (v + "&");
+	}
+	if(!query.empty()){
+  query.pop_back();
+	}*/
+	std::string query = CocoaTweet::Util::join(tmp, "&");
 
   auto significateKey  = key().consumerSecret() + "&" + key().accessTokenSecret();
   auto significateBase = _method + "&" + CocoaTweet::Util::urlEncode(_url) + "&" +

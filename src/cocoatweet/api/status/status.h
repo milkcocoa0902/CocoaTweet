@@ -10,6 +10,7 @@ public:
   Status() = default;
   Status(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
   void Update(const std::string& _status) const;
+  void Destroy(const std::string& _id) const;
 
 private:
 };
