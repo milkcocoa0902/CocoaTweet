@@ -9,7 +9,7 @@ This is a library for using Twitter API from C++
 you can use these endpoint
 - statuses/update
 - favorites/create
-
+- favorites/destroy
 
 # How
 ## API Key Registration
@@ -64,4 +64,7 @@ api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 
 // Fav. to tweet
 api.favorite().Create("tweet id");
+
+// un Fav. to tweet
+api.favorite().Destroy("tweet id");
 ```
