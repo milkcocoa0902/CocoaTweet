@@ -12,7 +12,6 @@ auto main() -> int {
   //                                                     accessToken,
   //                                                     accessTokenSecret);
 
-
   // also can generate Key object from JSON file
   // CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
 
@@ -22,4 +21,5 @@ auto main() -> int {
   // Now, you can use a twitter api
   // api.status().Update("Hello Twitter World from Cocoa Twitter Library");
   // api.favorite().Create("tweet id you want to fav.");
+  // api.favorite().Destroy("tweet id you want to un_fav.");
 }

@@ -10,6 +10,7 @@ public:
   Favorite() = default;
   Favorite(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
   void Create(const std::string& _id) const;
+  void Destroy(const std::string& _id) const;
 };
 } // namespace CocoaTweet::API::Favorites
 
