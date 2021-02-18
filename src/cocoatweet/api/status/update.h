@@ -11,8 +11,6 @@ class Update : public CocoaTweet::API::Interface::postInterface {
 public:
   Update();
   void status(const std::string _status);
-  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-               std::function<void(std::string)> _callback);
 
 private:
   std::string status_;
