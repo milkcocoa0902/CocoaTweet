@@ -8,6 +8,7 @@ This is a library for using Twitter API from C++
 # Features
 you can use these endpoint
 - statuses/update
+- statuses/destroy/:id
 - favorites/create
 - favorites/destroy
 
@@ -62,9 +63,12 @@ CocoaTweet::API::API api(key);
 // Post a tweet
 api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 
-// Fav. to tweet
+// Delete a tweet
+api.status().Destroy("tweet id");
+
+// Fav. a tweet
 api.favorite().Create("tweet id");
 
-// un Fav. to tweet
+// un Fav. a tweet
 api.favorite().Destroy("tweet id");
 ```
