@@ -39,7 +39,7 @@ public:
                                               {"oauth_token", accessTokenSecret_}};
   }
 
-	static Key fromJsonFile(const std::string _jsonFile);
+  static Key fromJsonFile(const std::string _jsonFile);
 };
 } // namespace CocoaTweet::OAuth
 

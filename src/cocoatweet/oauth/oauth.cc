@@ -42,8 +42,7 @@ std::map<std::string, std::string> OAuth1::signature(
   std::cout << "significate base : " << significateBase << std::endl;
   std::cout << "hmac-sha1 : " << k64Sha1 << std::endl;
 
-  auto ret = std::map<std::string, std::string>{
-      {"oauth_signature", k64Sha1}};
+  auto ret = std::map<std::string, std::string>{{"oauth_signature", k64Sha1}};
   return ret;
 }
 

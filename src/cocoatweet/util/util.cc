@@ -11,7 +11,8 @@ std::string urlEncode(const std::string& _str) {
         (c == '.' || (c == '_') || (c == '-' || (c == '~')))) {
       out << c;
     } else {
-      out << '%' << std::setw(2) << std::setfill('0') << std::hex << std::uppercase << (0xFF & static_cast<int>(c));
+      out << '%' << std::setw(2) << std::setfill('0') << std::hex << std::uppercase
+          << (0xFF & static_cast<int>(c));
     }
   }
 

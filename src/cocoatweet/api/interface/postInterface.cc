@@ -18,7 +18,7 @@ size_t postInterface::curlCallback_(char* _ptr, size_t _size, size_t _nmemb,
 }
 
 void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-                     std::function<void(std::string)> _callback) {
+                            std::function<void(std::string)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
   auto oauth       = _oauth.lock();
   auto oauthParam  = oauth->oauthParam();

@@ -8,7 +8,7 @@ namespace CocoaTweet::API::Interface {
 class postInterface {
 public:
   void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-                       std::function<void(std::string)> _callback);
+               std::function<void(std::string)> _callback);
 
 protected:
   std::weak_ptr<CocoaTweet::OAuth::OAuth1> oauth_;
