@@ -23,7 +23,7 @@ void postInterface::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   auto oauth       = _oauth.lock();
   auto oauthParam  = oauth->oauthParam();
   auto sigingParam = oauthParam;
-  if(contentType_ == "application/x-www-form-urlencoded"){
+  if (contentType_ == "application/x-www-form-urlencoded") {
     for (const auto [k, v] : bodyParam_) {
       sigingParam.insert_or_assign(k, v);
     }

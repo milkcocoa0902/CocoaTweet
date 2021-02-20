@@ -8,7 +8,6 @@
 namespace CocoaTweet::API::Interface {
 class postInterface {
 public:
-
 protected:
   std::weak_ptr<CocoaTweet::OAuth::OAuth1> oauth_;
   std::map<std::string, std::string> bodyParam_;
