@@ -3,11 +3,11 @@
 
 #include <memory>
 
-#include "cocoatweet/api/interface/postInterface.h"
+#include "cocoatweet/api/interface/httpPost.h"
 //#include "cocoatweet/oauth/oauth.h"
 
 namespace CocoaTweet::API::Statuses {
-class Destroy : public CocoaTweet::API::Interface::postInterface {
+class Destroy : public CocoaTweet::API::Interface::HttpPost {
 public:
   Destroy();
   void id(const std::string _id);
