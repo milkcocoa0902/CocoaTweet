@@ -10,15 +10,14 @@ extern "C" {
 }
 
 namespace CocoaTweet::API::Interface {
-size_t HttpPost::curlCallback_(char* _ptr, size_t _size, size_t _nmemb,
-                                    std::string* _stream) {
+size_t HttpPost::curlCallback_(char* _ptr, size_t _size, size_t _nmemb, std::string* _stream) {
   int realsize = _size * _nmemb;
   _stream->append(_ptr, realsize);
   return realsize;
 }
 
 void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-                            std::function<void(std::string)> _callback) {
+                       std::function<void(std::string)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
   auto oauth       = _oauth.lock();
   auto oauthParam  = oauth->oauthParam();

@@ -12,8 +12,7 @@ void Update::status(const std::string _status) {
 }
 
 void Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
-  HttpPost::process(_oauth,
-                         [](const std::string& _srv) { std::cout << _srv << std::endl; });
+  HttpPost::process(_oauth, [](const std::string& _srv) { std::cout << _srv << std::endl; });
 }
 
 } // namespace CocoaTweet::API::Statuses
