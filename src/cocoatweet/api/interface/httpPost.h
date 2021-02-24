@@ -13,7 +13,7 @@ protected:
   std::string url_;
   std::string contentType_;
   void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-               std::function<void(std::string)> _callback);
+               std::function<void(const unsigned int, const std::string&)> _callback);
   static size_t curlCallback_(char* _ptr, size_t _size, size_t _nmemb, std::string* _stream);
 };
 } // namespace CocoaTweet::API::Interface

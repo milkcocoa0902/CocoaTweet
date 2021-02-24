@@ -10,7 +10,6 @@ Tweet Tweet::parse(const unsigned int _responseCode, const std::string& _json) {
   Tweet tweet;
 
   if (_responseCode == 200) {
-    Tweet tweet;
     tweet.id(j["id_str"]);
   } else {
     auto error   = j["errors"][0]["code"];
@@ -23,11 +22,11 @@ Tweet Tweet::parse(const unsigned int _responseCode, const std::string& _json) {
   return tweet;
 }
 
-void Tweet::id(const std::string& _id) {
+void Tweet::id(const std::string _id) {
   id_ = _id;
 }
 
-const std::string& Tweet::id() const {
+const std::string Tweet::id() const {
   return id_;
 }
 } // namespace CocoaTweet::API::Model

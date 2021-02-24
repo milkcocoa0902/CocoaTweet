@@ -17,7 +17,7 @@ size_t HttpPost::curlCallback_(char* _ptr, size_t _size, size_t _nmemb, std::str
 }
 
 void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-                       std::function<void(std::string)> _callback) {
+                       std::function<void(const unsigned int, const std::string&)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
   auto oauth       = _oauth.lock();
   auto oauthParam  = oauth->oauthParam();
@@ -60,6 +60,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   CURL* curl;
   CURLcode res;
   std::string rcv;
+	long responseCode;
   curl = curl_easy_init();
   url_ = url_;
   std::cout << "URL : " << url_ << std::endl;
@@ -77,15 +78,17 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     headers = curl_slist_append(headers, oauthHeader.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     res = curl_easy_perform(curl);
+		    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
     curl_easy_cleanup(curl);
   }
+
   if (res != CURLE_OK) {
     std::cout << "curl error : " << res << std::endl;
     exit(1);
   }
 
   if (_callback) {
-    _callback(rcv);
+    _callback(responseCode, rcv);
   }
 }
 } // namespace CocoaTweet::API::Interface

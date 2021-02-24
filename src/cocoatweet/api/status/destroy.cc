@@ -8,12 +8,12 @@ void Destroy::id(const std::string _id) {
   url_         = "https://api.twitter.com/1.1/statuses/destroy/" + _id + ".json";
 }
 
-void Destroy::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+CocoaTweet::API::Model::Tweet Destroy::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
   CocoaTweet::API::Model::Tweet tweet;
-  HttpPost::process(_oauth, [&tweet](const std::string& _srv) {
-    tweet = CocoaTweet::API::Model::Tweet::parse(100, _srv);
+  HttpPost::process(_oauth, [&tweet](const unsigned int _responseCode, const std::string& _rsv) {
+    tweet = CocoaTweet::API::Model::Tweet::parse(_responseCode, _rsv);
   });
-  std::cout << "afw" << std::endl;
+	return tweet;
 }
 
 } // namespace CocoaTweet::API::Statuses

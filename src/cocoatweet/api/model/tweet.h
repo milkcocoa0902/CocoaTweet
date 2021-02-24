@@ -11,8 +11,8 @@ public:
   Tweet(const unsigned int _responseCode, const std::string& _json)
       : Tweet(Tweet::parse(_responseCode, _json)) {}
   static Tweet parse(const unsigned int _responseCode, const std::string& _json);
-  void id(const std::string& _id);
-  const std::string& id() const;
+  void id(const std::string _id);
+  const std::string id() const;
 
 private:
   std::string id_;
