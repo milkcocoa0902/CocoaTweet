@@ -24,7 +24,7 @@ pipeline {
 								sh '''
 									mkdir -p build
 									cd build
-									cmake .. -G ninja
+									cmake .. -G Ninja
 								'''
 							}
 						}
