@@ -17,22 +17,27 @@ pipeline {
 						sh 'tools/validate/includeGuard.sh'
 					}
 				}
+				stage("build and test"){
+					stages{
+						stage("prepare"){
+							steps{
+								sh '''
+									mkdir build
+									cd $_
+									cmake .. -G ninja
+								'''
+							}
+						}
 
-				stages{
-					stage("prepare"){
-						steps{
+						stage("build"){
 							sh '''
-								mkdir build
-								cd $_
-								cmake .. -G ninja
+								cd build ninja
 							'''
 						}
-					}
 
-					stage("build"){
-						sh '''
-							cd build ninja
-						'''
+						stage("test"){
+							echo "test"
+						}
 					}
 				}
 			}
