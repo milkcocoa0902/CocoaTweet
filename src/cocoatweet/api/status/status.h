@@ -10,8 +10,8 @@ class Status : public groupInterface {
 public:
   Status() = default;
   Status(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
-	CocoaTweet::API::Model::Tweet Update(const std::string& _status) const;
-	CocoaTweet::API::Model::Tweet Destroy(const std::string& _id) const;
+  CocoaTweet::API::Model::Tweet Update(const std::string& _status) const;
+  CocoaTweet::API::Model::Tweet Destroy(const std::string& _id) const;
 
 private:
 };

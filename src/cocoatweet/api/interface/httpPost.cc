@@ -60,7 +60,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   CURL* curl;
   CURLcode res;
   std::string rcv;
-	long responseCode;
+  long responseCode;
   curl = curl_easy_init();
   url_ = url_;
   std::cout << "URL : " << url_ << std::endl;
@@ -78,7 +78,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     headers = curl_slist_append(headers, oauthHeader.c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     res = curl_easy_perform(curl);
-		    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
     curl_easy_cleanup(curl);
   }
 

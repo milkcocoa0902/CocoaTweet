@@ -13,11 +13,12 @@ void Update::status(const std::string _status) {
 }
 
 CocoaTweet::API::Model::Tweet Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
-		CocoaTweet::API::Model::Tweet tweet;
-  HttpPost::process(_oauth, [&tweet](const unsigned int _responseCode, const std::string& _rsv) {
-    tweet = CocoaTweet::API::Model::Tweet::parse(_responseCode, _rsv);
-  });
-	return tweet;
+  CocoaTweet::API::Model::Tweet tweet;
+  HttpPost::process(_oauth,
+                    [&tweet](const unsigned int _responseCode, const std::string& _rsv) {
+                      tweet = CocoaTweet::API::Model::Tweet::parse(_responseCode, _rsv);
+                    });
+  return tweet;
 }
 
 } // namespace CocoaTweet::API::Statuses
