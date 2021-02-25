@@ -30,13 +30,17 @@ pipeline {
 						}
 
 						stage("build"){
-							sh '''
-								cd build ninja
-							'''
+							steps{
+								sh '''
+									cd build ninja
+								'''
+							}
 						}
 
 						stage("test"){
-							echo "test"
+							steps{
+								echo "test"
+							}
 						}
 					}
 				}
