@@ -17,7 +17,7 @@ Tweet Tweet::parse(const unsigned int _responseCode, const std::string& _json) {
     auto message = j["errors"][0]["message"];
     if (error.get<int>() == 144) {
       throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
-    }else if(errot.get<int>() == 32){
+    }else if(error.get<int>() == 32){
       throw CocoaTweet::Exception::AuthenticateFoundException(message.get<std::string>().c_str());
     }
   }
