@@ -4,41 +4,43 @@ pipeline {
   }
 
 	stages{
-	parallel{
-		stage("doxygen"){
-			steps{
-				sh 'doxygen'
-			}
-		}
+		stage("parallel execution"){
+			parallel{
+				stage("doxygen"){
+					steps{
+						sh 'doxygen'
+					}
+				}
 
-		stage("validation"){
-			sh 'tools/validate/includeGuard.sh'
-		}
+				stage("validation"){
+					sh 'tools/validate/includeGuard.sh'
+				}
 
-		stages{
-			stage("prepare"){
-				steps{
-					sh '''
-						mkdir build
-						cd $_
-						cmake .. -G ninja
-					'''
+				stages{
+					stage("prepare"){
+						steps{
+							sh '''
+								mkdir build
+								cd $_
+								cmake .. -G ninja
+							'''
+						}
+					}
+
+					stage("build"){
+						sh '''
+							cd build ninja
+						'''
+					}
 				}
 			}
+		}
 
-			stage("build"){
-				sh '''
-					cd build ninja
-				'''
+		stage("upload artifact"){
+			steps{
+				archiveArtifacts allowEmptyArchive: true, artifacts: 'help/**/*.*', onlyIfSuccessful: true
 			}
 		}
-	}
-
-	stage("upload artifact"){
-		steps{
-		archiveArtifacts allowEmptyArchive: true, artifacts: 'help/**/*.*', onlyIfSuccessful: true
-		}
-	}
 
 	}
 }
