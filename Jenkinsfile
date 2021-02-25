@@ -32,7 +32,8 @@ pipeline {
 						stage("build"){
 							steps{
 								sh '''
-									cd build ninja
+									cd build
+									ninja
 								'''
 							}
 						}
