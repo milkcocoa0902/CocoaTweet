@@ -22,8 +22,8 @@ pipeline {
 						stage("prepare"){
 							steps{
 								sh '''
-									mkdir build
-									cd $_
+									mkdir -p build
+									cd build
 									cmake .. -G ninja
 								'''
 							}
