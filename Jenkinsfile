@@ -13,7 +13,9 @@ pipeline {
 				}
 
 				stage("validation"){
-					sh 'tools/validate/includeGuard.sh'
+					steps{
+						sh 'tools/validate/includeGuard.sh'
+					}
 				}
 
 				stages{
