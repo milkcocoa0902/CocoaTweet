@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_H_
-#define COCOATWEET_API_H_
+#ifndef COCOATWEET_API_API_H_
+#define COCOATWEET_API_API_H_
 
 #include <cocoatweet/api/status/status.h>
 #include <cocoatweet/api/favorite/favorite.h>

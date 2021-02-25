@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_STATUSED_H_
-#define COCOATWEET_API_STATUSED_H_
+#ifndef COCOATWEET_API_STATUS_STATUS_H_
+#define COCOATWEET_API_STATUS_STATUS_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
 #include "cocoatweet/oauth/oauth.h"

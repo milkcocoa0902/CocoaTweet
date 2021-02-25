@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_STATUSES_UPDATE_H_
-#define COCOATWEET_API_STATUSES_UPDATE_H_
+#ifndef COCOATWEET_API_STATUS_UPDATE_H_
+#define COCOATWEET_API_STATUS_UPDATE_H_
 
 #include <memory>
 #include <cocoatweet/api/interface/httpPost.h>

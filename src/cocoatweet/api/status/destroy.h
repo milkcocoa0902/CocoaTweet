@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_STATUSES_DESTROY_H_
-#define COCOATWEET_API_STATUSES_DESTROY_H_
+#ifndef COCOATWEET_API_STATUS_DESTROY_H_
+#define COCOATWEET_API_STATUS_DESTROY_H_
 
 #include <memory>
 #include <cocoatweet/api/interface/httpPost.h>
