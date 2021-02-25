@@ -6,9 +6,11 @@ This is a library for using Twitter API from C++
 - libssl
 
 # Features
+you can use these endpoint
 - statuses/update
-
-Now, only post a tweet.  
+- statuses/destroy/:id
+- favorites/create
+- favorites/destroy
 
 # How
 ## API Key Registration
@@ -56,8 +58,17 @@ CocoaTweet::API::API api(key);
 
 ```
 
-## Post Tweet
-post tweet  
+## Use API
 ```
+// Post a tweet
 api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
+
+// Delete a tweet
+api.status().Destroy("tweet id");
+
+// Fav. a tweet
+api.favorite().Create("tweet id");
+
+// un Fav. a tweet
+api.favorite().Destroy("tweet id");
 ```

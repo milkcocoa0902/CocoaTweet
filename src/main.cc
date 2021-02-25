@@ -2,20 +2,24 @@
 #include "cocoatweet/api/api.h"
 
 auto main() -> int {
-  // キーオブジェクトを作成
-  // auto consumerKey = "your consumer key";
-  // auto consumerSecret = "your consumer secret";
-  // auto accessToken = "your access token";
-  // auto accessTokenSecret = "your access token secret";
-  // CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key(consumerKey, consumerSecret,
-  // accessToken, accessTokenSecret);
+  // Generate Key object
+  // auto consumerKey           = "your consumer key";
+  // auto consumerSecret        = "your consumer secret";
+  // auto accessToken           = "your access token";
+  // auto accessTokenSecret     = "your access token secret";
+  // CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key(consumerKey,
+  //                                                     consumerSecret,
+  //                                                     accessToken,
+  //                                                     accessTokenSecret);
 
-  // jsonファイルから各種キーを読み込むことも可能
-  CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("apikey.json");
+  // also can generate Key object from JSON file
+  // CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
 
-  // 作成したキーオブジェクトを用いてAPIを立ち上げる．
-  // 内部的にはキーオブジェクトを使用してOAuth認証機を立ち上げている．
-  CocoaTweet::API::API api(key);
+  // Generate API Entry object using Key object
+  // CocoaTweet::API::API api(key);
 
-  api.status().Update("Hello Twitter World from Cocoa Twitter Library");
+  // Now, you can use a twitter api
+  // api.status().Update("Hello Twitter World from Cocoa Twitter Library");
+  // api.favorite().Create("tweet id you want to fav.");
+  // api.favorite().Destroy("tweet id you want to un_fav.");
 }
