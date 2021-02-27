@@ -49,6 +49,7 @@ if(ENABLE_CODE_COVERAGE)
 endif()
 
 # Required libraries
+find_package(Boost 1.71.0 COMPONENTS unit_test_framework REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(OpenSSL REQUIRED)
 if(NOT OPENSSL_FOUND)
@@ -63,14 +64,13 @@ if(NOT CURL_FOUND)
 endif()
 include_directories(${CURL_INCLUDE_DIRS})
 
-find_library(cpprest REQUIRED)
-include_directories(${CPP_REST_INCLUDE_DIR})
-
-
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
   ${PROJECT_SOURCE_DIR}/third
 )
 
+# Enable CTest
+enable_testing()
+
 add_subdirectory(src)
-#add_subdirectory(test)
+add_subdirectory(test)
