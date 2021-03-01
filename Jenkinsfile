@@ -49,6 +49,7 @@ pipeline {
            cd build
            ctest --output_on_failure
           '''
+          unittestBadge.setStatus('passing')
          }catch(Exception error){
           unittestBadge.setStatus('failed')
           error 'unittest failed'
