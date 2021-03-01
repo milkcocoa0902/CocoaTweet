@@ -1,3 +1,5 @@
+def unittestBadge = addEmbeddableBadgeConfiguration(id: "unittest", subject: "unit test")
+
 pipeline {
   agent {
     dockerfile true
@@ -40,10 +42,18 @@ pipeline {
 
       stage("test"){
        steps{
-        sh '''
-         cd build
-         ctest --output_on_failure
-        '''
+        script{
+         unittestBadge.setStatus('running')
+         try{
+          sh '''
+           cd build
+           ctest --output_on_failure
+          '''
+         }catch(Exception error){
+          unittestBadge.setStatus('failed')
+          error 'unittest failed'
+         }
+        }
        }
       }
      }
