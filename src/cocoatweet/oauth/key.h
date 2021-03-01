@@ -11,7 +11,11 @@ class Key {
   const std::string accessTokenSecret_;
 
 public:
-  Key() = default;
+  Key()
+      : consumerKey_(""),
+        consumerSecret_(""),
+        accessToken_(""),
+        accessTokenSecret_("") {}
   Key(const std::string& _consumerKey, const std::string& _consumerSecret,
       const std::string& _accessToken, const std::string& _accessTokenSecret)
       : consumerKey_(_consumerKey),

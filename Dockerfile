@@ -9,6 +9,7 @@ doxygen \
 git \
 graphviz \
 libboost-dev \
+libboost-test-dev \
 libcurl4-openssl-dev \
 libssl-dev \
 ninja-build \

@@ -8,7 +8,7 @@ for f in $(git ls-files | grep -E '^src\/.*\.h$'); do
   # ファイルパスから正しいインクルードガードの文字列を生成する
   s1="$(echo "$f" | sed -r 's/^src\///; s/[\/\.-]+/_/g; s/^.*$/\U&/')_"
 
-	# ファイルからインクルードガードを読み込む
+ # ファイルからインクルードガードを読み込む
   s2=$(grep -Pzo '#ifndef\s+\K\b(\w+)\b(?=\s+#define\s+\b\1\b)' "$f" | tr '\0' '\n')
 
   if [ -z "$s2" ]; then
