@@ -23,9 +23,29 @@ $ ninja
 ```
 
 ## Windows
-T.B.D.
+- Get MinGW32 from [here](https://osdn.net/projects/mingw/downloads/68260/mingw-get-setup.exe/)(start download automatically at open link)  
+- Install `mingw32-base-bin` and `mingw32-gcc-g+-bin` via MinGW32  
+- Add PATH in System Environment   
+- Get libcurl-32bit and OpenSSL-32bit from [here](https://curl.se/windows/)  
+- Get ninja from [here](https://github.com/ninja-build/ninja/releases) and add PATH(Optional, but build faster)  
 
-## HINT
+and ....
+```
+$ git clone https://github.com/koron0902/CocoaTweet
+$ cd CocoaTweet   // HINT : see bellow for more build faster
+$ mkdir build
+$ cd build
+
+// if install ninja
+$ cmake .. -G Ninja -DOPENSSL_ROOT_DIR=<path/to/openssl/install> -DCURL_ROOT_DIR=<path/to/curl/install> -DCMAKE_CXX_COMPILER=mingw32-g++ -DCMAKE_C_COMPILER=mingw32-gcc -DCMAKE_MAKE_PROGRAM=ninja 
+$ ninja
+
+// if NOT install ninja
+$ cmake .. -G "MinGW Makefiles" -DOPENSSL_ROOT_DIR=<path/to/openssl/install> -DCURL_ROOT_DIR=<path/to/curl/install> 
+$ mingw32-make
+```
+
+## -- HINT --
 in the default, test code also linked when build.  
 you can build more faster modifing CMakeLists.txt  
 ```
