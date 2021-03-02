@@ -7,8 +7,37 @@
 This is a library for using Twitter API from C++  
 
 # Dependency
-- libcurl
+- libcurl(openssl version)
 - libssl
+
+# Instllation
+## Ubuntu
+```
+# apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build
+$ git clone https://github.com/koron0902/CocoaTweet
+$ cd CocoaTweet   // HINT : see bellow for more build faster
+$ mkdir build
+$ cd build
+$ cmake .. -G Ninja
+$ ninja
+```
+
+## Windows
+T.B.D.
+
+## HINT
+in the default, test code also linked when build.  
+you can build more faster modifing CMakeLists.txt  
+```
+$ vi CMakeLists.txt (or other editor you like)
+
+// line 73
+# enable_testing()
+
+// line 76
+# add_subdirectory(test)
+
+```
 
 # Features
 you can use these endpoint
