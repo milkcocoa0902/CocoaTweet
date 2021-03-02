@@ -49,28 +49,60 @@ if(ENABLE_CODE_COVERAGE)
 endif()
 
 # Required libraries
-find_package(Boost 1.71.0 COMPONENTS unit_test_framework REQUIRED)
-find_package(PkgConfig REQUIRED)
-find_package(OpenSSL REQUIRED)
-if(NOT OPENSSL_FOUND)
-  message(FATAL_ERROR "Fail to find OpenSSL") # exit
+if(ENABLE_TEST)
+  if(NOT (UNIX OR APPLE))
+    message(FAITAL_ERROR "unit test is NOT supported on Windows")
+  endif()
+  find_package(Boost 1.71.0 COMPONENTS unit_test_framework REQUIRED)
+  # Enable CTest
+  enable_testing()
+  add_subdirectory(test)
 endif()
-message(STATUS "OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}")
+
+
+# Search OpenSSL
+if(UNIX OR APPLE)
+  find_package(PkgConfig REQUIRED)
+  find_package(OpenSSL REQUIRED)
+  if(NOT OPENSSL_FOUND)
+    message(FATAL_ERROR "Fail to find OpenSSL") # exit
+  endif()
+  set(OPENSSL_LIBRARIES OpenSSL::SSL OpenSSL::Crypto)
+elseif(WIN32)
+  if(NOT OPENSSL_ROOT_DIR)
+    message(FATAL_ERROR "Fail to find OpenSSL") # exit
+  endif()
+  set(OPENSSL_INCLUDE_DIR "${OPENSSL_ROOT_DIR/include}")
+  set(OPENSSL_LIB_DIR "${OPENSSL_ROOT_DIR/lib/MinGw}")
+  set(OPENSSL_LIBRARIES "${OPENSSL_LIB_DIR}/ssl.dll" "${OPENSSL_LIB_DIR}/crypto.dll")
+endif()
+message(STATUS "OPENSSL_INCLUDE_DIR: ${OPENSSL_INCLUDE_DIR}/include")
 include_directories(${OPENSSL_INCLUDE_DIR})
 
-find_package(CURL REQUIRED)
-if(NOT CURL_FOUND)
-  message(FATAL_ERROR "Fail to find OpenSSL") # exit
+
+# Search cURL library
+if(UNIX OR APPLE)
+  find_package(CURL REQUIRED)
+  if(NOT CURL_FOUND)
+    message(FATAL_ERROR "Fail to find cURL library") # exit
+  endif()
+elseif(WIN32)
+		if(NOT CURL_ROOT_DIR)
+    message(FATAL_ERROR "Fail to find cURL library") # exit
+  endif()
+  ## TODO
+	##  CURLのアレをセットする
+	##  set(CURL_INCLUDE_DIRS "${CURL_ROOT_DIR}/include")
+	##  set(CURL_LIBRARIES "${CURL_ROOT_DIR}/lib") # 実際にはglobしなければいけない
 endif()
+message(STATUS "CURL_INCLUDE_DIR: ${CURL_INCLUDE_DIRS}")
 include_directories(${CURL_INCLUDE_DIRS})
+
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/src
   ${PROJECT_SOURCE_DIR}/third
 )
 
-# Enable CTest
-enable_testing()
 
 add_subdirectory(src)
-add_subdirectory(test)
