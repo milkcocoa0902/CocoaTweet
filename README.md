@@ -6,6 +6,13 @@
 # CocoaTweet
 This is a library for using Twitter API from C++  
 
+# Features
+you can use these endpoint
+- statuses/update
+- statuses/destroy/:id
+- favorites/create
+- favorites/destroy
+
 # Dependency
 - libcurl(openssl version)
 - libssl
@@ -15,7 +22,7 @@ This is a library for using Twitter API from C++
 ```
 # apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build
 $ git clone https://github.com/koron0902/CocoaTweet
-$ cd CocoaTweet   // HINT : see bellow for more build faster
+$ cd CocoaTweet
 $ mkdir build
 $ cd build
 $ cmake .. -G Ninja
@@ -29,10 +36,10 @@ $ ninja
 - Get libcurl-32bit and OpenSSL-32bit from [here](https://curl.se/windows/)  
 - Get ninja from [here](https://github.com/ninja-build/ninja/releases) and add PATH(Optional, but build faster)  
 
-and ....
+and then....
 ```
 $ git clone https://github.com/koron0902/CocoaTweet
-$ cd CocoaTweet   // HINT : see bellow for more build faster
+$ cd CocoaTweet
 $ mkdir build
 $ cd build
 
@@ -44,27 +51,6 @@ $ ninja
 $ cmake .. -G "MinGW Makefiles" -DOPENSSL_ROOT_DIR=<path/to/openssl/install> -DCURL_ROOT_DIR=<path/to/curl/install> 
 $ mingw32-make
 ```
-
-## -- HINT --
-in the default, test code also linked when build.  
-you can build more faster modifing CMakeLists.txt  
-```
-$ vi CMakeLists.txt (or other editor you like)
-
-// line 73
-# enable_testing()
-
-// line 76
-# add_subdirectory(test)
-
-```
-
-# Features
-you can use these endpoint
-- statuses/update
-- statuses/destroy/:id
-- favorites/create
-- favorites/destroy
 
 # How
 ## API Key Registration
