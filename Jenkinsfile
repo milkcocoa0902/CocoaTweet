@@ -26,7 +26,7 @@ pipeline {
         sh '''
          mkdir -p build
          cd build
-         cmake .. -G Ninja
+         cmake .. -G Ninja -DENABLE_TEST=TRUE
         '''
        }
       }
