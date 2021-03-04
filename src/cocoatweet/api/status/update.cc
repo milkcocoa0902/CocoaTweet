@@ -1,5 +1,4 @@
 #include "cocoatweet/api/status/update.h"
-#include <iostream>
 
 namespace CocoaTweet::API::Statuses {
 Update::Update() {

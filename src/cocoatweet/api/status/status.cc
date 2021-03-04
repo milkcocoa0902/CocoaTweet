@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "cocoatweet/api/status/status.h"
 #include "cocoatweet/api/status/update.h"
 #include "cocoatweet/api/status/destroy.h"

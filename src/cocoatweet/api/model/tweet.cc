@@ -6,8 +6,6 @@
 #include <cocoatweet/exception/rateLimitException.h>
 #include "nlohmann/json.hpp"
 
-#include <iostream>
-
 namespace CocoaTweet::API::Model {
 Tweet Tweet::parse(const unsigned int _responseCode, const std::string& _json) {
   auto j = nlohmann::json::parse(_json);

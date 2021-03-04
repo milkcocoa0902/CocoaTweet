@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "cocoatweet/api/favorite/favorite.h"
 #include "cocoatweet/api/favorite/create.h"
 #include "cocoatweet/api/favorite/destroy.h"
