@@ -65,6 +65,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     curl_easy_setopt(curl, CURLOPT_POST, 1);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
 #ifndef NDEBUG
