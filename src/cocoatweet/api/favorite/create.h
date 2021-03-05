@@ -2,13 +2,14 @@
 #define COCOATWEET_API_FAVORITE_CREATE_H_
 
 #include <cocoatweet/api/interface/httpPost.h>
+#include <cocoatweet/api/model/tweet.h>
 
 namespace CocoaTweet::API::Favorites {
 class Create : public CocoaTweet::API::Interface::HttpPost {
 public:
   Create();
   void id(const std::string& _id);
-  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+	CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 
 private:
 };
