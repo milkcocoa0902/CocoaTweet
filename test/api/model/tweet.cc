@@ -42,7 +42,8 @@ BOOST_AUTO_TEST_CASE(test03) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(401, json), CocoaTweet::Exception::AuthenticateException);
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(401, json),
+                    CocoaTweet::Exception::AuthenticateException);
 }
 
 BOOST_AUTO_TEST_CASE(test04) {
@@ -53,7 +54,8 @@ BOOST_AUTO_TEST_CASE(test04) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(429, json), CocoaTweet::Exception::RateLimitException);
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(429, json),
+                    CocoaTweet::Exception::RateLimitException);
 }
 
 BOOST_AUTO_TEST_CASE(test05) {
@@ -64,7 +66,8 @@ BOOST_AUTO_TEST_CASE(test05) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json), CocoaTweet::Exception::RateLimitException);
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json),
+                    CocoaTweet::Exception::RateLimitException);
 }
 
 BOOST_AUTO_TEST_CASE(test06) {
@@ -75,7 +78,8 @@ BOOST_AUTO_TEST_CASE(test06) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json), CocoaTweet::Exception::TweetTooLongException);
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json),
+                    CocoaTweet::Exception::TweetTooLongException);
 }
 
 BOOST_AUTO_TEST_CASE(test07) {
@@ -86,6 +90,7 @@ BOOST_AUTO_TEST_CASE(test07) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json), CocoaTweet::Exception::TweetDuplicateException);
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json),
+                    CocoaTweet::Exception::TweetDuplicateException);
 }
 BOOST_AUTO_TEST_SUITE_END()

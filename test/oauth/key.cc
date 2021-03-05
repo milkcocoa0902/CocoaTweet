@@ -6,7 +6,7 @@
 
 BOOST_AUTO_TEST_SUITE(oauth_key)
 BOOST_AUTO_TEST_CASE(test01) {
-    CocoaTweet::OAuth::Key key;
+  CocoaTweet::OAuth::Key key;
 
   BOOST_TEST(key.consumerKey() == "");
   BOOST_TEST(key.consumerSecret() == "");
@@ -15,7 +15,8 @@ BOOST_AUTO_TEST_CASE(test01) {
 }
 
 BOOST_AUTO_TEST_CASE(test02) {
-  CocoaTweet::OAuth::Key key("consumerKey", "consumerSecret", "accessToken", "accessTokenSecret");
+  CocoaTweet::OAuth::Key key("consumerKey", "consumerSecret", "accessToken",
+                             "accessTokenSecret");
 
   BOOST_TEST(key.consumerKey() == "consumerKey");
   BOOST_TEST(key.consumerSecret() == "consumerSecret");
@@ -30,6 +31,5 @@ BOOST_AUTO_TEST_CASE(test02) {
   BOOST_TEST(secret.at("oauth_consumer_key") == "consumerSecret");
   BOOST_TEST(secret.at("oauth_token") == "accessTokenSecret");
 }
-
 
 BOOST_AUTO_TEST_SUITE_END()

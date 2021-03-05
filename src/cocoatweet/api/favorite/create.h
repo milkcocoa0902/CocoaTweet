@@ -9,7 +9,7 @@ class Create : public CocoaTweet::API::Interface::HttpPost {
 public:
   Create();
   void id(const std::string& _id);
-	CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 
 private:
 };
