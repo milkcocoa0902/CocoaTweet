@@ -108,8 +108,8 @@ include_directories(${CURL_INCLUDE_DIRS})
 
 
 include_directories(
-  ${PROJECT_SOURCE_DIR}/src
-  ${PROJECT_SOURCE_DIR}/third
+		${CMAKE_SOURCE_DIR}/src
+		${CMAKE_SOURCE_DIR}/third
 )
 
 
