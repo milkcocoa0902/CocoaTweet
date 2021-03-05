@@ -47,7 +47,7 @@ pipeline {
          try{
           sh '''
            cd build
-           ctest --output_on_failure
+           ctest --output-on-failure
           '''
           unittestBadge.setStatus('passing')
          }catch(Exception error){
