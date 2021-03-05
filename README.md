@@ -17,7 +17,7 @@ you can use these endpoint
 - libcurl(openssl version)
 - libssl
 
-# Instllation
+# Installation
 ## Ubuntu
 ```
 # apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build
