@@ -3,14 +3,15 @@
 
 #include "cocoatweet/api/interface/groupInterface.h"
 #include "cocoatweet/oauth/oauth.h"
+#include <cocoatweet/api/model/tweet.h>
 
 namespace CocoaTweet::API::Favorites {
 class Favorite : public groupInterface {
 public:
   Favorite() = default;
   Favorite(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
-  void Create(const std::string& _id) const;
-  void Destroy(const std::string& _id) const;
+  CocoaTweet::API::Model::Tweet Create(const std::string& _id) const;
+  CocoaTweet::API::Model::Tweet Destroy(const std::string& _id) const;
 };
 } // namespace CocoaTweet::API::Favorites
 

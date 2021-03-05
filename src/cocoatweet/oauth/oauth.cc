@@ -7,7 +7,6 @@
 #include <string>
 #include <cstring>
 #include <iterator>
-#include <iostream>
 
 extern "C" {
 #include <openssl/hmac.h>
@@ -26,7 +25,6 @@ std::map<std::string, std::string> OAuth1::signature(
   std::vector<std::string> tmp;
   for (const auto& [key, value] : _param) {
     tmp.push_back(key + "=" + value);
-    std::cout << (key + "=" + value) << std::endl;
   }
 
   std::string query = CocoaTweet::Util::join(tmp, "&");
@@ -35,10 +33,6 @@ std::map<std::string, std::string> OAuth1::signature(
   auto significateBase = _method + "&" + CocoaTweet::Util::urlEncode(_url) + "&" +
                          CocoaTweet::Util::urlEncode(query);
   auto k64Sha1 = hmacSha1(significateKey, significateBase);
-
-  std::cout << "significate key : " << significateKey << std::endl;
-  std::cout << "significate base : " << significateBase << std::endl;
-  std::cout << "hmac-sha1 : " << k64Sha1 << std::endl;
 
   auto ret = std::map<std::string, std::string>{{"oauth_signature", k64Sha1}};
   return ret;

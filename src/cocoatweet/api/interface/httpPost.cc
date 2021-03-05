@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 #include <sstream>
-#include <iostream>
+#include <stdexcept>
 extern "C" {
 #include <curl/curl.h>
 }
@@ -31,7 +31,6 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   auto signature = oauth->signature(sigingParam, "POST", url_);
 
   // 作成した署名をエンドポイントへのパラメータ及びOAuthパラメータに登録
-  std::cout << "signature : " << signature["oauth_signature"] << std::endl;
   oauthParam.merge(signature);
 
   // リクエストボディの構築
@@ -43,7 +42,6 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     }
     requestBody = CocoaTweet::Util::join(tmp, "&");
   }
-  std::cout << "request Body -> " << requestBody << std::endl;
 
   // ヘッダの構築
   std::string oauthHeader = "authorization: OAuth ";
@@ -54,7 +52,6 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     }
     oauthHeader += CocoaTweet::Util::join(tmp, ",");
   }
-  std::cout << "OAuth Header -> " << oauthHeader << std::endl;
 
   // do post
   CURL* curl;
@@ -63,15 +60,17 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   long responseCode;
   curl = curl_easy_init();
   url_ = url_;
-  std::cout << "URL : " << url_ << std::endl;
   if (curl) {
     curl_easy_setopt(curl, CURLOPT_URL, url_.c_str());
     curl_easy_setopt(curl, CURLOPT_POST, 1);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
+#ifndef NDEBUG
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+#endif
     // Headerを保持するcurl_slist*を初期化
     struct curl_slist* headers = NULL;
     // Authorizationをヘッダに追加
@@ -83,7 +82,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   }
 
   if (res != CURLE_OK) {
-    std::cout << "curl error : " << res << std::endl;
+    throw std::runtime_error(std::string("INTERNAL ERROR : curl(") + std::to_string(res) + ")");
     exit(1);
   }
 

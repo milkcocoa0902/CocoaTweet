@@ -19,7 +19,8 @@ auto main() -> int {
   // CocoaTweet::API::API api(key);
 
   // Now, you can use a twitter api
-  // api.status().Update("Hello Twitter World from Cocoa Twitter Library");
-  // api.favorite().Create("tweet id you want to fav.");
-  // api.favorite().Destroy("tweet id you want to un_fav.");
+  // auto status = api.status().Update("Hello Twitter World via Cocoa Twitter Library");
+  // api.favorite().Create(status.id());
+  // api.favorite().Destroy(status.id());
+  // api.status().Destroy(status.id());
 }

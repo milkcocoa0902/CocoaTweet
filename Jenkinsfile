@@ -26,7 +26,7 @@ pipeline {
         sh '''
          mkdir -p build
          cd build
-         cmake .. -G Ninja
+         cmake .. -G Ninja -DENABLE_TEST=TRUE
         '''
        }
       }
@@ -47,7 +47,7 @@ pipeline {
          try{
           sh '''
            cd build
-           ctest --output_on_failure
+           ctest --output-on-failure
           '''
           unittestBadge.setStatus('passing')
          }catch(Exception error){

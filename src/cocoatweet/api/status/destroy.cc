@@ -1,6 +1,6 @@
 #include "cocoatweet/api/status/destroy.h"
 #include <cocoatweet/api/model/tweet.h>
-#include <iostream>
+
 namespace CocoaTweet::API::Statuses {
 Destroy::Destroy() {}
 void Destroy::id(const std::string _id) {
