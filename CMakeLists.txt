@@ -22,7 +22,10 @@ set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS}         -Wall -Wextra -pedantic")
 set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG}   -g -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 -march=native -DNDEBUG")
-if(UNIX)
+
+
+if(UNIX AND (NOT APPLE))
+	message(STATUS "afiejanfonw")
   set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS}  -Wl,-O1,--sort-common,--as-needed,-z,relro")
 elseif(WIN32 OR APPLE)
  #set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS}  -Wl,-O1,--sort-common,--as-needed")
@@ -65,7 +68,15 @@ endif()
 
 
 # Search OpenSSL
-if(UNIX OR APPLE)
+if (APPLE)
+  # This is a bug in CMake that causes it to prefer the system version over
+  # the one in the specified ROOT folder.
+  find_package(PkgConfig REQUIRED)
+  find_package(OpenSSL REQUIRED)
+  set(OPENSSL_CRYPTO_LIBRARY ${OPENSSL_ROOT_DIR}/lib/libcrypto.dylib CACHE FILEPATH "" FORCE)
+  set(OPENSSL_SSL_LIBRARY ${OPENSSL_ROOT_DIR}/lib/libssl.dylib CACHE FILEPATH "" FORCE)
+  set(OPENSSL_LIBRARIES ${OPENSSL_CRYPTO_LIBRARY} ${OPENSSL_SSL_LIBRARY})
+elseif(UNIX)
   find_package(PkgConfig REQUIRED)
   find_package(OpenSSL REQUIRED)
   if(NOT OPENSSL_FOUND)
