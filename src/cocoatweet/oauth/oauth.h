@@ -1,6 +1,7 @@
 #ifndef COCOATWEET_OAUTH_OAUTH_H_
 #define COCOATWEET_OAUTH_OAUTH_H_
 
+#include <string>
 #include <map>
 #include <memory>
 #include "key.h"

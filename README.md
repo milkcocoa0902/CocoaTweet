@@ -17,7 +17,7 @@ you can use these endpoint
 - libcurl(openssl version)
 - libssl
 
-# Instllation
+# Installation
 ## Ubuntu
 ```
 # apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build
@@ -26,6 +26,17 @@ $ cd CocoaTweet
 $ mkdir build
 $ cd build
 $ cmake .. -G Ninja
+$ ninja
+```
+
+## macOS
+```
+$ brew install cmake curl git ninja openssl pkg-config
+$ git clone https://github.com/koron0902/CocoaTweet
+$ cd CocoaTweet
+$ mkdir build
+$ cd build
+$ cmake .. -G ninja -DOPENSSL_ROOT_DIR=<path/to/openssl/install> # CANNOT detect libssl automatically with homebrew and cmake bug
 $ ninja
 ```
 

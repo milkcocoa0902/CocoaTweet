@@ -1,6 +1,7 @@
 #ifndef COCOATWEET_OAUTH_KEY_H_
 #define COCOATWEET_OAUTH_KEY_H_
 
+#include <string>
 #include <map>
 
 namespace CocoaTweet::OAuth {
