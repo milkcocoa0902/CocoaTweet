@@ -29,6 +29,17 @@ $ cmake .. -G Ninja
 $ ninja
 ```
 
+## macOS
+```
+$ brew install cmake curl git ninja openssl pkg-config
+$ git clone https://github.com/koron0902/CocoaTweet
+$ cd CocoaTweet
+$ mkdir build
+$ cd build
+$ cmake .. -G ninja -DOPENSSL_ROOT_DIR=<path/to/openssl/install> # CANNOT detect libssl automatically with homebrew and cmake bug
+$ ninja
+```
+
 ## Windows
 - Get MinGW32 from [here](https://osdn.net/projects/mingw/downloads/68260/mingw-get-setup.exe/)(start download automatically at open link)  
 - Install `mingw32-base-bin` and `mingw32-gcc-g+-bin` via MinGW32  
