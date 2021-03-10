@@ -4,12 +4,16 @@
 #include <memory>
 #include <cocoatweet/api/interface/httpPost.h>
 #include <cocoatweet/api/model/tweet.h>
+#include <vector>
 
 namespace CocoaTweet::API::Statuses {
 class Update : public CocoaTweet::API::Interface::HttpPost {
 public:
   Update();
   void status(const std::string _status);
+
+  void mediaId(const std::vector<std::string> _media);
+
   CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 
 private:

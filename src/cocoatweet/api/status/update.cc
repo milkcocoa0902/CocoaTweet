@@ -1,4 +1,5 @@
 #include "cocoatweet/api/status/update.h"
+#include <cocoatweet/util/util.h>
 
 namespace CocoaTweet::API::Statuses {
 Update::Update() {
@@ -9,6 +10,10 @@ Update::Update() {
 void Update::status(const std::string _status) {
   status_ = _status;
   bodyParam_.insert_or_assign("status", status_);
+}
+
+void Update::mediaId(const std::vector<std::string> _media) {
+  bodyParam_.insert_or_assign("media_ids", CocoaTweet::Util::join(_media, ","));
 }
 
 CocoaTweet::API::Model::Tweet Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {

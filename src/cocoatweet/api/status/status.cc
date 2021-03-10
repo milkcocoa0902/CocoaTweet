@@ -13,6 +13,14 @@ CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status) const {
   return update.process(oauth_);
 }
 
+CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status,
+                                             std::vector<std::string> _mediaId) const {
+  CocoaTweet::API::Statuses::Update update;
+  update.status(_status);
+  update.mediaId(_mediaId);
+  return update.process(oauth_);
+}
+
 CocoaTweet::API::Model::Tweet Status::Destroy(const std::string& _id) const {
   CocoaTweet::API::Statuses::Destroy destroy;
   destroy.id(_id);
