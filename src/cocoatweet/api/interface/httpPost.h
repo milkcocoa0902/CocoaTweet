@@ -6,7 +6,7 @@
 #include <cocoatweet/api/interface/httpBase.h>
 
 namespace CocoaTweet::API::Interface {
-class HttpPost : public HttpBase{
+class HttpPost : public HttpBase {
 public:
 protected:
   void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
