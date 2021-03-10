@@ -24,7 +24,7 @@ std::map<std::string, std::string> OAuth1::signature(
     const std::string& _url) {
   std::vector<std::string> tmp;
   for (const auto& [key, value] : _param) {
-    tmp.push_back(key + "=" + value);
+    tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
   }
 
   std::string query = CocoaTweet::Util::join(tmp, "&");
