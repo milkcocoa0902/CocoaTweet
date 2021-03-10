@@ -1,22 +1,20 @@
 #ifndef COCOATWEET_API_MEDIA_UPLOAD_H_
 #define COCOATWEET_API_MEDIA_UPLOAD_H_
 
-#include <cocoatweet/api/interface/postInterface.h>
+#include <cocoatweet/api/interface/httpPost.h>
+#include <string>
 
 namespace CocoaTweet::API::Medias {
-class Upload : public postInterface {
-public:
-  enum Command : class st::string {
-    INIT     = "INIT",
-    APPEND   = "APPEND",
-    FINALIZE = "FINALIZE",
-  };
+class Upload : public CocoaTweet::API::Interface::HttpPost {
+private:
+  std::string media_;
 
-  Upload::Upload();
+public:
+  Upload();
   void media(const std::string& _media);
-  void mediaId(const std::string _mediaId);
-  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth, Command _command);
-}
+  void mediaId(const std::string& _mediaId);
+  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+};
 } // namespace CocoaTweet::API::Medias
 
 #endif
