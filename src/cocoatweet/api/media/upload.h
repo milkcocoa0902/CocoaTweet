@@ -2,6 +2,7 @@
 #define COCOATWEET_API_MEDIA_UPLOAD_H_
 
 #include <cocoatweet/api/interface/httpPost.h>
+#include <cocoatweet/api/model/mediaStore.h>
 #include <string>
 
 namespace CocoaTweet::API::Medias {
@@ -13,7 +14,7 @@ public:
   Upload();
   void media(const std::string& _media);
   void mediaId(const std::string& _mediaId);
-  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  CocoaTweet::API::Model::MediaStore process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 };
 } // namespace CocoaTweet::API::Medias
 

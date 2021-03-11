@@ -14,7 +14,9 @@ void Upload::media(const std::string& _media) {
 
 void Upload::mediaId(const std::string& _mediaId) {}
 
-void Upload::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+CocoaTweet::API::Model::MediaStore Upload::process(
+    std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+  CocoaTweet::API::Model::MediaStore media;
   std::ifstream ifs(media_, std::ios::binary);
   ifs.seekg(0, std::ios::end);
   unsigned long long size = ifs.tellg();
@@ -26,14 +28,11 @@ void Upload::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
   // INIT
   {
     contentType_ = "application/x-www-form-urlencoded";
-    // contentType_ = "multipart/form-data";
     bodyParam_.insert_or_assign("command", "INIT");
     bodyParam_.insert_or_assign("media_type", "image/jpeg");
 
-    CocoaTweet::API::Model::MediaStore media;
     HttpPost::process(_oauth,
                       [&media](const unsigned int _responseCode, const std::string& _rsv) {
-                        std::cout << _rsv << std::endl;
                         media = CocoaTweet::API::Model::MediaStore::parse(_responseCode, _rsv);
                       });
 
@@ -52,7 +51,6 @@ void Upload::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
       bodyParam_.insert_or_assign("command", "APPEND");
       bodyParam_.insert_or_assign("segment_index", std::to_string(segment));
       bodyParam_.insert_or_assign("media", data.substr(segment * chunk, chunk));
-      CocoaTweet::API::Model::MediaStore media;
       HttpPost::process(_oauth, [](const unsigned int _responseCode, const std::string& _rsv) {
         // std::cout << _responseCode << std::endl << _rsv<< std::endl;
       });
@@ -66,13 +64,15 @@ void Upload::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
     bodyParam_.insert_or_assign("command", "FINALIZE");
     bodyParam_.erase("segment_index");
     bodyParam_.erase("media");
-    CocoaTweet::API::Model::MediaStore media;
-    HttpPost::process(_oauth, [](const unsigned int _responseCode, const std::string& _rsv) {
-      std::cout << _rsv << std::endl;
-    });
+    HttpPost::process(_oauth,
+                      [&media](const unsigned int _responseCode, const std::string& _rsv) {
+                        media = CocoaTweet::API::Model::MediaStore::parse(_responseCode, _rsv);
+                      });
   }
 
   // STATUS if needed
   {}
+
+  return media;
 }
 } // namespace CocoaTweet::API::Medias
