@@ -13,6 +13,7 @@ you can use these endpoint
 - favorites/create
 - favorites/destroy
 - media/upload(support: jpg, jpeg, png, gif, mp4)
+
 # Dependency
 - libcurl(openssl version)
 - libssl
@@ -115,9 +116,9 @@ CocoaTweet::API::API api(key);
 api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 
 // Upload a media
-// auto media1 = api.media().Upload("path/to/file/image.jpeg");
-// auto media2 = api.media().Upload("path/to/file/image2.png");
-// api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
+auto media1 = api.media().Upload("path/to/file/image.jpeg");
+auto media2 = api.media().Upload("path/to/file/image2.png");
+api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
 
 // Delete a tweet
 api.status().Destroy("tweet id");
