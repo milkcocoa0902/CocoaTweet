@@ -3,6 +3,7 @@
 
 #include <cocoatweet/api/status/status.h>
 #include <cocoatweet/api/favorite/favorite.h>
+#include <cocoatweet/api/media/media.h>
 #include <cocoatweet/oauth/oauth.h>
 
 namespace CocoaTweet::API {
@@ -21,9 +22,12 @@ public:
   /// @param[out] Favorite object typed CococaTweet::API::Favorites::Favorite
   Favorites::Favorite favorite() const;
 
+  Medias::Media media() const;
+
 private:
   Statuses::Status status_;
   Favorites::Favorite favorite_;
+  Medias::Media media_;
   std::shared_ptr<CocoaTweet::OAuth::OAuth1> oauth_;
 };
 } // namespace CocoaTweet::API
