@@ -117,7 +117,7 @@ api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 // Upload a media
 // auto media1 = api.media().Upload("path/to/file/image.jpeg");
 // auto media2 = api.media().Upload("path/to/file/image2.png");
-// api.status().Update("Upload media from Cocoa Twitter Library", {media1.id(), media2.id()});
+// api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
 
 // Delete a tweet
 api.status().Destroy("tweet id");
