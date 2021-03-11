@@ -12,7 +12,7 @@ you can use these endpoint
 - statuses/destroy/:id
 - favorites/create
 - favorites/destroy
-
+- media/upload(support: jpg, jpeg, png, gif, mp4)
 # Dependency
 - libcurl(openssl version)
 - libssl
@@ -114,6 +114,11 @@ CocoaTweet::API::API api(key);
 // Post a tweet
 api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 
+// Upload a media
+// auto media1 = api.media().Upload("path/to/file/image.jpeg");
+// auto media2 = api.media().Upload("path/to/file/image2.png");
+// api.status().Update("Upload media from Cocoa Twitter Library", {media1.id(), media2.id()});
+
 // Delete a tweet
 api.status().Destroy("tweet id");
 
@@ -123,3 +128,5 @@ api.favorite().Create("tweet id");
 // un Fav. a tweet
 api.favorite().Destroy("tweet id");
 ```
+
+donate by BitCoin : bc1qhpm8tmq72scqpl2ccemcf0ktfjg4rsu73e99tz  
