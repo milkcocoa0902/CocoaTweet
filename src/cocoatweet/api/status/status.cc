@@ -13,43 +13,44 @@ CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status) const {
   return update.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status, const Options _options) const{
+CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status,
+                                             const Options _options) const {
   CocoaTweet::API::Statuses::Update update;
   update.status(_status);
 
-  if(_options.replyToStatusId != defaultOpt_.replyToStatusId){
+  if (_options.replyToStatusId != defaultOpt_.replyToStatusId) {
     update.replyToStatusId(_options.replyToStatusId);
   }
 
-  if(_options.autoPopulateReplyMetaData != defaultOpt_.autoPopulateReplyMetaData){
+  if (_options.autoPopulateReplyMetaData != defaultOpt_.autoPopulateReplyMetaData) {
     update.autoPopulateReplyMetaData(_options.autoPopulateReplyMetaData);
   }
 
-  if(_options.excludeReplyUserId != defaultOpt_.excludeReplyUserId){
+  if (_options.excludeReplyUserId != defaultOpt_.excludeReplyUserId) {
     update.excludeReplyUserId(_options.excludeReplyUserId);
   }
 
-  if(_options.attachmentUrl != defaultOpt_.attachmentUrl){
+  if (_options.attachmentUrl != defaultOpt_.attachmentUrl) {
     update.attachmentUrl(_options.attachmentUrl);
   }
 
-  if(_options.coord != defaultOpt_.coord){
+  if (_options.coord != defaultOpt_.coord) {
     update.coord(_options.coord);
   }
 
-  if(_options.displayCoord != defaultOpt_.displayCoord){
+  if (_options.displayCoord != defaultOpt_.displayCoord) {
     update.displayCoord(_options.displayCoord);
   }
 
-  if(_options.trimUser != defaultOpt_.trimUser){
+  if (_options.trimUser != defaultOpt_.trimUser) {
     update.trimUser(_options.trimUser);
   }
 
-  if(_options.enableDMCommands != defaultOpt_.enableDMCommands){
+  if (_options.enableDMCommands != defaultOpt_.enableDMCommands) {
     update.enableDMCommands(_options.enableDMCommands);
   }
 
-  if(_options.failDMCommands != defaultOpt_.failDMCommands){
+  if (_options.failDMCommands != defaultOpt_.failDMCommands) {
     update.failDMCommands(_options.failDMCommands);
   }
 

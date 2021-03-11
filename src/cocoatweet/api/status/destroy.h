@@ -19,7 +19,7 @@ public:
 
   /// @brief process request for endpoint
   /// @param[in] std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth : pointer to oauth object
-  /// @param[out] none
+  /// @param[out] CocoaTweet::API::Model::Tweet : request result
   CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 };
 } // namespace CocoaTweet::API::Statuses

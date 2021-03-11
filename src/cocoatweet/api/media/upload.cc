@@ -21,14 +21,13 @@ void Upload::mediaId(const std::string& _mediaId) {}
 
 CocoaTweet::API::Model::MediaStore Upload::process(
     std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+  auto backup = bodyParam_;
   CocoaTweet::API::Model::MediaStore media;
   std::ifstream ifs(media_, std::ios::binary);
-  ifs.seekg(0, std::ios::end);
-  unsigned long long size = ifs.tellg();
-  bodyParam_.insert_or_assign("total_bytes", std::to_string(size));
-  ifs.seekg(0);
   std::string data((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
   ifs.close();
+
+  bodyParam_.insert_or_assign("total_bytes", std::to_string(data.size()));
 
   // INIT
   {
@@ -72,12 +71,15 @@ CocoaTweet::API::Model::MediaStore Upload::process(
     bodyParam_.erase("media");
     HttpPost::process(_oauth,
                       [&media](const unsigned int _responseCode, const std::string& _rsv) {
+                        std::cout << _responseCode << std::endl << _rsv << std::endl;
                         media = CocoaTweet::API::Model::MediaStore::parse(_responseCode, _rsv);
                       });
   }
 
   // STATUS if needed
   {}
+
+  bodyParam_ = backup;
 
   return media;
 }

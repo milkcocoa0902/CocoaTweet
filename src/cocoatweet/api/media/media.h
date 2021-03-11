@@ -23,6 +23,6 @@ public:
 
 private:
 };
-} // namespace CocoaTweet::API::Statuses
+} // namespace CocoaTweet::API::Medias
 
 #endif
