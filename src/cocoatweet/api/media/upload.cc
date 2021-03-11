@@ -4,6 +4,11 @@
 #include <iostream>
 
 namespace CocoaTweet::API::Medias {
+const std::map<std::string, std::string> Upload::mimeType = {{".jpg", "image/jpeg"},
+                                                             {".jpeg", "image/jpeg"},
+                                                             {".png", "image/png"},
+                                                             {".gif", "image/gif"},
+                                                             {".mp4", "video/mp4"}};
 Upload::Upload() {
   url_ = "https://upload.twitter.com/1.1/media/upload.json";
 }
@@ -29,7 +34,8 @@ CocoaTweet::API::Model::MediaStore Upload::process(
   {
     contentType_ = "application/x-www-form-urlencoded";
     bodyParam_.insert_or_assign("command", "INIT");
-    bodyParam_.insert_or_assign("media_type", "image/jpeg");
+    bodyParam_.insert_or_assign(
+        "media_type", mimeType.at(std::filesystem::path(media_).extension().string<char>()));
 
     HttpPost::process(_oauth,
                       [&media](const unsigned int _responseCode, const std::string& _rsv) {
