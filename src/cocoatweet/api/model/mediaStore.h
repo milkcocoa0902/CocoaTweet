@@ -9,19 +9,21 @@ namespace CocoaTweet::API::Model {
 class MediaStore final {
 public:
   /// @brief constructor
-  MediaStore()             = default;
+  MediaStore() = default;
 
   /// @brief copy constructor
   MediaStore(const MediaStore&) = default;
 
   /// @brief constructor for create object from json response
-  /// @param[in] const unsigned int _responseCode : http status code which received when post request
+  /// @param[in] const unsigned int _responseCode : http status code which received when post
+  /// request
   /// @param[in] const std::string& _json : received content from twitter endpoint
   MediaStore(const unsigned int _responseCode, const std::string& _json)
       : MediaStore(MediaStore::parse(_responseCode, _json)) {}
 
   /// @brief response parser for tweet object
-  /// @param[in] const unsigned int _responseCode : http status code which received when post request
+  /// @param[in] const unsigned int _responseCode : http status code which received when post
+  /// request
   /// @param[in] const std::string& _json : received content from twitter endpoint
   /// @param[out] CocoaTweet::API::Model::Tweet
   static MediaStore parse(const unsigned int _responseCode, const std::string& _json);
@@ -33,7 +35,7 @@ public:
 
   /// @brief set created time of tweet
   /// @param[in] const std::string _at : tweet created time to set
-  /// @param[out] none 
+  /// @param[out] none
   void size(const unsigned int _size);
 
   /// @brief set tweet text
