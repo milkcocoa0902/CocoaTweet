@@ -37,7 +37,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     if (contentType_ == "application/x-www-form-urlencoded") {
       std::vector<std::string> tmp;
       for (const auto& [key, value] : bodyParam_) {
-        tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
+        tmp.push_back(key + "=" + value);
         requestBody = CocoaTweet::Util::join(tmp, "&");
       }
     } else if (contentType_ == "multipart/form-data") {
