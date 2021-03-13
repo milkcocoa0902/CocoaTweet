@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_MEDIAS_MEDIA_H_
-#define COCOATWEET_API_MEDIAS_MEDIA_H_
+#ifndef COCOATWEET_API_MEDIA_MEDIA_H_
+#define COCOATWEET_API_MEDIA_MEDIA_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
 #include "cocoatweet/oauth/oauth.h"
