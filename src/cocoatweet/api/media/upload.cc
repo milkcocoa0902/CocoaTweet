@@ -1,5 +1,6 @@
 #include <cocoatweet/api/media/upload.h>
 #include <cocoatweet/api/model/mediaStore.h>
+#include <cocoatweet/exception/unsupportedMediaTypeException.h>
 #include <fstream>
 #include <iostream>
 
@@ -21,6 +22,12 @@ void Upload::mediaId(const std::string& _mediaId) {}
 
 CocoaTweet::API::Model::MediaStore Upload::process(
     std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+  auto extension = std::filesystem::path(media_).extension().string<char>();
+  if (mimeType.count(extension) == 0) {
+    throw new CocoaTweet::Exception::UnsupportedMediaTypeException(
+        std::string("media type \"" + extension + "\" is not supported media type"));
+  }
+
   auto backup = bodyParam_;
   CocoaTweet::API::Model::MediaStore media;
   std::ifstream ifs(media_, std::ios::binary);

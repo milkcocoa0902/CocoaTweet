@@ -1,9 +1,5 @@
 #include <cocoatweet/api/model/mediaStore.h>
-#include <cocoatweet/exception/tweetNotFoundException.h>
-#include <cocoatweet/exception/authenticateException.h>
-#include <cocoatweet/exception/tweetDuplicateException.h>
-#include <cocoatweet/exception/tweetTooLongException.h>
-#include <cocoatweet/exception/rateLimitException.h>
+#include <cocoatweet/exception/exception.h>
 #include "nlohmann/json.hpp"
 
 namespace CocoaTweet::API::Model {
@@ -31,6 +27,7 @@ MediaStore MediaStore::parse(const unsigned int _responseCode, const std::string
       media.remain(j["processing_info"]["check_after_secs"].get<unsigned int>());
     }
   } else {
+    throw new CocoaTweet::Exception::Exception(j["error"]);
   }
 
   return media;
