@@ -10,14 +10,16 @@ This is a library for using Twitter API from C++
 you can use these endpoint
 - statuses/update
 - statuses/destroy/:id
+- statuses/retweet/:id
 - favorites/create
 - favorites/destroy
+- media/upload(support: jpg, jpeg, png, gif, mp4)
 
 # Dependency
 - libcurl(openssl version)
 - libssl
 
-# Instllation
+# Installation
 ## Ubuntu
 ```
 # apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build
@@ -26,6 +28,17 @@ $ cd CocoaTweet
 $ mkdir build
 $ cd build
 $ cmake .. -G Ninja
+$ ninja
+```
+
+## macOS
+```
+$ brew install cmake curl git ninja openssl pkg-config
+$ git clone https://github.com/koron0902/CocoaTweet
+$ cd CocoaTweet
+$ mkdir build
+$ cd build
+$ cmake .. -G ninja -DOPENSSL_ROOT_DIR=<path/to/openssl/install> # CANNOT detect libssl automatically with homebrew and cmake bug
 $ ninja
 ```
 
@@ -103,6 +116,14 @@ CocoaTweet::API::API api(key);
 // Post a tweet
 api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 
+// Upload a media
+auto media1 = api.media().Upload("path/to/file/image.jpeg");
+auto media2 = api.media().Upload("path/to/file/image2.png");
+api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
+
+// Retweet a tweet
+api.status().Retweet("tweet id");
+
 // Delete a tweet
 api.status().Destroy("tweet id");
 
@@ -112,3 +133,5 @@ api.favorite().Create("tweet id");
 // un Fav. a tweet
 api.favorite().Destroy("tweet id");
 ```
+
+donate by BitCoin : bc1qhpm8tmq72scqpl2ccemcf0ktfjg4rsu73e99tz  

@@ -8,6 +8,7 @@ namespace CocoaTweet::Exception {
 class Exception : public std::exception {
 public:
   Exception(const char* _msg) : msg_(std::string(_msg)) {}
+  Exception(const std::string& _msg) : msg_(std::string(_msg)) {}
   const std::string& what() {
     return msg_;
   }

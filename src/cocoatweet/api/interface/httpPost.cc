@@ -9,13 +9,11 @@ extern "C" {
 #include <curl/curl.h>
 }
 
-namespace CocoaTweet::API::Interface {
-size_t HttpPost::curlCallback_(char* _ptr, size_t _size, size_t _nmemb, std::string* _stream) {
-  int realsize = _size * _nmemb;
-  _stream->append(_ptr, realsize);
-  return realsize;
-}
+#ifndef NDEBUG
+#include <iostream>
+#endif
 
+namespace CocoaTweet::API::Interface {
 void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
                        std::function<void(const unsigned int, const std::string&)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
@@ -36,11 +34,20 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   // リクエストボディの構築
   std::string requestBody = "";
   {
-    std::vector<std::string> tmp;
-    for (const auto& [key, value] : bodyParam_) {
-      tmp.push_back(key + "=" + value);
+    if (contentType_ == "application/x-www-form-urlencoded") {
+      std::vector<std::string> tmp;
+      for (const auto& [key, value] : bodyParam_) {
+        tmp.push_back(key + "=" + value);
+        requestBody = CocoaTweet::Util::join(tmp, "&");
+      }
+    } else if (contentType_ == "multipart/form-data") {
+      for (const auto& [key, value] : bodyParam_) {
+        requestBody += (std::string("--") + "milkcocoa0902" + "\r\n");
+        requestBody +=
+            ("Content-Disposition: form-data; name=\"" + key + "\";\r\n\r\n" + value + "\r\n");
+      }
+      requestBody += (std::string("--") + "milkcocoa0902" + "--" + "\r\n");
     }
-    requestBody = CocoaTweet::Util::join(tmp, "&");
   }
 
   // ヘッダの構築
@@ -69,12 +76,22 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
 #ifndef NDEBUG
+    std::cout << "requestBody : " << requestBody << std::endl;
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 #endif
     // Headerを保持するcurl_slist*を初期化
     struct curl_slist* headers = NULL;
     // Authorizationをヘッダに追加
     headers = curl_slist_append(headers, oauthHeader.c_str());
+
+    std::string contentType = "";
+    if (contentType_ == "application/x-www-form-urlencoded") {
+      contentType = contentType_;
+    } else if (contentType_ == "multipart/form-data") {
+      contentType = contentType_ + "; boundary=milkcocoa0902";
+    }
+
+    headers = curl_slist_append(headers, ("Content-Type: " + contentType).c_str());
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
     res = curl_easy_perform(curl);
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);

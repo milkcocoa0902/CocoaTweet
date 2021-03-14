@@ -3,18 +3,20 @@
 
 #include <functional>
 #include "cocoatweet/oauth/oauth.h"
+#include <cocoatweet/api/interface/httpBase.h>
 
 namespace CocoaTweet::API::Interface {
-class HttpPost {
+/// @brief class for Send request with POST method
+class HttpPost : public HttpBase {
 public:
 protected:
-  std::weak_ptr<CocoaTweet::OAuth::OAuth1> oauth_;
-  std::map<std::string, std::string> bodyParam_;
-  std::string url_;
-  std::string contentType_;
+  /// @brief Send HTTP/POST using OAuth object
+  /// @param[in] std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth : pointer to OAuth object to
+  /// authenticate
+  /// @param[in] std::function<void(const unsigned int, const std::string&)> _callback :
+  /// callback method for processing to response
   void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
                std::function<void(const unsigned int, const std::string&)> _callback);
-  static size_t curlCallback_(char* _ptr, size_t _size, size_t _nmemb, std::string* _stream);
 };
 } // namespace CocoaTweet::API::Interface
 
