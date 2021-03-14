@@ -6,6 +6,7 @@
 #include <cocoatweet/api/model/tweet.h>
 #include <vector>
 #include <utility>
+
 namespace CocoaTweet::API::Statuses {
 
 /// @brief Entory point for statuses/*
@@ -58,6 +59,8 @@ public:
   /// @param[in] const std::string& : tweet id which should be delete
   /// @param[out] CocoaTweet::API::Model::Tweet : Destroy result
   CocoaTweet::API::Model::Tweet Destroy(const std::string& _id) const;
+
+  CocoaTweet::API::Model::Tweet Retweet(const std::string& _id) const;
 
 private:
   Options defaultOpt_;
