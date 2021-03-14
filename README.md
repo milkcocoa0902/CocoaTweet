@@ -10,6 +10,7 @@ This is a library for using Twitter API from C++
 you can use these endpoint
 - statuses/update
 - statuses/destroy/:id
+- statuses/retweet/:id
 - favorites/create
 - favorites/destroy
 - media/upload(support: jpg, jpeg, png, gif, mp4)
@@ -119,6 +120,9 @@ api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
 auto media1 = api.media().Upload("path/to/file/image.jpeg");
 auto media2 = api.media().Upload("path/to/file/image2.png");
 api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
+
+// Retweet a tweet
+api.status().Retweet("tweet id");
 
 // Delete a tweet
 api.status().Destroy("tweet id");
