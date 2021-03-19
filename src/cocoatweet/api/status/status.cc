@@ -2,6 +2,7 @@
 #include "cocoatweet/api/status/update.h"
 #include "cocoatweet/api/status/destroy.h"
 #include "cocoatweet/api/status/retweet.h"
+#include "cocoatweet/api/status/userTimeline.h"
 
 namespace CocoaTweet::API::Statuses {
 Status::Status(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
@@ -72,9 +73,15 @@ CocoaTweet::API::Model::Tweet Status::Destroy(const std::string& _id) const {
   return destroy.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Retweet(const std::string& _id) const{
+CocoaTweet::API::Model::Tweet Status::Retweet(const std::string& _id) const {
   CocoaTweet::API::Statuses::Retweet retweet;
   retweet.id(_id);
   return retweet.process(oauth_);
+}
+
+std::vector<CocoaTweet::API::Model::Tweet> Status::UserTimeline(const std::string& _screenName) const{
+  CocoaTweet::API::Statuses::UserTimeline userTimeline;
+	userTimeline.screenName(_screenName);
+	return userTimeline.process(oauth_);
 }
 } // namespace CocoaTweet::API::Statuses
