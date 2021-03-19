@@ -8,17 +8,19 @@
 #include <memory>
 
 namespace CocoaTweet::API::Statuses {
-/// @brief class for using statuses/update endpoint
+/// @brief class for using statuses/user_timeline endpoint
 class UserTimeline : public CocoaTweet::API::Interface::HttpGet {
 public:
   /// @brief primary constructor
   UserTimeline();
 
+	/// @brief set screen name to get timeline
+	/// @param[in] const std::string& _screenName : screen name for getting tweet
   void screenName(const std::string& _screenName);
 
   /// @brief process request for endpoint
   /// @param[in] std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth : pointer to oauth object
-  /// @param[out] CocoaTweet::API::Model::Tweet : request result
+  /// @param[out] std::vector<CocoaTweet::API::Model::Tweet> : request result
   std::vector<CocoaTweet::API::Model::Tweet> process(
       std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 
