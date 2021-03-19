@@ -1,7 +1,6 @@
 #include "cocoatweet/api/status/userTimeline.h"
 #include <cocoatweet/util/util.h>
 #include "nlohmann/json.hpp"
-#include <iostream>
 
 namespace CocoaTweet::API::Statuses {
 UserTimeline::UserTimeline() {
@@ -20,7 +19,6 @@ std::vector<CocoaTweet::API::Model::Tweet> UserTimeline::process(
     auto json = nlohmann::json::parse(_rcv);
     for (auto j : json) {
       tweet.push_back(CocoaTweet::API::Model::Tweet::parse(j.dump()));
-      std::cout << j.dump() << std::endl;
     }
   });
   return tweet;
