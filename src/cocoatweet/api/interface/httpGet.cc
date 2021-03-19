@@ -15,7 +15,7 @@ extern "C" {
 
 namespace CocoaTweet::API::Interface {
 void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-                      std::function<void(const unsigned int, const std::string&)> _callback) {
+                      std::function<void(const std::string&)> _callback) {
   auto url = url_;
 
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
@@ -92,7 +92,7 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   }
 
   if (_callback) {
-    _callback(responseCode, rcv);
+    _callback(rcv);
   }
 }
 } // namespace CocoaTweet::API::Interface

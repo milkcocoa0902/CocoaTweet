@@ -62,7 +62,7 @@ public:
 
   CocoaTweet::API::Model::Tweet Retweet(const std::string& _id) const;
 
-	std::vector<CocoaTweet::API::Model::Tweet> UserTimeline(const std::string& _screenName) const;
+  std::vector<CocoaTweet::API::Model::Tweet> UserTimeline(const std::string& _screenName) const;
 
 private:
   Options defaultOpt_;

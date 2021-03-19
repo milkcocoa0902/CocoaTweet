@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(test02) {
     "source" : "Twitter for Android"
   })";
 
-  CocoaTweet::API::Model::Tweet tweet(200, json);
+  CocoaTweet::API::Model::Tweet tweet(json);
   BOOST_TEST(tweet.id() == "1234567890");
   BOOST_TEST(tweet.createdAt() == "Thu Mar 04 00:00:00 +0000 2021");
   BOOST_TEST(tweet.text() == "tweet");
@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(test03) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(401, json),
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(json),
                     CocoaTweet::Exception::AuthenticateException);
 }
 
@@ -54,7 +54,7 @@ BOOST_AUTO_TEST_CASE(test04) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(429, json),
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(json),
                     CocoaTweet::Exception::RateLimitException);
 }
 
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test05) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json),
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(json),
                     CocoaTweet::Exception::RateLimitException);
 }
 
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(test06) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json),
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(json),
                     CocoaTweet::Exception::TweetTooLongException);
 }
 
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(test07) {
     }]
   })";
 
-  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(403, json),
+  BOOST_CHECK_THROW(CocoaTweet::API::Model::Tweet(json),
                     CocoaTweet::Exception::TweetDuplicateException);
 }
 BOOST_AUTO_TEST_SUITE_END()

@@ -16,7 +16,7 @@ protected:
   /// @param[in] std::function<void(const unsigned int, const std::string&)> _callback :
   /// callback method for processing to response
   void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-               std::function<void(const unsigned int, const std::string&)> _callback);
+               std::function<void(const std::string&)> _callback);
 };
 } // namespace CocoaTweet::API::Interface
 

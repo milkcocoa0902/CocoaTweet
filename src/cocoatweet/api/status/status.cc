@@ -79,9 +79,10 @@ CocoaTweet::API::Model::Tweet Status::Retweet(const std::string& _id) const {
   return retweet.process(oauth_);
 }
 
-std::vector<CocoaTweet::API::Model::Tweet> Status::UserTimeline(const std::string& _screenName) const{
+std::vector<CocoaTweet::API::Model::Tweet> Status::UserTimeline(
+    const std::string& _screenName) const {
   CocoaTweet::API::Statuses::UserTimeline userTimeline;
-	userTimeline.screenName(_screenName);
-	return userTimeline.process(oauth_);
+  userTimeline.screenName(_screenName);
+  return userTimeline.process(oauth_);
 }
 } // namespace CocoaTweet::API::Statuses

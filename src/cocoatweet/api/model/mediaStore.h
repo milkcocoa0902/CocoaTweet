@@ -15,18 +15,13 @@ public:
   MediaStore(const MediaStore&) = default;
 
   /// @brief constructor for create object from json response
-  /// @param[in] const unsigned int _responseCode : http status code which received when post
-  /// request
   /// @param[in] const std::string& _json : received content from twitter endpoint
-  MediaStore(const unsigned int _responseCode, const std::string& _json)
-      : MediaStore(MediaStore::parse(_responseCode, _json)) {}
+  MediaStore(const std::string& _json) : MediaStore(MediaStore::parse(_json)) {}
 
   /// @brief response parser for MediaStore object
-  /// @param[in] const unsigned int _responseCode : http status code which received when post
-  /// request
   /// @param[in] const std::string& _json : received content from twitter endpoint
   /// @param[out] CocoaTweet::API::Model::MediaStore
-  static MediaStore parse(const unsigned int _responseCode, const std::string& _json);
+  static MediaStore parse(const std::string& _json);
 
   /// @brief set id of tweet
   /// @param[in] const std::string _id : media id to set

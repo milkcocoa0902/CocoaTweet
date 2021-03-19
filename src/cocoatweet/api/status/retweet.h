@@ -5,14 +5,14 @@
 #include <cocoatweet/api/model/tweet.h>
 
 namespace CocoaTweet::API::Statuses {
-    class Retweet : public CocoaTweet::API::Interface::HttpPost{
-        public:
-        Retweet();
+class Retweet : public CocoaTweet::API::Interface::HttpPost {
+public:
+  Retweet();
 
-        void id(const std::string& _id);
+  void id(const std::string& _id);
 
-        CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
-    };
-}
+  CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+};
+} // namespace CocoaTweet::API::Statuses
 
 #endif

@@ -1,5 +1,11 @@
 #include <cocoatweet/api/interface/httpPost.h>
 #include "cocoatweet/util/util.h"
+#include <cocoatweet/exception/tweetNotFoundException.h>
+#include <cocoatweet/exception/authenticateException.h>
+#include <cocoatweet/exception/tweetDuplicateException.h>
+#include <cocoatweet/exception/tweetTooLongException.h>
+#include <cocoatweet/exception/rateLimitException.h>
+#include "nlohmann/json.hpp"
 #include <iterator>
 #include <memory>
 #include <vector>
@@ -15,7 +21,7 @@ extern "C" {
 
 namespace CocoaTweet::API::Interface {
 void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
-                       std::function<void(const unsigned int, const std::string&)> _callback) {
+                       std::function<void(const std::string&)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
   auto oauth       = _oauth.lock();
   auto oauthParam  = oauth->oauthParam();
@@ -103,8 +109,29 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     exit(1);
   }
 
+  if ((responseCode / 100) == 4) {
+    auto j       = nlohmann::json::parse(rcv);
+    auto error   = j["errors"][0]["code"];
+    auto message = j["errors"][0]["message"];
+    if (j.count("error") != 0) {
+      // この形式はエラーコードを持たないのでエラー種別が特定できない
+      throw new CocoaTweet::Exception::Exception(j["error"]);
+    }
+    if (error.get<int>() == 144) {
+      throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 32) {
+      throw CocoaTweet::Exception::AuthenticateException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 187) {
+      throw CocoaTweet::Exception::TweetDuplicateException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 88 || error.get<int>() == 185) {
+      throw CocoaTweet::Exception::RateLimitException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 186) {
+      throw CocoaTweet::Exception::TweetTooLongException(message.get<std::string>().c_str());
+    }
+  }
+
   if (_callback) {
-    _callback(responseCode, rcv);
+    _callback(rcv);
   }
 }
 } // namespace CocoaTweet::API::Interface
