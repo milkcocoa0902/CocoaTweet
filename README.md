@@ -11,6 +11,7 @@ you can use these endpoint
 - statuses/update
 - statuses/destroy/:id
 - statuses/retweet/:id
+- statuses/user_timeline
 - favorites/create
 - favorites/destroy
 - media/upload(support: jpg, jpeg, png, gif, mp4)
@@ -132,6 +133,13 @@ api.favorite().Create("tweet id");
 
 // un Fav. a tweet
 api.favorite().Destroy("tweet id");
+
+// get a timeline with screen name
+auto timeline = api.status().UserTimeline("milkcocoa0902");
+
 ```
+
+# More Information
+See [API Document](https://cocoatweet.milkcocoa.info)
 
 donate by BitCoin : bc1qhpm8tmq72scqpl2ccemcf0ktfjg4rsu73e99tz  
