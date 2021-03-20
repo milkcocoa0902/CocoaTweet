@@ -11,6 +11,7 @@ you can use these endpoint
 - statuses/update
 - statuses/destroy/:id
 - statuses/retweet/:id
+- statuses/unretweet/:id
 - statuses/user_timeline
 - favorites/create
 - favorites/destroy
@@ -124,6 +125,9 @@ api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::
 
 // Retweet a tweet
 api.status().Retweet("tweet id");
+
+// un RT a tweet
+api.status().Unretweet("tweet id")
 
 // Delete a tweet
 api.status().Destroy("tweet id");
