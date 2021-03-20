@@ -2,6 +2,7 @@
 ![](http://jenkins.milkcocoa.info/job/CocoaTweet/job/master/badge/icon?style=plastic&config=unittest)
 ![](https://img.shields.io/badge/libcurl-libcurl4--openssl-blue)
 ![](https://img.shields.io/badge/libssl-1.1.1f-blue)
+![](https://img.shields.io/badge/license-MIT-orange)
 
 # CocoaTweet
 This is a library for using Twitter API from C++  
