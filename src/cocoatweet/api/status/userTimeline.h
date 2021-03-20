@@ -14,8 +14,8 @@ public:
   /// @brief primary constructor
   UserTimeline();
 
-	/// @brief set screen name to get timeline
-	/// @param[in] const std::string& _screenName : screen name for getting tweet
+  /// @brief set screen name to get timeline
+  /// @param[in] const std::string& _screenName : screen name for getting tweet
   void screenName(const std::string& _screenName);
 
   /// @brief process request for endpoint
