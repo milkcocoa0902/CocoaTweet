@@ -15,18 +15,13 @@ public:
   Tweet(const Tweet&) = default;
 
   /// @brief constructor for create object from json response
-  /// @param[in] const unsigned int _responseCode : http status code which received when post
-  /// request
   /// @param[in] const std::string& _json : received content from twitter endpoint
-  Tweet(const unsigned int _responseCode, const std::string& _json)
-      : Tweet(Tweet::parse(_responseCode, _json)) {}
+  Tweet(const std::string& _json) : Tweet(Tweet::parse(_json)) {}
 
   /// @brief response parser for tweet object
-  /// @param[in] const unsigned int _responseCode : http status code which received when post
-  /// request
   /// @param[in] const std::string& _json : received content from twitter endpoint
   /// @param[out] CocoaTweet::API::Model::Tweet
-  static Tweet parse(const unsigned int _responseCode, const std::string& _json);
+  static Tweet parse(const std::string& _json);
 
   /// @brief set id of tweet
   /// @param[in] const std::string _id : tweet id to set

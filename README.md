@@ -2,6 +2,7 @@
 ![](http://jenkins.milkcocoa.info/job/CocoaTweet/job/master/badge/icon?style=plastic&config=unittest)
 ![](https://img.shields.io/badge/libcurl-libcurl4--openssl-blue)
 ![](https://img.shields.io/badge/libssl-1.1.1f-blue)
+![](https://img.shields.io/badge/license-MIT-orange)
 
 # CocoaTweet
 This is a library for using Twitter API from C++  
@@ -11,6 +12,8 @@ you can use these endpoint
 - statuses/update
 - statuses/destroy/:id
 - statuses/retweet/:id
+- statuses/unretweet/:id
+- statuses/user_timeline
 - favorites/create
 - favorites/destroy
 - media/upload(support: jpg, jpeg, png, gif, mp4)
@@ -124,6 +127,9 @@ api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::
 // Retweet a tweet
 api.status().Retweet("tweet id");
 
+// un RT a tweet
+api.status().Unretweet("tweet id")
+
 // Delete a tweet
 api.status().Destroy("tweet id");
 
@@ -132,6 +138,13 @@ api.favorite().Create("tweet id");
 
 // un Fav. a tweet
 api.favorite().Destroy("tweet id");
+
+// get a timeline with screen name
+auto timeline = api.status().UserTimeline("milkcocoa0902");
+
 ```
+
+# More Information
+See [API Document](https://cocoatweet.milkcocoa.info)
 
 donate by BitCoin : bc1qhpm8tmq72scqpl2ccemcf0ktfjg4rsu73e99tz  

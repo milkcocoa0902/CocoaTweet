@@ -3,31 +3,27 @@
 #include "nlohmann/json.hpp"
 
 namespace CocoaTweet::API::Model {
-MediaStore MediaStore::parse(const unsigned int _responseCode, const std::string& _json) {
+MediaStore MediaStore::parse(const std::string& _json) {
   auto j = nlohmann::json::parse(_json);
   MediaStore media;
 
-  if (_responseCode / 100 == 2) {
-    if (j.count("media_id_string") != 0) {
-      media.id(j["media_id_string"]);
-    }
+  if (j.count("media_id_string") != 0) {
+    media.id(j["media_id_string"]);
+  }
 
-    if (j.count("size") != 0) {
-      media.size(j["size"]);
-    }
+  if (j.count("size") != 0) {
+    media.size(j["size"]);
+  }
 
-    if (j.count("expires_after_secs") != 0) {
-      media.expires(j["expires_after_secs"]);
-    }
+  if (j.count("expires_after_secs") != 0) {
+    media.expires(j["expires_after_secs"]);
+  }
 
-    if (j.count("processing_info") == 0) {
-      media.state("succeeded");
-    } else {
-      media.state(j["processing_info"]["state"]);
-      media.remain(j["processing_info"]["check_after_secs"].get<unsigned int>());
-    }
+  if (j.count("processing_info") == 0) {
+    media.state("succeeded");
   } else {
-    throw new CocoaTweet::Exception::Exception(j["error"]);
+    media.state(j["processing_info"]["state"]);
+    media.remain(j["processing_info"]["check_after_secs"].get<unsigned int>());
   }
 
   return media;

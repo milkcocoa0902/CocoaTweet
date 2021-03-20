@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_INTERFACE_HTTPPOST_H_
-#define COCOATWEET_API_INTERFACE_HTTPPOST_H_
+#ifndef COCOATWEET_API_INTERFACE_HTTPGET_H_
+#define COCOATWEET_API_INTERFACE_HTTPGET_H_
 
 #include <functional>
 #include "cocoatweet/oauth/oauth.h"
@@ -7,7 +7,7 @@
 
 namespace CocoaTweet::API::Interface {
 /// @brief class for Send request with POST method
-class HttpPost : public HttpBase {
+class HttpGet : public virtual HttpBase {
 public:
 protected:
   /// @brief Send HTTP/POST using OAuth object

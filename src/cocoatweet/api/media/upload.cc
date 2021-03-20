@@ -43,10 +43,9 @@ CocoaTweet::API::Model::MediaStore Upload::process(
     bodyParam_.insert_or_assign(
         "media_type", mimeType.at(std::filesystem::path(media_).extension().string<char>()));
 
-    HttpPost::process(_oauth,
-                      [&media](const unsigned int _responseCode, const std::string& _rsv) {
-                        media = CocoaTweet::API::Model::MediaStore::parse(_responseCode, _rsv);
-                      });
+    HttpPost::process(_oauth, [&media](const std::string& _rcv) {
+      media = CocoaTweet::API::Model::MediaStore::parse(_rcv);
+    });
 
     bodyParam_.insert_or_assign("media_id", media.id());
   }
@@ -63,7 +62,7 @@ CocoaTweet::API::Model::MediaStore Upload::process(
       bodyParam_.insert_or_assign("command", "APPEND");
       bodyParam_.insert_or_assign("segment_index", std::to_string(segment));
       bodyParam_.insert_or_assign("media", data.substr(segment * chunk, chunk));
-      HttpPost::process(_oauth, [](const unsigned int _responseCode, const std::string& _rsv) {
+      HttpPost::process(_oauth, [](const std::string& _rsv) {
         // std::cout << _responseCode << std::endl << _rsv<< std::endl;
       });
       segment++;
@@ -76,11 +75,9 @@ CocoaTweet::API::Model::MediaStore Upload::process(
     bodyParam_.insert_or_assign("command", "FINALIZE");
     bodyParam_.erase("segment_index");
     bodyParam_.erase("media");
-    HttpPost::process(_oauth,
-                      [&media](const unsigned int _responseCode, const std::string& _rsv) {
-                        std::cout << _responseCode << std::endl << _rsv << std::endl;
-                        media = CocoaTweet::API::Model::MediaStore::parse(_responseCode, _rsv);
-                      });
+    HttpPost::process(_oauth, [&media](const std::string& _rcv) {
+      media = CocoaTweet::API::Model::MediaStore::parse(_rcv);
+    });
   }
 
   // STATUS if needed

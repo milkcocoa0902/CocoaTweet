@@ -55,10 +55,9 @@ void Update::failDMCommands(bool _fail) {
 
 CocoaTweet::API::Model::Tweet Update::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
   CocoaTweet::API::Model::Tweet tweet;
-  HttpPost::process(_oauth,
-                    [&tweet](const unsigned int _responseCode, const std::string& _rsv) {
-                      tweet = CocoaTweet::API::Model::Tweet::parse(_responseCode, _rsv);
-                    });
+  HttpPost::process(_oauth, [&tweet](const std::string& _rcv) {
+    tweet = CocoaTweet::API::Model::Tweet::parse(_rcv);
+  });
   return tweet;
 }
 

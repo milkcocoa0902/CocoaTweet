@@ -1,15 +1,15 @@
-#include <cocoatweet/api/status/retweet.h>
+#include <cocoatweet/api/status/unretweet.h>
 #include <iostream>
 
 namespace CocoaTweet::API::Statuses {
-Retweet::Retweet() {}
+Unretweet::Unretweet() {}
 
-void Retweet::id(const std::string& _id) {
+void Unretweet::id(const std::string& _id) {
   contentType_ = "application/x-www-form-urlencoded";
-  url_         = "https://api.twitter.com/1.1/statuses/retweet/" + _id + ".json";
+  url_         = "https://api.twitter.com/1.1/statuses/unretweet/" + _id + ".json";
 }
 
-CocoaTweet::API::Model::Tweet Retweet::process(
+CocoaTweet::API::Model::Tweet Unretweet::process(
     std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
   CocoaTweet::API::Model::Tweet tweet;
   HttpPost::process(_oauth, [&tweet](const std::string& _rcv) {
