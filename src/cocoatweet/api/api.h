@@ -4,6 +4,7 @@
 #include <cocoatweet/api/status/status.h>
 #include <cocoatweet/api/favorite/favorite.h>
 #include <cocoatweet/api/media/media.h>
+#include <cocoatweet/api/directMessage/directMessage.h>
 #include <cocoatweet/oauth/oauth.h>
 
 namespace CocoaTweet::API {
@@ -24,10 +25,13 @@ public:
 
   Medias::Media media() const;
 
+  DirectMessages::DirectMessage directMessage() const;
+
 private:
   Statuses::Status status_;
   Favorites::Favorite favorite_;
   Medias::Media media_;
+  DirectMessages::DirectMessage directMessage_;
   std::shared_ptr<CocoaTweet::OAuth::OAuth1> oauth_;
 };
 } // namespace CocoaTweet::API

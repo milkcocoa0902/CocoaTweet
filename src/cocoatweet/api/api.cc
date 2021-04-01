@@ -6,6 +6,7 @@ API::API(CocoaTweet::OAuth::Key _key) {
   status_   = Statuses::Status(oauth_);
   favorite_ = Favorites::Favorite(oauth_);
   media_    = Medias::Media(oauth_);
+  directMessage_ = DirectMessages::DirectMessage(oauth_);
 }
 
 Statuses::Status API::status() const {
@@ -18,5 +19,9 @@ Favorites::Favorite API::favorite() const {
 
 Medias::Media API::media() const {
   return media_;
+}
+
+DirectMessages::DirectMessage API::directMessage() const{
+  return directMessage_;
 }
 } // namespace CocoaTweet::API
