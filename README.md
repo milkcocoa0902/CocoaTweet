@@ -17,6 +17,7 @@ you can use these endpoint
 - favorites/create
 - favorites/destroy
 - media/upload(support: jpg, jpeg, png, gif, mp4)
+- direct_messages/events/new (message_create)
 
 # Dependency
 - libcurl(openssl version)
@@ -141,6 +142,10 @@ api.favorite().Destroy("tweet id");
 
 // get a timeline with screen name
 auto timeline = api.status().UserTimeline("milkcocoa0902");
+
+// send a direct message
+// you cau get recipient_id using https://idtwi.com/
+api.directMessage().messageCreate("<recipient_id>", "Sent message using Cocoa Twitter Library");
 
 ```
 
