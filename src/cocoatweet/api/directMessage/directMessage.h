@@ -17,10 +17,11 @@ public:
   /// @brief   constructor which finally should to be called.
   /// @param[in] std::shared_ptr<CocoaTweet::OAuth::OAuth1> : pointer to OAuth object
   DirectMessage(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
-  
+
   void messageCreate(const std::string& _recipient, const std::string& _message);
+
 private:
 };
-} // namespace CocoaTweet::API::Statuses
+} // namespace CocoaTweet::API::DirectMessages
 
 #endif

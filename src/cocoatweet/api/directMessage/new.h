@@ -16,8 +16,6 @@ public:
   void recipient(const std::string& _id);
   void message(const std::string& _message);
 
-
-
   /// @brief process request for endpoint
   /// @param[in] std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth : pointer to oauth object
   /// @param[out] CocoaTweet::API::Model::Tweet : request result
@@ -27,6 +25,6 @@ private:
   std::string status_;
   nlohmann::json json_;
 };
-} // namespace CocoaTweet::API::Statuses
+} // namespace CocoaTweet::API::DirectMessages
 
 #endif
