@@ -53,6 +53,8 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
             ("Content-Disposition: form-data; name=\"" + key + "\";\r\n\r\n" + value + "\r\n");
       }
       requestBody += (std::string("--") + "milkcocoa0902" + "--" + "\r\n");
+    }else if(contentType_ == "application/json"){
+      requestBody = bodyParam_["data"];
     }
   }
 
@@ -95,6 +97,8 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
       contentType = contentType_;
     } else if (contentType_ == "multipart/form-data") {
       contentType = contentType_ + "; boundary=milkcocoa0902";
+    }else if(contentType_ == "application/json"){
+      contentType_ = "application/json";
     }
 
     headers = curl_slist_append(headers, ("Content-Type: " + contentType).c_str());
