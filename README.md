@@ -118,30 +118,30 @@ CocoaTweet::API::API api(key);
 ## Use API
 ```
 // Post a tweet
-api.status().Update("Hello, World!!\nTweet from Cocoa Twitter Library");
+api.status().update("Hello, World!!\nTweet from Cocoa Twitter Library");
 
 // Upload a media
 auto media1 = api.media().Upload("path/to/file/image.jpeg");
 auto media2 = api.media().Upload("path/to/file/image2.png");
-api.status().Update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
+api.status().update("Upload media from Cocoa Twitter Library", std::vector<std::string>{media1.id(), media2.id()});
 
 // Retweet a tweet
-api.status().Retweet("tweet id");
+api.status().retweet("tweet id");
 
 // un RT a tweet
-api.status().Unretweet("tweet id")
+api.status().unretweet("tweet id")
 
 // Delete a tweet
-api.status().Destroy("tweet id");
+api.status().destroy("tweet id");
 
 // Fav. a tweet
-api.favorite().Create("tweet id");
+api.favorite().create("tweet id");
 
 // un Fav. a tweet
-api.favorite().Destroy("tweet id");
+api.favorite().destroy("tweet id");
 
 // get a timeline with screen name
-auto timeline = api.status().UserTimeline("milkcocoa0902");
+auto timeline = api.status().userTimeline("milkcocoa0902");
 
 // send a direct message
 // you cau get recipient_id using https://idtwi.com/

@@ -1,5 +1,8 @@
 #include "cocoatweet/oauth/key.h"
 #include "cocoatweet/api/api.h"
+#include <cocoatweet/api/directMessage/new.h>
+
+#include <iostream>
 
 auto main() -> int {
   // Generate Key object
@@ -19,8 +22,8 @@ auto main() -> int {
   // CocoaTweet::API::API api(key);
 
   // Now, you can use a twitter api
-  // auto status = api.status().Update("Hello Twitter World via Cocoa Twitter Library");
-  // api.favorite().Create(status.id());
-  // api.favorite().Destroy(status.id());
-  // api.status().Destroy(status.id());
+  // auto status = api.status().update("Hello Twitter World via Cocoa Twitter Library");
+  // api.favorite().create(status.id());
+  // api.favorite().destroy(status.id());
+  // api.status().destroy(status.id());
 }

@@ -10,13 +10,13 @@ Status::Status(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
   oauth_ = _oauth;
 }
 
-CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status) const {
+CocoaTweet::API::Model::Tweet Status::update(const std::string& _status) const {
   CocoaTweet::API::Statuses::Update update;
   update.status(_status);
   return update.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status,
+CocoaTweet::API::Model::Tweet Status::update(const std::string& _status,
                                              const Options _options) const {
   CocoaTweet::API::Statuses::Update update;
   update.status(_status);
@@ -60,7 +60,7 @@ CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status,
   return update.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status,
+CocoaTweet::API::Model::Tweet Status::update(const std::string& _status,
                                              std::vector<std::string> _mediaId) const {
   CocoaTweet::API::Statuses::Update update;
   update.status(_status);
@@ -68,25 +68,25 @@ CocoaTweet::API::Model::Tweet Status::Update(const std::string& _status,
   return update.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Destroy(const std::string& _id) const {
+CocoaTweet::API::Model::Tweet Status::destroy(const std::string& _id) const {
   CocoaTweet::API::Statuses::Destroy destroy;
   destroy.id(_id);
   return destroy.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Retweet(const std::string& _id) const {
+CocoaTweet::API::Model::Tweet Status::retweet(const std::string& _id) const {
   CocoaTweet::API::Statuses::Retweet retweet;
   retweet.id(_id);
   return retweet.process(oauth_);
 }
 
-CocoaTweet::API::Model::Tweet Status::Unretweet(const std::string& _id) const {
+CocoaTweet::API::Model::Tweet Status::unretweet(const std::string& _id) const {
   CocoaTweet::API::Statuses::Unretweet unretweet;
   unretweet.id(_id);
   return unretweet.process(oauth_);
 }
 
-std::vector<CocoaTweet::API::Model::Tweet> Status::UserTimeline(
+std::vector<CocoaTweet::API::Model::Tweet> Status::userTimeline(
     const std::string& _screenName) const {
   CocoaTweet::API::Statuses::UserTimeline userTimeline;
   userTimeline.screenName(_screenName);
