@@ -1,0 +1,10 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,177,92,203"/>
+<area shape="rect" id="node2" href="$classCocoaTweet_1_1Exception_1_1Exception.html" title=" " alt="" coords="140,169,312,211"/>
+<area shape="rect" id="node3" href="$classCocoaTweet_1_1Exception_1_1AuthenticateException.html" title=" " alt="" coords="395,5,572,47"/>
+<area shape="rect" id="node4" href="$classCocoaTweet_1_1Exception_1_1RateLimitException.html" title=" " alt="" coords="397,71,569,112"/>
+<area shape="rect" id="node5" href="$classCocoaTweet_1_1Exception_1_1TweetDuplicateException.html" title=" " alt="" coords="386,136,581,177"/>
+<area shape="rect" id="node6" href="$classCocoaTweet_1_1Exception_1_1TweetNotFoundException.html" title=" " alt="" coords="386,201,581,243"/>
+<area shape="rect" id="node7" href="$classCocoaTweet_1_1Exception_1_1TweetTooLongException.html" title=" " alt="" coords="391,267,576,308"/>
+<area shape="rect" id="node8" href="$classCocoaTweet_1_1Exception_1_1UnsupportedMediaTypeException.html" title=" " alt="" coords="360,332,607,373"/>
+</map>

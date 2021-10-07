@@ -4,7 +4,7 @@
 #include <cocoatweet/exception/exception.h>
 
 namespace CocoaTweet::Exception {
-class TweetTooLongException final : Exception {
+class TweetTooLongException final : public Exception {
   using Exception::Exception;
 };
 } // namespace CocoaTweet::Exception

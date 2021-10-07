@@ -4,7 +4,7 @@
 #include <cocoatweet/exception/exception.h>
 
 namespace CocoaTweet::Exception {
-class AuthenticateException final : Exception {
+class AuthenticateException final : public Exception {
   using Exception::Exception;
 };
 } // namespace CocoaTweet::Exception

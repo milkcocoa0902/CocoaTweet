@@ -1,0 +1,5 @@
+<map id="CocoaTweet::API::DirectMessages::New" name="CocoaTweet::API::DirectMessages::New">
+<area shape="rect" id="node1" title="class for using statuses/update endpoint" alt="" coords="5,184,284,211"/>
+<area shape="rect" id="node2" href="$classCocoaTweet_1_1API_1_1Interface_1_1HttpPost.html" title="class for Send request with POST method" alt="" coords="47,95,242,136"/>
+<area shape="rect" id="node3" href="$classCocoaTweet_1_1API_1_1Interface_1_1HttpBase.html" title=" " alt="" coords="47,5,242,47"/>
+</map>
