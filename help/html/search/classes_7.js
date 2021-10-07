@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['key_163',['Key',['../classCocoaTweet_1_1OAuth_1_1Key.html',1,'CocoaTweet::OAuth']]]
+  ['invalidparameterexception_189',['InvalidParameterException',['../classCocoaTweet_1_1Exception_1_1InvalidParameterException.html',1,'CocoaTweet::Exception']]]
 ];

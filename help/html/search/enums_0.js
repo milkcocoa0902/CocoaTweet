@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['command_224',['Command',['../classCocoaTweet_1_1API_1_1Medias_1_1Upload.html#a44f9ec628e89320e9cc3aa9dd223060e',1,'CocoaTweet::API::Medias::Upload']]]
+  ['authtype_380',['AuthType',['../classCocoaTweet_1_1OAuth_1_1OAuth1.html#ad6f15c279edf7725456d086b449eaeb5',1,'CocoaTweet::OAuth::OAuth1']]]
 ];

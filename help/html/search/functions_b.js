@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['new_282',['New',['../classCocoaTweet_1_1API_1_1DirectMessages_1_1New.html#a417374d5ddcdbeb9e7596ee321fba4aa',1,'CocoaTweet::API::DirectMessages::New']]],
-  ['nonce_283',['nonce',['../classCocoaTweet_1_1OAuth_1_1OAuth1.html#abecce5bd7c075b0ea85933c17f399f69',1,'CocoaTweet::OAuth::OAuth1']]],
-  ['nosecret_284',['noSecret',['../classCocoaTweet_1_1OAuth_1_1Key.html#a0f2719582fae7ccb074e64f45083b273',1,'CocoaTweet::OAuth::Key']]]
+  ['listed_319',['listed',['../classCocoaTweet_1_1API_1_1Model_1_1User.html#ab5720fbbd69cd0f161b2feef29830614',1,'CocoaTweet::API::Model::User::listed(const long _listed)'],['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a9d62e25b8b0f6c10b3728ba9f78a8070',1,'CocoaTweet::API::Model::User::listed() const']]],
+  ['location_320',['location',['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a2e7239000f9547921f1a4d507423ea25',1,'CocoaTweet::API::Model::User::location(const std::string &amp;_location)'],['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a1a14149acd2084480a8a8ee6c7094d20',1,'CocoaTweet::API::Model::User::location() const']]]
 ];

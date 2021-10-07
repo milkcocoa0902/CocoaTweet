@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ratelimitexception_169',['RateLimitException',['../classCocoaTweet_1_1Exception_1_1RateLimitException.html',1,'CocoaTweet::Exception']]],
-  ['retweet_170',['Retweet',['../classCocoaTweet_1_1API_1_1Statuses_1_1Retweet.html',1,'CocoaTweet::API::Statuses']]]
+  ['oauth1_194',['OAuth1',['../classCocoaTweet_1_1OAuth_1_1OAuth1.html',1,'CocoaTweet::OAuth']]],
+  ['options_195',['Options',['../structCocoaTweet_1_1API_1_1Statuses_1_1Status_1_1Options.html',1,'CocoaTweet::API::Statuses::Status']]]
 ];

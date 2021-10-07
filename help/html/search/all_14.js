@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['what_149',['what',['../classCocoaTweet_1_1Exception_1_1Exception.html#a251aff23f9da55802be51d4fabadf59b',1,'CocoaTweet::Exception::Exception']]]
+  ['version_174',['version',['../classCocoaTweet_1_1OAuth_1_1OAuth1.html#ab8e90f4d24bf038419020d76a329c5b8',1,'CocoaTweet::OAuth::OAuth1']]]
 ];

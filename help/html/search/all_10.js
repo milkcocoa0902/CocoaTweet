@@ -1,12 +1,13 @@
 var searchData=
 [
-  ['screenname_109',['screenName',['../classCocoaTweet_1_1API_1_1Statuses_1_1UserTimeline.html#a0351e221076b359bd181973bb99ec34c',1,'CocoaTweet::API::Statuses::UserTimeline']]],
-  ['secret_110',['secret',['../classCocoaTweet_1_1OAuth_1_1Key.html#a48d94ebbd486ffabc10b0b5417182cdd',1,'CocoaTweet::OAuth::Key']]],
-  ['signature_111',['signature',['../classCocoaTweet_1_1OAuth_1_1OAuth1.html#a605a5ee2fc35869292234fa2c3dea420',1,'CocoaTweet::OAuth::OAuth1']]],
-  ['size_112',['size',['../classCocoaTweet_1_1API_1_1Model_1_1MediaStore.html#a7f9e922b93522ae810c487b8da7d772f',1,'CocoaTweet::API::Model::MediaStore::size(const unsigned int _size)'],['../classCocoaTweet_1_1API_1_1Model_1_1MediaStore.html#aab8defad4ab8eab424bdb831aa13ae9f',1,'CocoaTweet::API::Model::MediaStore::size() const']]],
-  ['source_113',['source',['../classCocoaTweet_1_1API_1_1Model_1_1Tweet.html#ad55c3f4c66e34de7e159ab9769745106',1,'CocoaTweet::API::Model::Tweet::source(const std::string _source)'],['../classCocoaTweet_1_1API_1_1Model_1_1Tweet.html#ade60f2ce9c6ead8b2327d64847b6d272',1,'CocoaTweet::API::Model::Tweet::source() const']]],
-  ['state_114',['state',['../classCocoaTweet_1_1API_1_1Model_1_1MediaStore.html#ad2ef76ab9b8b307c2abe3f80397adc1a',1,'CocoaTweet::API::Model::MediaStore::state(const std::string _state)'],['../classCocoaTweet_1_1API_1_1Model_1_1MediaStore.html#aa708ce16bce734d9f852d141c0450e33',1,'CocoaTweet::API::Model::MediaStore::state() const']]],
-  ['status_115',['Status',['../classCocoaTweet_1_1API_1_1Statuses_1_1Status.html',1,'CocoaTweet::API::Statuses::Status'],['../classCocoaTweet_1_1API_1_1API.html#a33328fef1c2ac0f634449d6c60742449',1,'CocoaTweet::API::API::status()'],['../classCocoaTweet_1_1API_1_1Statuses_1_1Update.html#a82a03eb9ed10d0235bc5f5876472359b',1,'CocoaTweet::API::Statuses::Update::status()'],['../classCocoaTweet_1_1API_1_1Statuses_1_1Status.html#a4d0a2245d5b5d8fb88fd5415746491bf',1,'CocoaTweet::API::Statuses::Status::Status()=default'],['../classCocoaTweet_1_1API_1_1Statuses_1_1Status.html#a8b2e666ae6d3d6f7195f80c995f871c9',1,'CocoaTweet::API::Statuses::Status::Status(std::shared_ptr&lt; CocoaTweet::OAuth::OAuth1 &gt; _oauth)']]],
-  ['status_2ecc_116',['status.cc',['../status_8cc.html',1,'']]],
-  ['status_2eh_117',['status.h',['../status_8h.html',1,'']]]
+  ['readme_119',['README',['../md_README.html',1,'']]],
+  ['ratelimitexception_120',['RateLimitException',['../classCocoaTweet_1_1Exception_1_1RateLimitException.html',1,'CocoaTweet::Exception']]],
+  ['ratelimitexception_2eh_121',['rateLimitException.h',['../rateLimitException_8h.html',1,'']]],
+  ['readme_2emd_122',['README.md',['../README_8md.html',1,'']]],
+  ['recipient_123',['recipient',['../classCocoaTweet_1_1API_1_1DirectMessages_1_1New.html#afd95acae9607546a8ca37ea22f438139',1,'CocoaTweet::API::DirectMessages::New']]],
+  ['remain_124',['remain',['../classCocoaTweet_1_1API_1_1Model_1_1MediaStore.html#a2adf7192194944149c9662d66f9a6a42',1,'CocoaTweet::API::Model::MediaStore::remain(const unsigned int _remain)'],['../classCocoaTweet_1_1API_1_1Model_1_1MediaStore.html#a25d883e082c7a90f4bb96d84aa8b2830',1,'CocoaTweet::API::Model::MediaStore::remain() const']]],
+  ['replytostatusid_125',['replyToStatusId',['../structCocoaTweet_1_1API_1_1Statuses_1_1Status_1_1Options.html#a34f95b6dc6a9847e517cbf7d31ca9383',1,'CocoaTweet::API::Statuses::Status::Options::replyToStatusId()'],['../classCocoaTweet_1_1API_1_1Statuses_1_1Update.html#aea57ec43f8b4eaf31414bef9221d3dbc',1,'CocoaTweet::API::Statuses::Update::replyToStatusId()']]],
+  ['retweet_126',['Retweet',['../classCocoaTweet_1_1API_1_1Statuses_1_1Retweet.html',1,'CocoaTweet::API::Statuses::Retweet'],['../classCocoaTweet_1_1API_1_1Statuses_1_1Retweet.html#adf8c15760334a81b608388f64b79745f',1,'CocoaTweet::API::Statuses::Retweet::Retweet()'],['../classCocoaTweet_1_1API_1_1Statuses_1_1Status.html#afe60c4bb67d191b8ef989ea4236ffb5d',1,'CocoaTweet::API::Statuses::Status::retweet()']]],
+  ['retweet_2ecc_127',['retweet.cc',['../retweet_8cc.html',1,'']]],
+  ['retweet_2eh_128',['retweet.h',['../retweet_8h.html',1,'']]]
 ];

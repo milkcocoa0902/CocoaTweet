@@ -93,7 +93,7 @@ Dependency</h1>
 Installation</h1>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Ubuntu</h2>
-<div class="fragment"><div class="line"># apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build</div>
+<div class="fragment"><div class="line"># apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev ninja-build</div>
 <div class="line">$ git clone https://github.com/koron0902/CocoaTweet</div>
 <div class="line">$ cd CocoaTweet</div>
 <div class="line">$ mkdir build</div>
@@ -171,38 +171,44 @@ Generate API object</h2>
 <div class="fragment"><div class="line">#include &quot;cocoatweet/api/api.h&quot;</div>
 <div class="line"> </div>
 <div class="line">CocoaTweet::API::API api(key);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md12"></a>
+NOTE</h3>
+<p>if you want to call Twitter API using Bearer Token; OAuth2, you can do. </p><div class="fragment"><div class="line">api.generateBearerToken();</div>
+</div><!-- fragment --><p>After call it, always use Bearer Token to access API which kinds of GET method. <br  />
+ no affect to POST method. <br  />
+ then, if you use this, and ONLY use kind of GET API, you DO NOT need acess token.</p>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Use API</h2>
 <div class="fragment"><div class="line">// Post a tweet</div>
-<div class="line">api.status().Update(&quot;Hello, World!!\nTweet from Cocoa Twitter Library&quot;);</div>
+<div class="line">api.status().update(&quot;Hello, World!!\nTweet from Cocoa Twitter Library&quot;);</div>
 <div class="line"> </div>
 <div class="line">// Upload a media</div>
 <div class="line">auto media1 = api.media().Upload(&quot;path/to/file/image.jpeg&quot;);</div>
 <div class="line">auto media2 = api.media().Upload(&quot;path/to/file/image2.png&quot;);</div>
-<div class="line">api.status().Update(&quot;Upload media from Cocoa Twitter Library&quot;, std::vector&lt;std::string&gt;{media1.id(), media2.id()});</div>
+<div class="line">api.status().update(&quot;Upload media from Cocoa Twitter Library&quot;, std::vector&lt;std::string&gt;{media1.id(), media2.id()});</div>
 <div class="line"> </div>
 <div class="line">// Retweet a tweet</div>
-<div class="line">api.status().Retweet(&quot;tweet id&quot;);</div>
+<div class="line">api.status().retweet(&quot;tweet id&quot;);</div>
 <div class="line"> </div>
 <div class="line">// un RT a tweet</div>
-<div class="line">api.status().Unretweet(&quot;tweet id&quot;)</div>
+<div class="line">api.status().unretweet(&quot;tweet id&quot;)</div>
 <div class="line"> </div>
 <div class="line">// Delete a tweet</div>
-<div class="line">api.status().Destroy(&quot;tweet id&quot;);</div>
+<div class="line">api.status().destroy(&quot;tweet id&quot;);</div>
 <div class="line"> </div>
 <div class="line">// Fav. a tweet</div>
-<div class="line">api.favorite().Create(&quot;tweet id&quot;);</div>
+<div class="line">api.favorite().create(&quot;tweet id&quot;);</div>
 <div class="line"> </div>
 <div class="line">// un Fav. a tweet</div>
-<div class="line">api.favorite().Destroy(&quot;tweet id&quot;);</div>
+<div class="line">api.favorite().destroy(&quot;tweet id&quot;);</div>
 <div class="line"> </div>
 <div class="line">// get a timeline with screen name</div>
-<div class="line">auto timeline = api.status().UserTimeline(&quot;milkcocoa0902&quot;);</div>
+<div class="line">auto timeline = api.status().userTimeline(&quot;milkcocoa0902&quot;);</div>
 <div class="line"> </div>
 <div class="line">// send a direct message</div>
 <div class="line">// you cau get recipient_id using https://idtwi.com/</div>
 <div class="line">api.directMessage().messageCreate(&quot;&lt;recipient_id&gt;&quot;, &quot;Sent message using Cocoa Twitter Library&quot;);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 More Information</h1>
 <p>See <a href="https://cocoatweet.milkcocoa.info">API Document</a></p>
 <p>donate by BitCoin : bc1qhpm8tmq72scqpl2ccemcf0ktfjg4rsu73e99tz <br  />

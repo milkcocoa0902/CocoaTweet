@@ -1,4 +1,5 @@
 <map id="src/cocoatweet/exception/tweetDuplicateException.h" name="src/cocoatweet/exception/tweetDuplicateException.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,207,47"/>
-<area shape="rect" id="node2" href="$httpPost_8cc.html" title=" " alt="" coords="26,95,186,136"/>
+<area shape="rect" id="node1" title=" " alt="" coords="73,5,274,47"/>
+<area shape="rect" id="node2" href="$httpGet_8cc.html" title=" " alt="" coords="5,95,160,136"/>
+<area shape="rect" id="node3" href="$httpPost_8cc.html" title=" " alt="" coords="184,95,344,136"/>
 </map>
