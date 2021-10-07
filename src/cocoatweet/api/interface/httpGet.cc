@@ -103,8 +103,9 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     throw std::runtime_error(std::string("INTERNAL ERROR : curl(") + std::to_string(res) + ")");
     exit(1);
   }
-
+#ifndef NDEBUG
   std::cout << rcv << std::endl;
+#endif
   if ((responseCode / 100) == 4) {
     auto j       = nlohmann::json::parse(rcv);
     auto error   = j["errors"][0]["code"];

@@ -115,6 +115,16 @@ CocoaTweet::API::API api(key);
 
 ```
 
+### NOTE
+if you want to call Twitter API using Bearer Token; OAuth2, you can do.
+```
+api.generateBearerToken();
+```
+After call it, always use Bearer Token to access API which kinds of GET method.  
+no affect to POST method.  
+then, if you use this, and ONLY use kind of GET API, you DO NOT need acess token.
+
+
 ## Use API
 ```
 // Post a tweet

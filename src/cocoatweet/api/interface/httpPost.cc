@@ -114,6 +114,9 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     exit(1);
   }
 
+#ifndef NDEBUG
+  std::cout << rcv << std::endl;
+#endif
   if ((responseCode / 100) == 4) {
     auto j       = nlohmann::json::parse(rcv);
     auto error   = j["errors"][0]["code"];
