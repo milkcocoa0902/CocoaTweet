@@ -26,7 +26,7 @@ you can use these endpoint
 # Installation
 ## Ubuntu
 ```
-# apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev nunja-build
+# apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev ninja-build
 $ git clone https://github.com/koron0902/CocoaTweet
 $ cd CocoaTweet
 $ mkdir build
