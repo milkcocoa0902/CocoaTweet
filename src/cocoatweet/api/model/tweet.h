@@ -1,6 +1,7 @@
 #ifndef COCOATWEET_API_MODEL_TWEET_H_
 #define COCOATWEET_API_MODEL_TWEET_H_
 
+#include <cocoatweet/api/model/user.h>
 #include <string>
 
 namespace CocoaTweet::API::Model {
@@ -43,6 +44,8 @@ public:
   /// @param[out] none
   void source(const std::string _source);
 
+  void user(const CocoaTweet::API::Model::User _user);
+
   /// @brief get tweet id
   /// @param[in] none
   /// @param[out] const std::string : tweet id
@@ -63,11 +66,14 @@ public:
   /// @param[out] const std::string : source information
   const std::string source() const;
 
+  const CocoaTweet::API::Model::User user() const;
+
 private:
   std::string id_;
   std::string createdAt_;
   std::string text_;
   std::string source_;
+  CocoaTweet::API::Model::User user_;
 };
 } // namespace CocoaTweet::API::Model
 

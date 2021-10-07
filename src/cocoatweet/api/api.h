@@ -26,6 +26,7 @@ public:
   Medias::Media media() const;
 
   DirectMessages::DirectMessage directMessage() const;
+  const std::string& generateBearerToken() const;
 
 private:
   Statuses::Status status_;

@@ -7,17 +7,25 @@
 #include <string>
 #include <cstring>
 #include <iterator>
+#include <nlohmann/json.hpp>
+
+#include <cocoatweet/exception/invalidParameterException.h>
 
 extern "C" {
 #include <openssl/hmac.h>
 #include <openssl/sha.h>
 #include <openssl/buffer.h>
+#include <curl/curl.h>
 }
 
-namespace CocoaTweet::OAuth {
-OAuth1::OAuth1() {}
+#ifndef NDEBUG
+#include <iostream>
+#endif
 
-OAuth1::OAuth1(const Key _key) : key_(_key) {}
+namespace CocoaTweet::OAuth {
+OAuth1::OAuth1() : authType_(AuthType::OAuth) {}
+
+OAuth1::OAuth1(const Key _key) : key_(_key), authType_(AuthType::OAuth) {}
 
 std::map<std::string, std::string> OAuth1::signature(
     const std::map<std::string, std::string>& _param, const std::string& _method,
@@ -36,6 +44,98 @@ std::map<std::string, std::string> OAuth1::signature(
 
   auto ret = std::map<std::string, std::string>{{"oauth_signature", k64Sha1}};
   return ret;
+}
+
+const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
+                                              const std::string& _method,
+                                              const std::string& _url) {
+  if (authType_ == AuthType::Bearer) {
+    return "Authorization: Bearer " + key_.bearerToken();
+  }
+
+  auto authParam   = oauthParam();
+  auto sigingParam = authParam;
+  if (!_bodyParam.empty()) {
+    for (const auto [k, v] : _bodyParam) {
+      sigingParam.insert_or_assign(k, v);
+    }
+  }
+
+  auto sign = signature(sigingParam, _method, _url);
+
+  authParam.merge(sign);
+  // ヘッダの構築
+  std::string oauthHeader = "authorization: OAuth ";
+  {
+    std::vector<std::string> tmp;
+    for (const auto& [key, value] : authParam) {
+      tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
+    }
+    oauthHeader += CocoaTweet::Util::join(tmp, ",");
+  }
+
+  return oauthHeader;
+}
+
+const std::string& OAuth1::generateBearerToken() {
+  auto signature    = key_.consumerKey() + ":" + key_.consumerSecret();
+  auto k64Signature = base64(signature);
+  auto authHeader   = std::string("Authorization: Basic ") + k64Signature;
+  auto contentType =
+      std::string("Content-Type: application/x-www-form-urlencoded;charset=UTF-8");
+  auto url         = std::string("https://api.twitter.com/oauth2/token");
+  auto requestBody = std::string("grant_type=client_credentials");
+
+  // do post
+  CURL* curl;
+  CURLcode res;
+  std::string rcv;
+  long responseCode;
+  curl = curl_easy_init();
+  if (curl) {
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_POST, 1);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
+#ifndef NDEBUG
+    std::cout << "requestBody : " << requestBody << std::endl;
+    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+#endif
+    // Headerを保持するcurl_slist*を初期化
+    struct curl_slist* headers = NULL;
+    // Authorizationをヘッダに追加
+    headers = curl_slist_append(headers, authHeader.c_str());
+    headers = curl_slist_append(headers, contentType.c_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    res = curl_easy_perform(curl);
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+    curl_easy_cleanup(curl);
+  }
+  if (res != CURLE_OK) {
+    throw std::runtime_error(std::string("INTERNAL ERROR : curl(") + std::to_string(res) + ")");
+    exit(1);
+  }
+
+  auto j = nlohmann::json::parse(rcv);
+  if ((responseCode / 100) == 4) {
+    auto error   = j["errors"][0]["code"];
+    auto message = j["errors"][0]["message"];
+    if (j.count("error") != 0) {
+      // この形式はエラーコードを持たないのでエラー種別が特定できない
+      throw new CocoaTweet::Exception::Exception(j["error"]);
+    }
+    if (error.get<int>() == 44) {
+      throw CocoaTweet::Exception::InvalidParameterException(
+          message.get<std::string>().c_str());
+    }
+  }
+
+  key_.bearerToken(j["access_token"]);
+  authType_ = AuthType::Bearer;
+  return key_.bearerToken();
 }
 
 const std::string OAuth1::nonce() const {

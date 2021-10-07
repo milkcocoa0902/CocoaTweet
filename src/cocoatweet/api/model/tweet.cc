@@ -10,6 +10,10 @@ Tweet Tweet::parse(const std::string& _json) {
   tweet.createdAt(j["created_at"]);
   tweet.text(j["text"]);
   tweet.source(j["source"]);
+  if(j.contains("user")){
+    tweet.user(CocoaTweet::API::Model::User(j["user"].dump()));
+  }
+
 
   return tweet;
 }
@@ -29,16 +33,27 @@ void Tweet::source(const std::string _source) {
   source_ = _source;
 }
 
+void Tweet::user(const CocoaTweet::API::Model::User _user) {
+  user_ = _user;
+}
+
 const std::string Tweet::id() const {
   return id_;
 }
+
 const std::string Tweet::createdAt() const {
   return createdAt_;
 }
+
 const std::string Tweet::text() const {
   return text_;
 }
+
 const std::string Tweet::source() const {
   return source_;
+}
+
+const CocoaTweet::API::Model::User Tweet::user() const {
+  return user_;
 }
 } // namespace CocoaTweet::API::Model

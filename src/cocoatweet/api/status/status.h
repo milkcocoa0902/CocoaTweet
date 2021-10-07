@@ -35,7 +35,7 @@ public:
   /// @details this function throws CocoaTweet::Exception::* if something happen
   /// @param[in] const std::string& : tweet text
   /// @param[out] CocoaTweet::API::Model::Tweet : Tweet result
-  CocoaTweet::API::Model::Tweet Update(const std::string& _status) const;
+  CocoaTweet::API::Model::Tweet update(const std::string& _status) const;
 
   /// @brief send request to statuses/update with specified status
   /// @details this function throws CocoaTweet::Exception::* if something happen
@@ -43,7 +43,7 @@ public:
   /// @param[in] const CocoaTweet::API::Statuses::Status::Options option : status update options
   /// for more parameters
   /// @param[out] CocoaTweet::API::Model::Tweet : Tweet result
-  CocoaTweet::API::Model::Tweet Update(const std::string& _status,
+  CocoaTweet::API::Model::Tweet update(const std::string& _status,
                                        const Options _options) const;
 
   /// @brief send request to statuses/update with specified status
@@ -51,19 +51,19 @@ public:
   /// @param[in] const std::string& : tweet text
   /// @param[in] std::vector<std::string> _mediaId : media id which posted with tweet
   /// @param[out] CocoaTweet::API::Model::Tweet : Tweet result
-  CocoaTweet::API::Model::Tweet Update(const std::string& _status,
+  CocoaTweet::API::Model::Tweet update(const std::string& _status,
                                        std::vector<std::string> _mediaId) const;
 
   /// @brief send request to statuses/destroy with specified id
   /// @details this function throws CocoaTweet::Exception::* if something happen
   /// @param[in] const std::string& : tweet id which should be delete
   /// @param[out] CocoaTweet::API::Model::Tweet : Destroy result
-  CocoaTweet::API::Model::Tweet Destroy(const std::string& _id) const;
+  CocoaTweet::API::Model::Tweet destroy(const std::string& _id) const;
 
-  CocoaTweet::API::Model::Tweet Retweet(const std::string& _id) const;
-  CocoaTweet::API::Model::Tweet Unretweet(const std::string& _id) const;
+  CocoaTweet::API::Model::Tweet retweet(const std::string& _id) const;
+  CocoaTweet::API::Model::Tweet unretweet(const std::string& _id) const;
 
-  std::vector<CocoaTweet::API::Model::Tweet> UserTimeline(const std::string& _screenName) const;
+  std::vector<CocoaTweet::API::Model::Tweet> userTimeline(const std::string& _screenName) const;
 
 private:
   Options defaultOpt_;

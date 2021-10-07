@@ -1,5 +1,4 @@
 #include <cocoatweet/api/status/unretweet.h>
-#include <iostream>
 
 namespace CocoaTweet::API::Statuses {
 Unretweet::Unretweet() {}

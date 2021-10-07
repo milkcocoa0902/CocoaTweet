@@ -4,7 +4,7 @@
 #include <cocoatweet/exception/exception.h>
 
 namespace CocoaTweet::Exception {
-class UnsupportedMediaTypeException final : Exception {
+class UnsupportedMediaTypeException final : public Exception {
   using Exception::Exception;
 };
 } // namespace CocoaTweet::Exception
