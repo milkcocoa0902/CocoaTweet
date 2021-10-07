@@ -1,0 +1,13 @@
+<map id="src/cocoatweet/api/status/destroy.h" name="src/cocoatweet/api/status/destroy.h">
+<area shape="rect" id="node1" title=" " alt="" coords="115,5,259,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,370,83,397"/>
+<area shape="rect" id="node3" href="$httpPost_8h.html" title=" " alt="" coords="95,95,278,136"/>
+<area shape="rect" id="node10" href="$tweet_8h.html" title=" " alt="" coords="355,273,522,315"/>
+<area shape="rect" id="node4" title=" " alt="" coords="30,281,117,307"/>
+<area shape="rect" id="node5" href="$oauth_8h.html" title=" " alt="" coords="141,281,331,307"/>
+<area shape="rect" id="node9" href="$httpBase_8h.html" title=" " alt="" coords="95,184,278,225"/>
+<area shape="rect" id="node6" title=" " alt="" coords="291,452,349,479"/>
+<area shape="rect" id="node7" title=" " alt="" coords="191,452,241,479"/>
+<area shape="rect" id="node8" href="$key_8h.html" title=" " alt="" coords="209,370,263,397"/>
+<area shape="rect" id="node11" href="$user_8h.html" title=" " alt="" coords="390,363,557,404"/>
+</map>

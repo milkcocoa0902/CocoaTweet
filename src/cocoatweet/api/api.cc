@@ -9,6 +9,10 @@ API::API(CocoaTweet::OAuth::Key _key) {
   directMessage_ = DirectMessages::DirectMessage(oauth_);
 }
 
+const std::string& API::generateBearerToken() const {
+  return oauth_->generateBearerToken();
+}
+
 Statuses::Status API::status() const {
   return status_;
 }

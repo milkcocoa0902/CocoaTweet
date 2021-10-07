@@ -4,7 +4,7 @@
 #include <cocoatweet/exception/exception.h>
 
 namespace CocoaTweet::Exception {
-class RateLimitException final : Exception {
+class RateLimitException final : public Exception {
   using Exception::Exception;
 };
 } // namespace CocoaTweet::Exception

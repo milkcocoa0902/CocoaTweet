@@ -32,4 +32,5 @@ std::string join(const std::vector<std::string> _vec, const std::string& _delim)
 
   return str;
 }
+
 } // namespace CocoaTweet::Util

@@ -5,6 +5,7 @@
 #include <cocoatweet/exception/tweetDuplicateException.h>
 #include <cocoatweet/exception/tweetTooLongException.h>
 #include <cocoatweet/exception/rateLimitException.h>
+#include <cocoatweet/exception/tokenInvalidException.h>
 #include "nlohmann/json.hpp"
 #include <iterator>
 #include <memory>
@@ -113,6 +114,9 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     exit(1);
   }
 
+#ifndef NDEBUG
+  std::cout << rcv << std::endl;
+#endif
   if ((responseCode / 100) == 4) {
     auto j       = nlohmann::json::parse(rcv);
     auto error   = j["errors"][0]["code"];
@@ -125,6 +129,8 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
       throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 32) {
       throw CocoaTweet::Exception::AuthenticateException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 89) {
+      throw CocoaTweet::Exception::TokenInvalidException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 187) {
       throw CocoaTweet::Exception::TweetDuplicateException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 88 || error.get<int>() == 185) {

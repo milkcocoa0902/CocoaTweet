@@ -4,7 +4,7 @@
 #include <cocoatweet/exception/exception.h>
 
 namespace CocoaTweet::Exception {
-class TweetNotFoundException final : Exception {
+class TweetNotFoundException final : public Exception {
   using Exception::Exception;
 };
 } // namespace CocoaTweet::Exception

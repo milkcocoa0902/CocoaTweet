@@ -1,5 +1,6 @@
-#include "cocoatweet/oauth/key.h"
-#include "cocoatweet/api/api.h"
+#include <cocoatweet/api/api.h>
+#include <iostream>
+#include <cocoatweet/exception/exception.h>
 
 auto main() -> int {
   // Generate Key object
@@ -18,9 +19,18 @@ auto main() -> int {
   // Generate API Entry object using Key object
   // CocoaTweet::API::API api(key);
 
-  // Now, you can use a twitter api
-  // auto status = api.status().Update("Hello Twitter World via Cocoa Twitter Library");
-  // api.favorite().Create(status.id());
-  // api.favorite().Destroy(status.id());
-  // api.status().Destroy(status.id());
+  // if you want to access api using Bearer Token, call this for get BearerToken;
+  // NOTE: call this, always authenticate with Bearer Token, which is Read Only Token
+  // try {
+    // api.generateBearerToken();
+
+    // Now, you can use a twitter api
+    // auto status = api.status().update("Hello Twitter World via Cocoa Twitter Library");
+    // api.favorite().create(status.id());
+    // api.favorite().destroy(status.id());
+    // api.status().destroy(status.id());
+    // auto timeline = api.status().userTimeline("milkcocoa0902");
+  // } catch (CocoaTweet::Exception::Exception e) {
+  //   std::cout << e.what() << std::endl;
+  // }
 }

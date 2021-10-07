@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.05)
 
 project(CocoaTweet CXX C)
 
@@ -60,7 +60,8 @@ if(ENABLE_TEST)
   if(NOT (UNIX OR APPLE))
     message(FAITAL_ERROR "unit test is NOT supported on Windows")
   endif()
-  find_package(Boost 1.71.0 COMPONENTS unit_test_framework REQUIRED)
+  set(Boost_NO_BOOST_CMAKE TRUE)
+  find_package(Boost 1.67 COMPONENTS unit_test_framework REQUIRED)
   # Enable CTest
   enable_testing()
   add_subdirectory(test)

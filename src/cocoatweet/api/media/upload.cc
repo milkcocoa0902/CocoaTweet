@@ -2,8 +2,6 @@
 #include <cocoatweet/api/model/mediaStore.h>
 #include <cocoatweet/exception/unsupportedMediaTypeException.h>
 #include <fstream>
-#include <iostream>
-
 namespace CocoaTweet::API::Medias {
 const std::map<std::string, std::string> Upload::mimeType = {{".jpg", "image/jpeg"},
                                                              {".jpeg", "image/jpeg"},

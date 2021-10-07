@@ -1,5 +1,4 @@
 #include <cocoatweet/api/status/retweet.h>
-#include <iostream>
 
 namespace CocoaTweet::API::Statuses {
 Retweet::Retweet() {}

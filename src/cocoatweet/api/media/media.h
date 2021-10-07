@@ -19,7 +19,7 @@ public:
   /// @param[in] std::shared_ptr<CocoaTweet::OAuth::OAuth1> : pointer to OAuth object
   Media(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
 
-  CocoaTweet::API::Model::MediaStore Upload(const std::string& _file) const;
+  CocoaTweet::API::Model::MediaStore upload(const std::string& _file) const;
 
 private:
 };
