@@ -3,7 +3,7 @@
 
 namespace CocoaTweet::API::Model {
 Tweet Tweet::parse(const std::string& _json) {
-		auto j = nlohmann::json::parse(_json);
+  auto j = nlohmann::json::parse(_json);
   Tweet tweet;
 
   tweet.id(j["id_str"]);
@@ -11,7 +11,7 @@ Tweet Tweet::parse(const std::string& _json) {
   tweet.text(j["text"]);
   tweet.source(j["source"]);
 
- tweet.user(CocoaTweet::API::Model::User(j["user"].dump()));
+  tweet.user(CocoaTweet::API::Model::User(j["user"].dump()));
 
   return tweet;
 }

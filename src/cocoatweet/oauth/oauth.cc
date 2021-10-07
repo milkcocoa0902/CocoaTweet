@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 namespace CocoaTweet::OAuth {
-OAuth1::OAuth1(): authType_(AuthType::OAuth) {}
+OAuth1::OAuth1() : authType_(AuthType::OAuth) {}
 
 OAuth1::OAuth1(const Key _key) : key_(_key), authType_(AuthType::OAuth) {}
 
@@ -46,12 +46,14 @@ std::map<std::string, std::string> OAuth1::signature(
   return ret;
 }
 
-const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string> _bodyParam, const std::string& _method, const std::string& _url){
-  if(authType_ == AuthType::Bearer){
+const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
+                                              const std::string& _method,
+                                              const std::string& _url) {
+  if (authType_ == AuthType::Bearer) {
     return "Authorization: Bearer " + key_.bearerToken();
   }
 
-  auto authParam  = oauthParam();
+  auto authParam   = oauthParam();
   auto sigingParam = authParam;
   if (!_bodyParam.empty()) {
     for (const auto [k, v] : _bodyParam) {
@@ -62,7 +64,7 @@ const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string>
   auto sign = signature(sigingParam, _method, _url);
 
   authParam.merge(sign);
-    // ヘッダの構築
+  // ヘッダの構築
   std::string oauthHeader = "authorization: OAuth ";
   {
     std::vector<std::string> tmp;
@@ -75,14 +77,13 @@ const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string>
   return oauthHeader;
 }
 
-
-
-const std::string& OAuth1::generateBearerToken(){
-  auto signature = key_.consumerKey() + ":" + key_.consumerSecret();
+const std::string& OAuth1::generateBearerToken() {
+  auto signature    = key_.consumerKey() + ":" + key_.consumerSecret();
   auto k64Signature = base64(signature);
-  auto authHeader = std::string("Authorization: Basic ") + k64Signature;
-  auto contentType = std::string("Content-Type: application/x-www-form-urlencoded;charset=UTF-8");
-  auto url = std::string("https://api.twitter.com/oauth2/token");
+  auto authHeader   = std::string("Authorization: Basic ") + k64Signature;
+  auto contentType =
+      std::string("Content-Type: application/x-www-form-urlencoded;charset=UTF-8");
+  auto url         = std::string("https://api.twitter.com/oauth2/token");
   auto requestBody = std::string("grant_type=client_credentials");
 
   // do post
@@ -118,8 +119,7 @@ const std::string& OAuth1::generateBearerToken(){
     exit(1);
   }
 
-
-    auto j       = nlohmann::json::parse(rcv);
+  auto j = nlohmann::json::parse(rcv);
   if ((responseCode / 100) == 4) {
     auto error   = j["errors"][0]["code"];
     auto message = j["errors"][0]["message"];
@@ -128,14 +128,14 @@ const std::string& OAuth1::generateBearerToken(){
       throw new CocoaTweet::Exception::Exception(j["error"]);
     }
     if (error.get<int>() == 44) {
-      throw CocoaTweet::Exception::InvalidParameterException(message.get<std::string>().c_str());
+      throw CocoaTweet::Exception::InvalidParameterException(
+          message.get<std::string>().c_str());
     }
   }
 
   key_.bearerToken(j["access_token"]);
   authType_ = AuthType::Bearer;
   return key_.bearerToken();
-
 }
 
 const std::string OAuth1::nonce() const {

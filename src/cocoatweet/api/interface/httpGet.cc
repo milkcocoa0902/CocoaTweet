@@ -26,7 +26,7 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   auto url = url_;
 
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
-  auto oauth       = _oauth.lock();
+  auto oauth = _oauth.lock();
   // auto oauthParam  = oauth->oauthParam();
   // auto sigingParam = oauthParam;
   // if (contentType_ == "application/x-www-form-urlencoded") {
@@ -40,7 +40,6 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   // // 作成した署名をエンドポイントへのパラメータ及びOAuthパラメータに登録
   // oauthParam.merge(signature);
 
-
   // // ヘッダの構築
   // std::string oauthHeader = "authorization: OAuth ";
   // {
@@ -53,7 +52,7 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   auto oauthHeader = std::string();
   if (contentType_ == "application/x-www-form-urlencoded") {
     oauthHeader = oauth->calculateAuthHeader(bodyParam_, "GET", url_);
-  }else{
+  } else {
     oauthHeader = oauth->calculateAuthHeader({}, "GET", url_);
   }
 
@@ -105,7 +104,7 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
     exit(1);
   }
 
-std::cout << rcv << std::endl;
+  std::cout << rcv << std::endl;
   if ((responseCode / 100) == 4) {
     auto j       = nlohmann::json::parse(rcv);
     auto error   = j["errors"][0]["code"];
@@ -118,17 +117,15 @@ std::cout << rcv << std::endl;
       throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 32) {
       throw CocoaTweet::Exception::AuthenticateException(message.get<std::string>().c_str());
-    }else if(error.get<int>() == 89){
+    } else if (error.get<int>() == 89) {
       throw CocoaTweet::Exception::TokenInvalidException(message.get<std::string>().c_str());
-		}else if (error.get<int>() == 187) {
+    } else if (error.get<int>() == 187) {
       throw CocoaTweet::Exception::TweetDuplicateException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 88 || error.get<int>() == 185) {
       throw CocoaTweet::Exception::RateLimitException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 186) {
       throw CocoaTweet::Exception::TweetTooLongException(message.get<std::string>().c_str());
-    }
-    else{
-      
+    } else {
     }
   }
 

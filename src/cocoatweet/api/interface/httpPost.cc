@@ -126,7 +126,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
       throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 32) {
       throw CocoaTweet::Exception::AuthenticateException(message.get<std::string>().c_str());
-    }else if(error.get<int>() == 89){
+    } else if (error.get<int>() == 89) {
       throw CocoaTweet::Exception::TokenInvalidException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 187) {
       throw CocoaTweet::Exception::TweetDuplicateException(message.get<std::string>().c_str());

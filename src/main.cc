@@ -11,7 +11,6 @@
 #include <cocoatweet/exception/exception.h>
 #include <cocoatweet/exception/rateLimitException.h>
 
-
 bool starts_with(const std::string& s, const std::string& prefix) {
   auto size = prefix.size();
   if (s.size() < size) return false;
@@ -32,7 +31,7 @@ auto main() -> int {
   // also can generate Key object from JSON file
   CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
   // auto oauth = CocoaTweet::OAuth::OAuth1(key);
-  // oauth.GenerateBearerToken(); 
+  // oauth.GenerateBearerToken();
 
   // std::cout << "sdfgwregfresgfresdwefgweragregreagretgreawgrt#$QTWREATGREWTGF$ERTF";
   // Generate API Entry object using Key object

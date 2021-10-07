@@ -10,26 +10,24 @@ CocoaTweet::API::Model::User User::parse(const std::string& _json) {
   return user;
 }
 
-void User::id(const std::string& _id){
-    id_ = _id;
+void User::id(const std::string& _id) {
+  id_ = _id;
 }
 
-void User::name(const std::string& _name){
-		name_ = _name;
+void User::name(const std::string& _name) {
+  name_ = _name;
 }
 
-void User::screenName(const std::string& _screen){
-		screenName_ = _screen;
+void User::screenName(const std::string& _screen) {
+  screenName_ = _screen;
 }
 
-void User::location(const std::string& _location){
-		location_ = _location;
+void User::location(const std::string& _location) {
+  location_ = _location;
 }
 
-const std::string& User::id() const{
-    return id_;
+const std::string& User::id() const {
+  return id_;
 }
-
-
 
 } // namespace CocoaTweet::API::Model
