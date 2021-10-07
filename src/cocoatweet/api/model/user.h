@@ -34,7 +34,6 @@ public:
   void follow(const long _follow);
   void listed(const long _listed);
   void favorite(const long _favorite);
-  void tweet(const long _tweet);
   void createdAt(const std::string& _created);
   void bannerUrl(const std::string& _banner);
   void iconUrl(const std::string& _icon);
@@ -50,9 +49,8 @@ public:
   long follow() const;
   long listed() const;
   long favorite() const;
-  long tweet() const;
   const std::string& created() const;
-  const std::string& banner() const;
+  const std::string& bannerUrl() const;
   const std::string& icon() const;
 
 private:
@@ -67,7 +65,6 @@ private:
   long follow_;
   long listed_;
   long favorite_;
-  long tweet_;
   std::string createdAt_;
   std::string bannerUrl_;
   std::string iconUrl_;

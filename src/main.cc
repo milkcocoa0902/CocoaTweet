@@ -29,20 +29,19 @@ auto main() -> int {
   //                                                     accessTokenSecret);
 
   // also can generate Key object from JSON file
-  CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
-  // auto oauth = CocoaTweet::OAuth::OAuth1(key);
-  // oauth.GenerateBearerToken();
+  // CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
 
-  // std::cout << "sdfgwregfresgfresdwefgweragregreagretgreawgrt#$QTWREATGREWTGF$ERTF";
   // Generate API Entry object using Key object
-  CocoaTweet::API::API api(key);
-  // std::cout << api.generateBearerToken() << std::endl;
+  // CocoaTweet::API::API api(key);
+
+  // if you want to access api using Bearer Token, call this for get BearerToken;
+  // NOTE: call this, always authenticate with Bearer Token, which is Read Only Token
+  // api.generateBearerToken();
 
   // Now, you can use a twitter api
   // auto status = api.status().update("Hello Twitter World via Cocoa Twitter Library");
   // api.favorite().create(status.id());
   // api.favorite().destroy(status.id());
   // api.status().destroy(status.id());
-  auto timeline = api.status().userTimeline("milkcocoa0902");
-  std::cout << timeline[0].user().id();
+  // auto timeline = api.status().userTimeline("milkcocoa0902");
 }
