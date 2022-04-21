@@ -1,6 +1,7 @@
 #ifndef COCOATWEET_API_API_H_
 #define COCOATWEET_API_API_H_
 
+#include <cocoatweet/api/user/user.h>
 #include <cocoatweet/api/status/status.h>
 #include <cocoatweet/api/favorite/favorite.h>
 #include <cocoatweet/api/media/media.h>
@@ -14,6 +15,8 @@ public:
   /// @brief primary constructor
   /// @param[in] _key Twitter API Key typed CocoaTweet::OAuth::Key
   API(CocoaTweet::OAuth::Key _key);
+
+  Users::User user() const;
 
   /// @brief Getter for Grouped by Statuses/*
   /// @param[out] Status object typed CocoaTweet::API::Statuses::Status
@@ -29,6 +32,7 @@ public:
   const std::string& generateBearerToken() const;
 
 private:
+  Users::User user_;
   Statuses::Status status_;
   Favorites::Favorite favorite_;
   Medias::Media media_;

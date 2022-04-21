@@ -108,12 +108,14 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
 #endif
   if ((responseCode / 100) == 4) {
     auto j       = nlohmann::json::parse(rcv);
-    auto error   = j["errors"][0]["code"];
-    auto message = j["errors"][0]["message"];
     if (j.count("error") != 0) {
       // この形式はエラーコードを持たないのでエラー種別が特定できない
       throw new CocoaTweet::Exception::Exception(j["error"]);
     }
+
+    auto error   = j["errors"][0]["code"];
+    auto message = j["errors"][0]["message"];
+    
     if (error.get<int>() == 144) {
       throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 32) {
