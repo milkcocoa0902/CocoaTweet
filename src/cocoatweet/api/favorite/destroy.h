@@ -9,7 +9,7 @@ class Destroy : public CocoaTweet::API::Interface::HttpPost {
 public:
   Destroy();
   void id(const std::string& _id);
-  CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
 private:
 };

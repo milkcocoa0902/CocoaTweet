@@ -2,7 +2,7 @@
 #define COCOATWEET_API_DIRECTMESSAGE_DIRECTMESSAGE_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
-#include "cocoatweet/oauth/oauth.h"
+#include "cocoatweet/authentication/authenticator.h"
 #include <cocoatweet/api/model/tweet.h>
 #include <vector>
 #include <utility>
@@ -15,8 +15,8 @@ public:
   DirectMessage() = default;
 
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::OAuth::OAuth1> : pointer to OAuth object
-  DirectMessage(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to OAuth object
+  DirectMessage(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   void messageCreate(const std::string& _recipient, const std::string& _message);
 

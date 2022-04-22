@@ -2,7 +2,7 @@
 #include <cocoatweet/api/user/show.h>
 
 namespace CocoaTweet::API::Users{
-    User::User(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+    User::User(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   oauth_ = _oauth;
 }
 

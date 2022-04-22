@@ -1,6 +1,9 @@
 #include "cocoatweet/util/util.h"
 #include <cctype>
 #include <iomanip>
+#include <vector>
+
+#include <iostream>
 
 namespace CocoaTweet::Util {
 std::string urlEncode(const std::string& _str) {
@@ -31,6 +34,36 @@ std::string join(const std::vector<std::string> _vec, const std::string& _delim)
   }
 
   return str;
+}
+
+
+std::unordered_map<std::string, std::string> parse(const std::string str, const char _delim, const char _conn){
+   int first = 0;
+   int last = str.find_first_of(_delim);
+   std::vector<std::string> result;
+ 
+   while (first < str.size()) {
+     result.push_back(str.substr(first, last - first));
+     first = last + 1;
+     last = str.find_first_of(_delim, first);
+     if (last == std::string::npos) last = str.size();
+   }
+
+   auto mp = std::unordered_map<std::string, std::string>();
+   for(auto elm: result){
+     int pos = elm.find_first_of(_conn);
+
+     std::cout << pos << std::endl;
+     if(pos == std::string::npos){
+       mp.insert_or_assign(elm, "");
+     }else{
+       auto key = elm.substr(0, pos);
+       auto val = elm.substr(pos + 1);
+       mp.insert_or_assign(key, val);
+     }
+   }
+
+   return mp;
 }
 
 } // namespace CocoaTweet::Util

@@ -21,22 +21,22 @@ extern "C" {
 #endif
 
 namespace CocoaTweet::API::Interface {
-void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
+void HttpPost::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth,
                        std::function<void(const std::string&)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
   auto oauth       = _oauth.lock();
-  auto oauthParam  = oauth->oauthParam();
-  auto sigingParam = oauthParam;
-  if (contentType_ == "application/x-www-form-urlencoded") {
-    for (const auto [k, v] : bodyParam_) {
-      sigingParam.insert_or_assign(k, v);
-    }
-  }
+  // auto oauthParam  = oauth->oauthParam();
+  // auto sigingParam = oauthParam;
+  // if (contentType_ == "application/x-www-form-urlencoded") {
+  //   for (const auto [k, v] : bodyParam_) {
+  //     sigingParam.insert_or_assign(k, v);
+  //   }
+  // }
 
-  auto signature = oauth->signature(sigingParam, "POST", url_);
+  // auto signature = oauth->signature(sigingParam, "POST", url_);
 
   // 作成した署名をエンドポイントへのパラメータ及びOAuthパラメータに登録
-  oauthParam.merge(signature);
+  // oauthParam.merge(signature);
 
   // リクエストボディの構築
   std::string requestBody = "";
@@ -60,13 +60,21 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
   }
 
   // ヘッダの構築
-  std::string oauthHeader = "authorization: OAuth ";
-  {
-    std::vector<std::string> tmp;
-    for (const auto& [key, value] : oauthParam) {
-      tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
-    }
-    oauthHeader += CocoaTweet::Util::join(tmp, ",");
+  // std::string oauthHeader = "authorization: OAuth ";
+  // {
+  //   std::vector<std::string> tmp;
+  //   for (const auto& [key, value] : oauthParam) {
+  //     tmp.push_back(key + "=" + CocoaTweet::Util::urlEncode(value));
+  //   }
+  //   oauthHeader += CocoaTweet::Util::join(tmp, ",");
+  // }
+
+
+  auto oauthHeader = std::string();
+  if (contentType_ == "application/x-www-form-urlencoded") {
+    oauthHeader = oauth->calculateAuthHeader(bodyParam_, "POST", url_);
+  } else {
+    oauthHeader = oauth->calculateAuthHeader({}, "POST", url_);
   }
 
   // do post

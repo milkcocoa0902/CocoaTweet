@@ -1,4 +1,4 @@
-#include "oauth.h"
+#include "authenticate.h"
 #include "cocoatweet/util/util.h"
 #include <random>
 #include <ctime>
@@ -22,10 +22,15 @@ extern "C" {
 #include <iostream>
 #endif
 
-namespace CocoaTweet::OAuth {
-OAuth1::OAuth1() : authType_(AuthType::OAuth) {}
+namespace CocoaTweet::Authentication {
+OAuth1::OAuth1() {
+  method_ = AuthenticationMethod::OAUTH10A;
+}
 
-OAuth1::OAuth1(const Key _key) : key_(_key), authType_(AuthType::OAuth) {}
+OAuth1::OAuth1(const Key _key){
+  key_ = _key;
+  method_ = AuthenticationMethod::OAUTH10A;
+}
 
 std::map<std::string, std::string> OAuth1::signature(
     const std::map<std::string, std::string>& _param, const std::string& _method,
@@ -49,10 +54,6 @@ std::map<std::string, std::string> OAuth1::signature(
 const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
                                               const std::string& _method,
                                               const std::string& _url) {
-  if (authType_ == AuthType::Bearer) {
-    return "Authorization: Bearer " + key_.bearerToken();
-  }
-
   auto authParam   = oauthParam();
   auto sigingParam = authParam;
   if (!_bodyParam.empty()) {
@@ -77,66 +78,67 @@ const std::string OAuth1::calculateAuthHeader(std::map<std::string, std::string>
   return oauthHeader;
 }
 
-const std::string& OAuth1::generateBearerToken() {
-  auto signature    = key_.consumerKey() + ":" + key_.consumerSecret();
-  auto k64Signature = base64(signature);
-  auto authHeader   = std::string("Authorization: Basic ") + k64Signature;
-  auto contentType =
-      std::string("Content-Type: application/x-www-form-urlencoded;charset=UTF-8");
-  auto url         = std::string("https://api.twitter.com/oauth2/token");
-  auto requestBody = std::string("grant_type=client_credentials");
 
-  // do post
-  CURL* curl;
-  CURLcode res;
-  std::string rcv;
-  long responseCode;
-  curl = curl_easy_init();
-  if (curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_POST, 1);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
-    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
-#ifndef NDEBUG
-    std::cout << "requestBody : " << requestBody << std::endl;
-    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-#endif
-    // Headerを保持するcurl_slist*を初期化
-    struct curl_slist* headers = NULL;
-    // Authorizationをヘッダに追加
-    headers = curl_slist_append(headers, authHeader.c_str());
-    headers = curl_slist_append(headers, contentType.c_str());
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-    res = curl_easy_perform(curl);
-    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
-    curl_easy_cleanup(curl);
-  }
-  if (res != CURLE_OK) {
-    throw std::runtime_error(std::string("INTERNAL ERROR : curl(") + std::to_string(res) + ")");
-    exit(1);
-  }
+// const std::string& OAuth1::generateBearerToken() {
+//   auto signature    = key_.consumerKey() + ":" + key_.consumerSecret();
+//   auto k64Signature = base64(signature);
+//   auto authHeader   = std::string("Authorization: Basic ") + k64Signature;
+//   auto contentType =
+//       std::string("Content-Type: application/x-www-form-urlencoded;charset=UTF-8");
+//   auto url         = std::string("https://api.twitter.com/oauth2/token");
+//   auto requestBody = std::string("grant_type=client_credentials");
 
-  auto j = nlohmann::json::parse(rcv);
-  if ((responseCode / 100) == 4) {
-    auto error   = j["errors"][0]["code"];
-    auto message = j["errors"][0]["message"];
-    if (j.count("error") != 0) {
-      // この形式はエラーコードを持たないのでエラー種別が特定できない
-      throw new CocoaTweet::Exception::Exception(j["error"]);
-    }
-    if (error.get<int>() == 44) {
-      throw CocoaTweet::Exception::InvalidParameterException(
-          message.get<std::string>().c_str());
-    }
-  }
+//   // do post
+//   CURL* curl;
+//   CURLcode res;
+//   std::string rcv;
+//   long responseCode;
+//   curl = curl_easy_init();
+//   if (curl) {
+//     curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+//     curl_easy_setopt(curl, CURLOPT_POST, 1);
+//     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, requestBody.c_str());
+//     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, requestBody.length());
+//     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+//     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlCallback_);
+//     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (std::string*)&rcv);
+// #ifndef NDEBUG
+//     std::cout << "requestBody : " << requestBody << std::endl;
+//     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+// #endif
+//     // Headerを保持するcurl_slist*を初期化
+//     struct curl_slist* headers = NULL;
+//     // Authorizationをヘッダに追加
+//     headers = curl_slist_append(headers, authHeader.c_str());
+//     headers = curl_slist_append(headers, contentType.c_str());
+//     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+//     res = curl_easy_perform(curl);
+//     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
+//     curl_easy_cleanup(curl);
+//   }
+//   if (res != CURLE_OK) {
+//     throw std::runtime_error(std::string("INTERNAL ERROR : curl(") + std::to_string(res) + ")");
+//     exit(1);
+//   }
 
-  key_.bearerToken(j["access_token"]);
-  authType_ = AuthType::Bearer;
-  return key_.bearerToken();
-}
+//   auto j = nlohmann::json::parse(rcv);
+//   if ((responseCode / 100) == 4) {
+//     auto error   = j["errors"][0]["code"];
+//     auto message = j["errors"][0]["message"];
+//     if (j.count("error") != 0) {
+//       // この形式はエラーコードを持たないのでエラー種別が特定できない
+//       throw new CocoaTweet::Exception::Exception(j["error"]);
+//     }
+//     if (error.get<int>() == 44) {
+//       throw CocoaTweet::Exception::InvalidParameterException(
+//           message.get<std::string>().c_str());
+//     }
+//   }
+
+//   key_.bearerToken(j["access_token"]);
+//   authType_ = AuthType::Bearer;
+//   return key_.bearerToken();
+// }
 
 const std::string OAuth1::nonce() const {
   std::random_device engine;
@@ -156,16 +158,13 @@ const std::string OAuth1::timestamp() const {
 }
 
 const std::string OAuth1::method() const {
-  return SIGNATURE_METHOD_;
+  return "HMAC-SHA1";
 }
 
 const std::string OAuth1::version() const {
-  return OAUTH_VERSION_;
+  return "1.0";
 }
 
-const Key OAuth1::key() const {
-  return key_;
-}
 
 std::map<std::string, std::string> OAuth1::oauthParam() const {
   auto tmp = std::map<std::string, std::string>{{"oauth_nonce", nonce()},
@@ -235,4 +234,4 @@ std::string OAuth1::hmacSha1(std::string _key, std::string _data) {
   return static_cast<std::string>(k64);
 }
 
-} // namespace CocoaTweet::OAuth
+} // namespace CocoaTweet::Authentication

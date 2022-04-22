@@ -2,7 +2,7 @@
 #define COCOATWEET_API_USER_USER_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
-#include "cocoatweet/oauth/oauth.h"
+#include "cocoatweet/authentication/authenticator.h"
 #include <cocoatweet/api/model/user.h>
 #include <vector>
 #include <utility>
@@ -15,8 +15,8 @@ public:
   User() = default;
   
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::OAuth::OAuth1> : pointer to OAuth object
-  User(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to OAuth object
+  User(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   CocoaTweet::API::Model::User show(const std::string& _screenName) const;
 

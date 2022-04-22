@@ -26,7 +26,7 @@ you can use these endpoint
 # Installation
 ## Ubuntu
 ```
-# apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev ninja-build
+# apt install clang cmake git libboost-dev libcurl4-openssl-dev libssl-dev ninja-build
 $ git clone https://github.com/koron0902/CocoaTweet
 $ cd CocoaTweet
 $ mkdir build
@@ -74,14 +74,14 @@ $ mingw32-make
 ### 1.Write Key into code
 write api key into code and create Key object use it.  
 ```
-#include "cocoatweet/oauth/key.h"
+#include "cocoatweet/authentication/key.h"
 
 auto consumerKey       = "your consumer key";
 auto consumerSecret    = "your consumer secret";
 auto accessToken       = "your access token";
 auto accessTokenSecret = "your access token secret";
 
-CocoaTweet::OAuth::Key key(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+CocoaTweet::Authentication::Key key(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 
 ```
 
@@ -99,9 +99,9 @@ prepare file which written 'api-key' with json format.
 
 then you can load api key from json file.  
 ```
-#include "cocoatweet/oauth/key.h"
+#include "cocoatweet/authentication/key.h"
 
-CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
+CocoaTweet::Authentication::Key key = CocoaTweet::Authentication::Key::fromJsonFile("api_key.json");
 ```
 
 ## Generate API object

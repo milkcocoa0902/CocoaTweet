@@ -21,7 +21,7 @@ extern "C" {
 #endif
 
 namespace CocoaTweet::API::Interface {
-void HttpGet::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
+void HttpGet::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth,
                       std::function<void(const std::string&)> _callback) {
   auto url = url_;
 

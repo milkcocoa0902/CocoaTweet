@@ -4,24 +4,32 @@
 #include <string>
 #include <map>
 
-namespace CocoaTweet::OAuth {
+namespace CocoaTweet::Authentication {
 class Key {
+public:
+	enum AUTH_TYPE{
+			OAUTH10A,
+			OAUTH2,
+			PLAIN
+	};
+
+private:
   std::string consumerKey_;
   std::string consumerSecret_;
   std::string accessToken_;
   std::string accessTokenSecret_;
   std::string bearerToken_;
-
+	AUTH_TYPE authType_;
 public:
   Key() : consumerKey_(""), consumerSecret_(""), accessToken_(""), accessTokenSecret_("") {}
   Key(const std::string& _consumerKey, const std::string& _consumerSecret,
-      const std::string& _accessToken, const std::string& _accessTokenSecret)
+      const std::string& _accessToken, const std::string& _accessTokenSecret, const AUTH_TYPE _authType = AUTH_TYPE::OAUTH10A)
       : consumerKey_(_consumerKey),
         consumerSecret_(_consumerSecret),
         accessToken_(_accessToken),
-        accessTokenSecret_(_accessTokenSecret) {}
-  Key(const std::string& _consumerKey, const std::string& _consumerSecret)
-      : consumerKey_(_consumerKey), consumerSecret_(_consumerSecret) {}
+        accessTokenSecret_(_accessTokenSecret), authType_(_authType) {}
+  Key(const std::string& _consumerKey, const std::string& _consumerSecret, const AUTH_TYPE _authType = AUTH_TYPE::OAUTH2)
+      : consumerKey_(_consumerKey), consumerSecret_(_consumerSecret), authType_(_authType){}
 
   void consumerKey(const std::string& _consumerKey) {
     consumerKey_ = _consumerKey;
@@ -59,6 +67,14 @@ public:
     return bearerToken_;
   }
 
+  const AUTH_TYPE authType() const {
+    return authType_;
+  }
+  
+  void authType(AUTH_TYPE _authType) {
+    authType_ = _authType;
+  }
+
   std::map<std::string, std::string> noSecret() const {
     return std::map<std::string, std::string>{{"oauth_consumer_key", consumerKey_},
                                               {"oauth_token", accessToken_}};
@@ -70,6 +86,6 @@ public:
 
   static Key fromJsonFile(const std::string _jsonFile);
 };
-} // namespace CocoaTweet::OAuth
+} // namespace CocoaTweet::Authentication
 
 #endif

@@ -23,7 +23,7 @@ void Show::id(const std::string& _id) {
 }
 
 CocoaTweet::API::Model::User Show::process(
-    std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+    std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   CocoaTweet::API::Model::User user;
   HttpGet::process(_oauth, [&user](const std::string& _rcv) {
     user = CocoaTweet::API::Model::User::parse(_rcv);

@@ -1,16 +1,19 @@
-#include "cocoatweet/oauth/key.h"
+#include "cocoatweet/authentication/key.h"
 #include "nlohmann/json.hpp"
 #include <fstream>
 #include <string>
 #include <typeinfo>
 
-namespace CocoaTweet::OAuth {
+namespace CocoaTweet::Authentication {
 Key Key::fromJsonFile(const std::string _jsonFile) {
   std::ifstream ifs(_jsonFile);
   std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
 
   auto j = nlohmann::json::parse(str);
   Key key;
+
+  key.authType(Key::AUTH_TYPE::OAUTH10A);
+
   if (j.contains("consumer_key")) {
     key.consumerKey(j["consumer_key"].get<std::string>());
   }
@@ -29,4 +32,4 @@ Key Key::fromJsonFile(const std::string _jsonFile) {
 
   return key;
 }
-} // namespace CocoaTweet::OAuth
+} // namespace CocoaTweet::Authentication

@@ -2,11 +2,11 @@
 
 #include <boost/test/included/unit_test.hpp>
 
-#include "cocoatweet/oauth/key.h"
+#include "cocoatweet/authentication/key.h"
 
 BOOST_AUTO_TEST_SUITE(oauth_key)
 BOOST_AUTO_TEST_CASE(test01) {
-  CocoaTweet::OAuth::Key key;
+  CocoaTweet::Authentication::Key key;
 
   BOOST_TEST(key.consumerKey() == "");
   BOOST_TEST(key.consumerSecret() == "");
@@ -15,7 +15,7 @@ BOOST_AUTO_TEST_CASE(test01) {
 }
 
 BOOST_AUTO_TEST_CASE(test02) {
-  CocoaTweet::OAuth::Key key("consumerKey", "consumerSecret", "accessToken",
+  CocoaTweet::Authentication::Key key("consumerKey", "consumerSecret", "accessToken",
                              "accessTokenSecret");
 
   BOOST_TEST(key.consumerKey() == "consumerKey");
