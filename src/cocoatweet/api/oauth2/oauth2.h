@@ -2,8 +2,10 @@
 #define COCOATWEET_API_OAUTH2_OAUTH2_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
+#include <cocoatweet/api/oauth2/invalidateToken.h>
 #include <cocoatweet/api/oauth2/token.h>
 #include <cocoatweet/api/model/oauthToken.h>
+#include <cocoatweet/api/model/bearerToken.h>
 #include <vector>
 #include <utility>
 
@@ -20,6 +22,8 @@ public:
   OAuth2(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   const std::string token() const;
+
+  const CocoaTweet::API::Model::BearerToken invalidateToken(const std::string& _bearer) const;
 };
 } // namespace CocoaTweet::API::OAuth2
 

@@ -7,10 +7,19 @@ OAuth2::OAuth2(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _o
 }
 
 const std::string OAuth2::token() const {
-  auto key   = oauth_.lock()->key();
-  auto oauth = std::make_shared<CocoaTweet::Authentication::Basic>(key);
+//   auto key   = oauth_.lock()->key();
+//   auto oauth = std::make_shared<CocoaTweet::Authentication::Basic>(key);
 
   CocoaTweet::API::OAuth2::Token token;
-  return token.process(oauth);
+  return token.process(oauth_);
+}
+
+  const CocoaTweet::API::Model::BearerToken OAuth2::invalidateToken(const std::string& _bearer) const  {
+//   auto key   = oauth_.lock()->key();
+//   auto oauth = std::make_shared<CocoaTweet::Authentication::Basic>(key);
+
+  CocoaTweet::API::OAuth2::InvalidateToken invalidateToken;
+  invalidateToken.accessToken(_bearer);
+  return invalidateToken.process(oauth_);
 }
 } // namespace CocoaTweet::API::OAuth2

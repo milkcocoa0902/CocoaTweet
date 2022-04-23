@@ -8,6 +8,8 @@
 #include <cocoatweet/api/oauth2/token.h>
 #include <cocoatweet/authentication/oauth.h>
 
+#include <cocoatweet/util/util.h>
+
 auto main() -> int {
   // Generate Key object
   // auto consumerKey           = "your consumer key";
@@ -35,6 +37,20 @@ auto main() -> int {
 
     auto user = api.user().show("milkcocoa9692");
     std::cout << user.id() << std::endl;
+
+    std::cout << "consumerKey : " << key.consumerKey() << std::endl;
+    std::cout << "consumerSecret : " << key.consumerSecret() << std::endl;
+    std::cout << "bearer : " << key.bearerToken() << std::endl;
+    std::cout << "bearer : " << CocoaTweet::Util::urlDecode(key.bearerToken()) << std::endl;
+
+    auto newBearerToken = api.oauth2().invalidateToken(key.bearerToken());
+    key.bearerToken(newBearerToken.token());
+    api.swapKey(key);
+    user = api.user().show("milkcocoa9692");
+    std::cout << user.id() << std::endl;
+
+
+
     // api.directMessage().messageCreate(
     //     user.id(),
     //     "これはクソみたいなスパムDMです。\nCocoaTwitterLibraryで、user/"
@@ -47,7 +63,7 @@ auto main() -> int {
     // api.generateBearerToken();
 
     // Now, you can use a twitter api
-    auto status = api.status().update("Hello Twitter World via Cocoa Twitter Library!!");
+    // auto status = api.status().update("Hello Twitter World via Cocoa Twitter Library!!");
     // std::cout << status.id() << std::endl;
     // api.favorite().create(status.id());
     // api.favorite().destroy(status.id());
