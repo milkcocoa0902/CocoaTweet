@@ -8,7 +8,7 @@
 #include <cocoatweet/authentication/authenticator.h>
 
 namespace CocoaTweet::Authentication {
-class OAuth1: public AuthenticatorBase {
+class OAuth1 : public AuthenticatorBase {
 public:
   OAuth1();
   OAuth1(const Key _key);
@@ -17,7 +17,7 @@ public:
                                                const std::string& _url);
 
   // const std::string& generateBearerToken();
-  
+
   const std::string calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
                                         const std::string& _method, const std::string& _url);
 
@@ -28,7 +28,6 @@ public:
   std::map<std::string, std::string> oauthParam() const;
   std::string hmacSha1(std::string _key, std::string _data);
   const std::string base64(const std::string& _raw);
-
 };
 } // namespace CocoaTweet::Authentication
 

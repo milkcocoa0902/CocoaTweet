@@ -9,14 +9,14 @@ Show::Show() {
 }
 
 void Show::screenName(const std::string& _screenName) {
-  if(bodyParam_.count("user_id") > 0){
+  if (bodyParam_.count("user_id") > 0) {
     bodyParam_.erase("user_id");
   }
   bodyParam_.insert_or_assign("screen_name", _screenName);
 }
 
 void Show::id(const std::string& _id) {
-  if(bodyParam_.count("screen_name") > 0){
+  if (bodyParam_.count("screen_name") > 0) {
     bodyParam_.erase("screen_name");
   }
   bodyParam_.insert_or_assign("id", _id);
@@ -31,4 +31,4 @@ CocoaTweet::API::Model::User Show::process(
   return user;
 }
 
-} // namespace CocoaTweet::API::Statuses
+} // namespace CocoaTweet::API::Users

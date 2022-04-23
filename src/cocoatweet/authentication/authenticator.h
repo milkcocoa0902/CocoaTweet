@@ -2,22 +2,17 @@
 #define COCOATWEET_AUTHENTICATION_AUTHENTICATORBASE_H
 
 #include <cocoatweet/authentication/key.h>
-namespace CocoaTweet::Authentication{
-class AuthenticatorBase{
+namespace CocoaTweet::Authentication {
+class AuthenticatorBase {
 public:
-    enum class AuthenticationMethod{
-        OAUTH10A,
-        OAUTH2,
-        BASIC,
-        PLAIN,
-        NONE
-    };
-  
+  enum class AuthenticationMethod { OAUTH10A, OAUTH2, BASIC, PLAIN, NONE };
+
   virtual const std::string calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
-                                        const std::string& _method, const std::string& _url) = 0;
-  
-  const Key key() const{
-      return key_;
+                                                const std::string& _method,
+                                                const std::string& _url) = 0;
+
+  const Key key() const {
+    return key_;
   }
 
 protected:
@@ -29,6 +24,6 @@ protected:
     return realsize;
   }
 };
-}
+} // namespace CocoaTweet::Authentication
 
 #endif

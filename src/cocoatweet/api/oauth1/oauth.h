@@ -15,16 +15,17 @@ class OAuth : public groupInterface {
 public:
   /// @brief primary constructor
   OAuth() = default;
-  
+
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to OAuth object
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to
+  /// OAuth object
   OAuth(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   CocoaTweet::API::Model::OAuthToken requestToken(const std::string& _oauthCallback) const;
   const std::string authorize(const CocoaTweet::API::Model::OAuthToken _oauthToken) const;
-  const CocoaTweet::API::Model::OAuthToken accessToken(const CocoaTweet::API::Model::OAuthToken _oauthToken, const std::string _verifier) const;
-
+  const CocoaTweet::API::Model::OAuthToken accessToken(
+      const CocoaTweet::API::Model::OAuthToken _oauthToken, const std::string _verifier) const;
 };
-} // namespace CocoaTweet::API::Statuses
+} // namespace CocoaTweet::API::OAuth1
 
 #endif

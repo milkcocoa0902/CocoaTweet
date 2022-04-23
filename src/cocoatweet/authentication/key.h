@@ -7,10 +7,7 @@
 namespace CocoaTweet::Authentication {
 class Key {
 public:
-	enum AUTH_TYPE{
-			OAUTH10A,
-			OAUTH2
-	};
+  enum AUTH_TYPE { OAUTH10A, OAUTH2 };
 
 private:
   std::string consumerKey_;
@@ -18,17 +15,21 @@ private:
   std::string accessToken_;
   std::string accessTokenSecret_;
   std::string bearerToken_;
-	AUTH_TYPE authType_;
+  AUTH_TYPE authType_;
+
 public:
   Key() : consumerKey_(""), consumerSecret_(""), accessToken_(""), accessTokenSecret_("") {}
   Key(const std::string& _consumerKey, const std::string& _consumerSecret,
-      const std::string& _accessToken, const std::string& _accessTokenSecret, const AUTH_TYPE _authType = AUTH_TYPE::OAUTH10A)
+      const std::string& _accessToken, const std::string& _accessTokenSecret,
+      const AUTH_TYPE _authType = AUTH_TYPE::OAUTH10A)
       : consumerKey_(_consumerKey),
         consumerSecret_(_consumerSecret),
         accessToken_(_accessToken),
-        accessTokenSecret_(_accessTokenSecret), authType_(_authType) {}
-  Key(const std::string& _consumerKey, const std::string& _consumerSecret, const AUTH_TYPE _authType = AUTH_TYPE::OAUTH2)
-      : consumerKey_(_consumerKey), consumerSecret_(_consumerSecret), authType_(_authType){}
+        accessTokenSecret_(_accessTokenSecret),
+        authType_(_authType) {}
+  Key(const std::string& _consumerKey, const std::string& _consumerSecret,
+      const AUTH_TYPE _authType = AUTH_TYPE::OAUTH2)
+      : consumerKey_(_consumerKey), consumerSecret_(_consumerSecret), authType_(_authType) {}
 
   void consumerKey(const std::string& _consumerKey) {
     consumerKey_ = _consumerKey;

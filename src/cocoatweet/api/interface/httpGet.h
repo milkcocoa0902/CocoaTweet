@@ -11,8 +11,8 @@ class HttpGet : public virtual HttpBase {
 public:
 protected:
   /// @brief Send HTTP/POST using OAuth object
-  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer to OAuth object to
-  /// authenticate
+  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer
+  /// to OAuth object to authenticate
   /// @param[in] std::function<void(const unsigned int, const std::string&)> _callback :
   /// callback method for processing to response
   void process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth,

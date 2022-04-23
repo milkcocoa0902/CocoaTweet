@@ -27,20 +27,18 @@ Basic::Basic() {
   method_ = AuthenticationMethod::BASIC;
 }
 
-Basic::Basic(const Key _key){
-  key_ = _key;
+Basic::Basic(const Key _key) {
+  key_    = _key;
   method_ = AuthenticationMethod::BASIC;
 }
 const std::string Basic::calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
-                                              const std::string& _method,
-                                              const std::string& _url) {
-
+                                             const std::string& _method,
+                                             const std::string& _url) {
   auto signature    = key_.consumerKey() + ":" + key_.consumerSecret();
   auto k64Signature = base64(signature);
   auto authHeader   = std::string("Authorization: Basic ") + k64Signature;
 
   return authHeader;
-  
 }
 
 const std::string Basic::base64(const std::string& _raw) {
@@ -72,6 +70,5 @@ const std::string Basic::base64(const std::string& _raw) {
 
   return base64;
 }
-
 
 } // namespace CocoaTweet::Authentication

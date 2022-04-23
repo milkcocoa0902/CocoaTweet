@@ -3,9 +3,8 @@
 
 #include <cocoatweet/authentication/authenticator.h>
 
-namespace CocoaTweet::Authentication{
-	class Plain: public AuthenticatorBase {
-	};
-}
+namespace CocoaTweet::Authentication {
+class Plain : public AuthenticatorBase {};
+} // namespace CocoaTweet::Authentication
 
 #endif

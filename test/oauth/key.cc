@@ -16,7 +16,7 @@ BOOST_AUTO_TEST_CASE(test01) {
 
 BOOST_AUTO_TEST_CASE(test02) {
   CocoaTweet::Authentication::Key key("consumerKey", "consumerSecret", "accessToken",
-                             "accessTokenSecret");
+                                      "accessTokenSecret");
 
   BOOST_TEST(key.consumerKey() == "consumerKey");
   BOOST_TEST(key.consumerSecret() == "consumerSecret");

@@ -109,7 +109,7 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBas
   std::cout << rcv << std::endl;
 #endif
   if ((responseCode / 100) == 4) {
-    auto j       = nlohmann::json::parse(rcv);
+    auto j = nlohmann::json::parse(rcv);
     if (j.count("error") != 0) {
       // この形式はエラーコードを持たないのでエラー種別が特定できない
       throw new CocoaTweet::Exception::Exception(j["error"]);
@@ -117,7 +117,7 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBas
 
     auto error   = j["errors"][0]["code"];
     auto message = j["errors"][0]["message"];
-    
+
     if (error.get<int>() == 144) {
       throw CocoaTweet::Exception::TweetNotFoundException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 32) {
@@ -130,10 +130,12 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBas
       throw CocoaTweet::Exception::RateLimitException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 186) {
       throw CocoaTweet::Exception::TweetTooLongException(message.get<std::string>().c_str());
-    }else if(error.get<int>() == 170){
-      throw CocoaTweet::Exception::MissingRequiredParamException(message.get<std::string>().c_str());
-    }else if(error.get<int>() == 220){
-      throw CocoaTweet::Exception::CredentialNotAllowedException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 170) {
+      throw CocoaTweet::Exception::MissingRequiredParamException(
+          message.get<std::string>().c_str());
+    } else if (error.get<int>() == 220) {
+      throw CocoaTweet::Exception::CredentialNotAllowedException(
+          message.get<std::string>().c_str());
     } else {
     }
   }

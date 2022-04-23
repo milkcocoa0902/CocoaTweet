@@ -53,7 +53,8 @@ void Update::failDMCommands(bool _fail) {
   bodyParam_.insert_or_assign("fail_dmcommands", std::to_string(_fail));
 }
 
-CocoaTweet::API::Model::Tweet Update::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
+CocoaTweet::API::Model::Tweet Update::process(
+    std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   CocoaTweet::API::Model::Tweet tweet;
   HttpPost::process(_oauth, [&tweet](const std::string& _rcv) {
     tweet = CocoaTweet::API::Model::Tweet::parse(_rcv);

@@ -26,7 +26,7 @@ namespace CocoaTweet::API::Interface {
 void HttpPost::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth,
                        std::function<void(const std::string&)> _callback) {
   // エンドポイントへのパラメータにOAuthパラメータを付加して署名作成
-  auto oauth       = _oauth.lock();
+  auto oauth = _oauth.lock();
   // auto oauthParam  = oauth->oauthParam();
   // auto sigingParam = oauthParam;
   // if (contentType_ == "application/x-www-form-urlencoded") {
@@ -70,7 +70,6 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBa
   //   }
   //   oauthHeader += CocoaTweet::Util::join(tmp, ",");
   // }
-
 
   auto oauthHeader = std::string();
   if (contentType_ == "application/x-www-form-urlencoded") {
@@ -128,12 +127,12 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBa
   std::cout << rcv << std::endl;
 #endif
   if ((responseCode / 100) == 4) {
-    auto j       = nlohmann::json::parse(rcv);
+    auto j = nlohmann::json::parse(rcv);
     if (j.count("error") != 0) {
       // この形式はエラーコードを持たないのでエラー種別が特定できない
       throw new CocoaTweet::Exception::Exception(j["error"]);
     }
-    
+
     auto error   = j["errors"][0]["code"];
     auto message = j["errors"][0]["message"];
     if (error.get<int>() == 144) {
@@ -148,10 +147,12 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBa
       throw CocoaTweet::Exception::RateLimitException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 186) {
       throw CocoaTweet::Exception::TweetTooLongException(message.get<std::string>().c_str());
-    }else if(error.get<int>() == 170){
-      throw CocoaTweet::Exception::MissingRequiredParamException(message.get<std::string>().c_str());
-    }else if(error.get<int>() == 220){
-      throw CocoaTweet::Exception::CredentialNotAllowedException(message.get<std::string>().c_str());
+    } else if (error.get<int>() == 170) {
+      throw CocoaTweet::Exception::MissingRequiredParamException(
+          message.get<std::string>().c_str());
+    } else if (error.get<int>() == 220) {
+      throw CocoaTweet::Exception::CredentialNotAllowedException(
+          message.get<std::string>().c_str());
     }
   }
 

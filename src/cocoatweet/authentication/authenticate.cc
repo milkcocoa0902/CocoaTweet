@@ -27,8 +27,8 @@ OAuth1::OAuth1() {
   method_ = AuthenticationMethod::OAUTH10A;
 }
 
-OAuth1::OAuth1(const Key _key){
-  key_ = _key;
+OAuth1::OAuth1(const Key _key) {
+  key_    = _key;
   method_ = AuthenticationMethod::OAUTH10A;
 }
 
@@ -102,7 +102,6 @@ const std::string OAuth1::method() const {
 const std::string OAuth1::version() const {
   return "1.0";
 }
-
 
 std::map<std::string, std::string> OAuth1::oauthParam() const {
   auto tmp = std::map<std::string, std::string>{{"oauth_nonce", nonce()},

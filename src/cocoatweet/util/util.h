@@ -9,7 +9,8 @@
 namespace CocoaTweet::Util {
 std::string urlEncode(const std::string& _str);
 std::string join(const std::vector<std::string> _vec, const std::string& _delim);
-std::unordered_map<std::string, std::string> parse(const std::string str, const char _delim, const char _conn);
+std::unordered_map<std::string, std::string> parse(const std::string str, const char _delim,
+                                                   const char _conn);
 } // namespace CocoaTweet::Util
 
 #endif

@@ -23,7 +23,8 @@ public:
   void screenName(const std::string& _screenName);
 
   /// @brief process request for endpoint
-  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer to oauth object
+  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer
+  /// to oauth object
   /// @param[out] CocoaTweet::API::Model::User : request result
   CocoaTweet::API::Model::User process(
       std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
@@ -31,6 +32,6 @@ public:
 private:
   std::string status_;
 };
-} // namespace CocoaTweet::API::Statuses
+} // namespace CocoaTweet::API::Users
 
 #endif

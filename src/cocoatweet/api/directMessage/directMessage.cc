@@ -2,7 +2,8 @@
 #include <cocoatweet/api/directMessage/new.h>
 
 namespace CocoaTweet::API::DirectMessages {
-DirectMessage::DirectMessage(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
+DirectMessage::DirectMessage(
+    std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   oauth_ = _oauth;
 }
 

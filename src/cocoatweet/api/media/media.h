@@ -16,7 +16,8 @@ public:
   Media() = default;
 
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to OAuth object
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to
+  /// OAuth object
   Media(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   CocoaTweet::API::Model::MediaStore upload(const std::string& _file) const;

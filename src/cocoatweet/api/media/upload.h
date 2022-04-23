@@ -26,11 +26,12 @@ public:
   void mediaId(const std::string& _mediaId);
 
   /// @brief upload media
-  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer to OAuth object for
-  /// authenticate
+  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer
+  /// to OAuth object for authenticate
   /// @param[out] CocoaTweet::API::Model::MediaStore : media upload result. use id() for post
   /// tweet.
-  CocoaTweet::API::Model::MediaStore process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
+  CocoaTweet::API::Model::MediaStore process(
+      std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 };
 } // namespace CocoaTweet::API::Medias
 

@@ -5,18 +5,18 @@
 #include <vector>
 #include <utility>
 
-namespace CocoaTweet::Authentication{
-class Auth: public groupInterface {
+namespace CocoaTweet::Authentication {
+class Auth : public groupInterface {
 public:
   enum AuthType { OAuth, Bearer };
-  
-Auth();
-Auth(Key _key);
-authorize(const bool app_only);
+
+  Auth();
+  Auth(Key _key);
+  authorize(const bool app_only);
 
 private:
-Key key_;
+  Key key_;
 }
-}
+} // namespace CocoaTweet::Authentication
 
 #endif

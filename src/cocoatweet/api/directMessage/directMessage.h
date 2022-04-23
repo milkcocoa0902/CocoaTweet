@@ -15,7 +15,8 @@ public:
   DirectMessage() = default;
 
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to OAuth object
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to
+  /// OAuth object
   DirectMessage(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   void messageCreate(const std::string& _recipient, const std::string& _message);
