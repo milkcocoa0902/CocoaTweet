@@ -6,7 +6,7 @@
 #include <cocoatweet/api/oauth1/authorize.h>
 #include <cocoatweet/api/oauth1/accessToken.h>
 #include <cocoatweet/api/oauth2/token.h>
-#include <cocoatweet/authentication/authenticate.h>
+#include <cocoatweet/authentication/oauth.h>
 
 auto main() -> int {
   // Generate Key object

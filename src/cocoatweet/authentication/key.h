@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_OAUTH_KEY_H_
-#define COCOATWEET_OAUTH_KEY_H_
+#ifndef COCOATWEET_AUTHENTICATION_KEY_H_
+#define COCOATWEET_AUTHENTICATION_KEY_H_
 
 #include <string>
 #include <map>

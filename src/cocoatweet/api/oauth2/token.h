@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_OAUTH2_TOKEN_H
-#define COCOATWEET_API_OAUTH2_TOKEN_H
+#ifndef COCOATWEET_API_OAUTH2_TOKEN_H_
+#define COCOATWEET_API_OAUTH2_TOKEN_H_
 
 #include <cocoatweet/api/interface/httpPost.h>
 #include <cocoatweet/authentication/basic.h>

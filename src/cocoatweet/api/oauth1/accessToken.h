@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_OAUTH1_ACCESSTOKEN_H
-#define COCOATWEET_API_OAUTH1_ACCESSTOKEN_H
+#ifndef COCOATWEET_API_OAUTH1_ACCESSTOKEN_H_
+#define COCOATWEET_API_OAUTH1_ACCESSTOKEN_H_
 
 #include <cocoatweet/api/interface/httpPost.h>
 #include <cocoatweet/api/model/oauthToken.h>

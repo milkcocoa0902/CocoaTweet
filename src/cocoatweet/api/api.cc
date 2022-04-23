@@ -1,5 +1,5 @@
 #include <cocoatweet/api/api.h>
-#include <cocoatweet/authentication/authenticate.h>
+#include <cocoatweet/authentication/oauth.h>
 #include <cocoatweet/authentication/bearer.h>
 #include <cocoatweet/authentication/plain.h>
 

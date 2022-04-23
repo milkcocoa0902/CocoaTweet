@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_API_OAUTH1_AUTHORIZE_H
-#define COCOATWEET_API_OAUTH1_AUTHORIZE_H
+#ifndef COCOATWEET_API_OAUTH1_AUTHORIZE_H_
+#define COCOATWEET_API_OAUTH1_AUTHORIZE_H_
 
 #include <cocoatweet/api/interface/httpPost.h>
 namespace CocoaTweet::API::OAuth1 {

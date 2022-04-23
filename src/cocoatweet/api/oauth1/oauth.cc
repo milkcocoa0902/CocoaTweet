@@ -1,5 +1,5 @@
 #include <cocoatweet/api/oauth1/oauth.h>
-#include <cocoatweet/authentication/authenticate.h>
+#include <cocoatweet/authentication/oauth.h>
 
 namespace CocoaTweet::API::OAuth1 {
 OAuth::OAuth(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {

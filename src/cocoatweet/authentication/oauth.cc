@@ -1,4 +1,4 @@
-#include "authenticate.h"
+#include "oauth.h"
 #include "cocoatweet/util/util.h"
 #include <random>
 #include <ctime>
