@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_AUTHENTICATION_BEARER_H_
-#define COCOATWEET_AUTHENTICATION_BEARER_H_
+#ifndef COCOATWEET_AUTHENTICATION_BASIC_H_
+#define COCOATWEET_AUTHENTICATION_BASIC_H_
 
 #include <string>
 #include <map>
@@ -8,14 +8,17 @@
 #include <cocoatweet/authentication/authenticator.h>
 
 namespace CocoaTweet::Authentication {
-class Bearer: public AuthenticatorBase {
+class Basic: public AuthenticatorBase {
 public:
-  Bearer();
-  Bearer(const Key _key);
+  Basic();
+  Basic(const Key _key);
 
+  // const std::string& generateBearerToken();
   
   const std::string calculateAuthHeader(std::map<std::string, std::string> _bodyParam,
                                         const std::string& _method, const std::string& _url);
+  const std::string base64(const std::string& _raw);
+
 };
 } // namespace CocoaTweet::Authentication
 

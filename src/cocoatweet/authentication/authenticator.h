@@ -8,6 +8,7 @@ public:
     enum class AuthenticationMethod{
         OAUTH10A,
         OAUTH2,
+        BASIC,
         PLAIN,
         NONE
     };

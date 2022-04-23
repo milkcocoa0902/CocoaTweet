@@ -9,8 +9,7 @@ class Key {
 public:
 	enum AUTH_TYPE{
 			OAUTH10A,
-			OAUTH2,
-			PLAIN
+			OAUTH2
 	};
 
 private:
@@ -70,7 +69,7 @@ public:
   const AUTH_TYPE authType() const {
     return authType_;
   }
-  
+
   void authType(AUTH_TYPE _authType) {
     authType_ = _authType;
   }

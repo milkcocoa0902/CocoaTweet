@@ -8,6 +8,7 @@
 #include <cocoatweet/api/directMessage/directMessage.h>
 #include <cocoatweet/authentication/authenticator.h>
 #include <cocoatweet/api/oauth1/oauth.h>
+#include <cocoatweet/api/oauth2/oauth2.h>
 
 namespace CocoaTweet::API {
 /// @brief Twitter API Entry Point
@@ -32,6 +33,7 @@ public:
   DirectMessages::DirectMessage directMessage() const;
 
   OAuth1::OAuth oauth1() const;
+  OAuth2::OAuth2 oauth2() const;
 
   const std::string& generateBearerToken() const;
   void swapKey(const CocoaTweet::Authentication::Key _key);
@@ -43,6 +45,7 @@ private:
   Medias::Media media_;
   DirectMessages::DirectMessage directMessage_;
   OAuth1::OAuth oauth1_;
+  OAuth2::OAuth2 oauth2_;
   std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> oauth_;
 };
 } // namespace CocoaTweet::API

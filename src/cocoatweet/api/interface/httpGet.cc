@@ -6,6 +6,8 @@
 #include <cocoatweet/exception/tweetTooLongException.h>
 #include <cocoatweet/exception/rateLimitException.h>
 #include <cocoatweet/exception/tokenInvalidException.h>
+#include <cocoatweet/exception/missingRequiredParamException.h>
+#include <cocoatweet/exception/credentialNotAllowedException.h>
 #include "nlohmann/json.hpp"
 #include <iterator>
 #include <memory>
@@ -128,6 +130,10 @@ void HttpGet::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBas
       throw CocoaTweet::Exception::RateLimitException(message.get<std::string>().c_str());
     } else if (error.get<int>() == 186) {
       throw CocoaTweet::Exception::TweetTooLongException(message.get<std::string>().c_str());
+    }else if(error.get<int>() == 170){
+      throw CocoaTweet::Exception::MissingRequiredParamException(message.get<std::string>().c_str());
+    }else if(error.get<int>() == 220){
+      throw CocoaTweet::Exception::CredentialNotAllowedException(message.get<std::string>().c_str());
     } else {
     }
   }
