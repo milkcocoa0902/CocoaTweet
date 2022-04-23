@@ -22,6 +22,34 @@ std::string urlEncode(const std::string& _str) {
   return out.str();
 }
 
+std::string urlDecode(const std::string& _str){
+  std::stringstream out;
+  int first = 0;
+  int last  = _str.find_first_of('%');
+
+
+
+  while (first < _str.size()) {
+    if (last == std::string::npos) {
+      out << _str.substr(first);
+      break;
+    }
+
+    auto s = _str.substr(first, last - first);
+    auto encoded = _str.substr(last+1, 2); // %を飛ばし読みする
+
+    std::cout << encoded << std::endl;
+    auto c = static_cast<char>(static_cast<int>(strtol(encoded.c_str(), nullptr, 16)));
+
+    out << s << c;
+    
+    first = last + 3;
+    last  = _str.find_first_of('%', first);
+  }
+
+  return out.str();
+}
+
 std::string join(const std::vector<std::string> _vec, const std::string& _delim) {
   std::string str("");
 
