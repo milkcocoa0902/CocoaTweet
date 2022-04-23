@@ -1,6 +1,5 @@
 #include <cocoatweet/api/oauth1/requestToken.h>
 #include <cocoatweet/util/util.h>
-#include <iostream>
 #include <cocoatweet/authentication/oauth.h>
 
 namespace CocoaTweet::API::OAuth1 {
@@ -28,7 +27,6 @@ CocoaTweet::API::Model::OAuthToken RequestToken::process(
     if (mp.count("oauth_token_secret")) {
       oauthToken.oauthTokenSecret(mp.at("oauth_token_secret"));
     }
-    std::cout << _rcv << std::endl;
   });
   return oauthToken;
 }

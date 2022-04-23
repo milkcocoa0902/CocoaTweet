@@ -25,40 +25,9 @@ auto main() -> int {
     // also can generate Key object from JSON file
     CocoaTweet::Authentication::Key key =
         CocoaTweet::Authentication::Key::fromJsonFile("api_key.json");
-    std::shared_ptr<CocoaTweet::Authentication::OAuth1> oauth =
-        std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
 
     // Generate API Entry object using Key object
     CocoaTweet::API::API api(key);
-    auto bearerToken = api.oauth2().token();
-    key.bearerToken(bearerToken);
-    key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH2);
-    api.swapKey(key);
-
-    auto user = api.user().show("milkcocoa9692");
-    std::cout << user.id() << std::endl;
-
-    std::cout << "consumerKey : " << key.consumerKey() << std::endl;
-    std::cout << "consumerSecret : " << key.consumerSecret() << std::endl;
-    std::cout << "bearer : " << key.bearerToken() << std::endl;
-    std::cout << "bearer : " << CocoaTweet::Util::urlDecode(key.bearerToken()) << std::endl;
-
-    auto newBearerToken = api.oauth2().invalidateToken(key.bearerToken());
-    key.bearerToken(newBearerToken.token());
-    api.swapKey(key);
-    user = api.user().show("milkcocoa9692");
-    std::cout << user.id() << std::endl;
-
-    // api.directMessage().messageCreate(
-    //     user.id(),
-    //     "これはクソみたいなスパムDMです。\nCocoaTwitterLibraryで、user/"
-    //     "showが叩けるようになったので、外部サービスでuser_idを調べずともscreen_"
-    //     "nameで引っ張ってきてクソDMを投げられるようになりました👏\nその記念にAPIから発砲🔫←センス最"
-    //     "悪\nhttps://github.com/koron0902/CocoaTweet");
-    // if you want to access api using Bearer Token, call this for get BearerToken;
-    // NOTE: call this, always authenticate with Bearer Token, which is Read Only Token
-    // try {
-    // api.generateBearerToken();
 
     // Now, you can use a twitter api
     // auto status = api.status().update("Hello Twitter World via Cocoa Twitter Library!!");

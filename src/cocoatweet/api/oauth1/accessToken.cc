@@ -1,8 +1,8 @@
 #include <cocoatweet/api/oauth1/accessToken.h>
 #include <cocoatweet/util/util.h>
-#include <iostream>
 
 #include <cocoatweet/authentication/oauth.h>
+
 namespace CocoaTweet::API::OAuth1 {
 AccessToken::AccessToken() {
   contentType_ = "application/x-www-form-urlencoded";
@@ -34,7 +34,6 @@ const CocoaTweet::API::Model::OAuthToken AccessToken::process(
     if (mp.count("oauth_token_secret")) {
       oauthToken.oauthTokenSecret(mp.at("oauth_token_secret"));
     }
-    std::cout << _rcv << std::endl;
   });
   return oauthToken;
 }
