@@ -8,9 +8,9 @@ OAuth::OAuth(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oau
 
 CocoaTweet::API::Model::OAuthToken OAuth::requestToken(
     const std::string& _oauthCallback) const {
-//   auto key = oauth_.lock()->key();
-//   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
-//   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
+  //   auto key = oauth_.lock()->key();
+  //   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
+  //   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
 
   CocoaTweet::API::OAuth1::RequestToken requestToken;
   requestToken.oauthCallback(_oauthCallback);
@@ -25,11 +25,11 @@ const std::string OAuth::authorize(const CocoaTweet::API::Model::OAuthToken _oau
 
 const CocoaTweet::API::Model::OAuthToken OAuth::accessToken(
     const CocoaTweet::API::Model::OAuthToken _oauthToken, const std::string _verifier) const {
-//   auto key = oauth_.lock()->key();
-//   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
-//   key.accessToken(_oauthToken.oauthToken());
-//   key.accessTokenSecret(_oauthToken.oauthTokenSecret());
-//   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
+  //   auto key = oauth_.lock()->key();
+  //   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
+  //   key.accessToken(_oauthToken.oauthToken());
+  //   key.accessTokenSecret(_oauthToken.oauthTokenSecret());
+  //   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
   CocoaTweet::API::OAuth1::AccessToken accessToken;
   accessToken.oauthVerifier(_verifier);
   return accessToken.process(oauth_);

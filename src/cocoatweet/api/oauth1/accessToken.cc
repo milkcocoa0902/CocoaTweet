@@ -19,13 +19,11 @@ void AccessToken::oauthToken(const CocoaTweet::API::Model::OAuthToken _token) {
 
 const CocoaTweet::API::Model::OAuthToken AccessToken::process(
     std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
-
   auto key = oauth_.lock()->key();
   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
   key.accessToken(oauthToken_.oauthToken());
   key.accessTokenSecret(oauthToken_.oauthTokenSecret());
   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
-
 
   CocoaTweet::API::Model::OAuthToken oauthToken;
   HttpPost::process(oauth, [&oauthToken](const std::string& _rcv) {

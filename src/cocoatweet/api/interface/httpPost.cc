@@ -159,8 +159,7 @@ void HttpPost::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBa
       throw CocoaTweet::Exception::CredentialNotVerifiedException(
           message.get<std::string>().c_str());
     } else if (error.get<int>() == 348) {
-      throw CocoaTweet::Exception::InvalidateTokenException(
-          message.get<std::string>().c_str());
+      throw CocoaTweet::Exception::InvalidateTokenException(message.get<std::string>().c_str());
     }
   }
 

@@ -49,8 +49,6 @@ auto main() -> int {
     user = api.user().show("milkcocoa9692");
     std::cout << user.id() << std::endl;
 
-
-
     // api.directMessage().messageCreate(
     //     user.id(),
     //     "これはクソみたいなスパムDMです。\nCocoaTwitterLibraryで、user/"

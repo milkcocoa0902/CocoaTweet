@@ -3,8 +3,7 @@
 namespace CocoaTweet::API::Model {
 
 BearerToken::BearerToken() : token_("") {}
-BearerToken::BearerToken(const std::string _token)
-    : token_(_token) {}
+BearerToken::BearerToken(const std::string _token) : token_(_token) {}
 const std::string& BearerToken::token() const {
   return token_;
 }
