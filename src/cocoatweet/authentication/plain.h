@@ -1,5 +1,5 @@
-#ifndef COCOATWEET_AUTHENTICATION_PLAIN_H
-#define COCOATWEET_AUTHENTICATION_PLAIN_H
+#ifndef COCOATWEET_AUTHENTICATION_PLAIN_H_
+#define COCOATWEET_AUTHENTICATION_PLAIN_H_
 
 #include <cocoatweet/authentication/authenticator.h>
 
