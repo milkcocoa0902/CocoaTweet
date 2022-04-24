@@ -2,7 +2,7 @@
 #define COCOATWEET_API_MEDIA_MEDIA_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
-#include "cocoatweet/oauth/oauth.h"
+#include "cocoatweet/authentication/authenticator.h"
 #include <cocoatweet/api/model/mediaStore.h>
 #include <cocoatweet/api/media/upload.h>
 #include <vector>
@@ -16,8 +16,9 @@ public:
   Media() = default;
 
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::OAuth::OAuth1> : pointer to OAuth object
-  Media(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to
+  /// OAuth object
+  Media(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   CocoaTweet::API::Model::MediaStore upload(const std::string& _file) const;
 

@@ -2,12 +2,12 @@
 #define COCOATWEET_API_INTERFACE_GROUPINTERFACE_H_
 
 #include <memory>
-#include "cocoatweet/oauth/oauth.h"
+#include "cocoatweet/authentication/authenticator.h"
 
 namespace CocoaTweet::API {
 class groupInterface {
 protected:
-  std::weak_ptr<CocoaTweet::OAuth::OAuth1> oauth_;
+  std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> oauth_;
 };
 } // namespace CocoaTweet::API
 

@@ -26,7 +26,7 @@ you can use these endpoint
 # Installation
 ## Ubuntu
 ```
-# apt install clang cmake git libboost-dev libboost-test-dev libcurl4-openssl-dev libssl-dev ninja-build
+# apt install clang cmake git libboost-dev libcurl4-openssl-dev libssl-dev ninja-build
 $ git clone https://github.com/koron0902/CocoaTweet
 $ cd CocoaTweet
 $ mkdir build
@@ -74,14 +74,14 @@ $ mingw32-make
 ### 1.Write Key into code
 write api key into code and create Key object use it.  
 ```
-#include "cocoatweet/oauth/key.h"
+#include "cocoatweet/authentication/key.h"
 
 auto consumerKey       = "your consumer key";
 auto consumerSecret    = "your consumer secret";
 auto accessToken       = "your access token";
 auto accessTokenSecret = "your access token secret";
 
-CocoaTweet::OAuth::Key key(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+CocoaTweet::Authentication::Key key(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 
 ```
 
@@ -99,10 +99,43 @@ prepare file which written 'api-key' with json format.
 
 then you can load api key from json file.  
 ```
-#include "cocoatweet/oauth/key.h"
+#include "cocoatweet/authentication/key.h"
 
-CocoaTweet::OAuth::Key key = CocoaTweet::OAuth::Key::fromJsonFile("api_key.json");
+CocoaTweet::Authentication::Key key = CocoaTweet::Authentication::Key::fromJsonFile("api_key.json");
 ```
+
+### 3. Authenticate with API call
+※ consumer key, consumer secret are needed. in this case, get access token with api call.
+```
+CocoaTweet::API::API api(key);
+
+auto oAuthToken = api.oauth1().requestToken("oob");
+const auto signInUrl = api.oauth1().authorize(oAuthToken);
+std::cout << "signin : " << signInUrl << std::endl;
+std::string pin = "";
+std::cout << "pincode : ";
+std::cin >> pin;
+
+const auto validOAuthToken = api.oauth1().accessToken(oAuthToken, pin);
+key.accessToken(validOAuthToken.oauthToken());
+key.accessTokenSecret(validOAuthToken.oauthTokenSecret());
+api.swapKey(key);
+```
+
+
+### 4. Get BearerToken with AIP call
+if you want to call Twitter API using Bearer Token; OAuth2, you can do.
+```
+CocoaTweet::API::API api(key);
+auto bearerToken = api.oauth2().token();
+key.bearerToken(bearerToken);
+key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH2);
+api.swapKey(key);
+```
+
+After call it, always use Bearer Token to access API which kinds of GET method.  
+no affect to POST method.  
+then, if you use this, and ONLY use kind of GET API, you DO NOT need acess token.
 
 ## Generate API object
 generating API object with Key.  
@@ -114,15 +147,6 @@ this object is API entry point.
 CocoaTweet::API::API api(key);
 
 ```
-
-### NOTE
-if you want to call Twitter API using Bearer Token; OAuth2, you can do.
-```
-api.generateBearerToken();
-```
-After call it, always use Bearer Token to access API which kinds of GET method.  
-no affect to POST method.  
-then, if you use this, and ONLY use kind of GET API, you DO NOT need acess token.
 
 
 ## Use API

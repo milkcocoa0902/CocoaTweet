@@ -23,7 +23,7 @@ void New::message(const std::string& _message) {
   json_["event"]["message_create"]["message_data"]["text"] = _message;
 }
 
-void New::process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+void New::process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   bodyParam_.insert_or_assign("data", json_.dump());
   HttpPost::process(_oauth, [](const std::string& _rcv) {});
 }

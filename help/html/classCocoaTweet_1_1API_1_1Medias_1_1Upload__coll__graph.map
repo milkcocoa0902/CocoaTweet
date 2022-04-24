@@ -1,5 +1,0 @@
-<map id="CocoaTweet::API::Medias::Upload" name="CocoaTweet::API::Medias::Upload">
-<area shape="rect" id="node1" title="entry point for using media/upload endpoint" alt="" coords="11,184,195,225"/>
-<area shape="rect" id="node2" href="$classCocoaTweet_1_1API_1_1Interface_1_1HttpPost.html" title="class for Send request with POST method" alt="" coords="5,95,200,136"/>
-<area shape="rect" id="node3" href="$classCocoaTweet_1_1API_1_1Interface_1_1HttpBase.html" title=" " alt="" coords="5,5,200,47"/>
-</map>

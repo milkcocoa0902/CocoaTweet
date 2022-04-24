@@ -3,7 +3,7 @@
 #include "cocoatweet/api/favorite/destroy.h"
 
 namespace CocoaTweet::API::Favorites {
-Favorite::Favorite(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+Favorite::Favorite(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   oauth_ = _oauth;
 }
 

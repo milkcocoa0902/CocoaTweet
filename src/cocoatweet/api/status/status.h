@@ -2,7 +2,7 @@
 #define COCOATWEET_API_STATUS_STATUS_H_
 
 #include "cocoatweet/api/interface/groupInterface.h"
-#include "cocoatweet/oauth/oauth.h"
+#include "cocoatweet/authentication/authenticator.h"
 #include <cocoatweet/api/model/tweet.h>
 #include <vector>
 #include <utility>
@@ -28,8 +28,9 @@ public:
   Status() = default;
 
   /// @brief   constructor which finally should to be called.
-  /// @param[in] std::shared_ptr<CocoaTweet::OAuth::OAuth1> : pointer to OAuth object
-  Status(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  /// @param[in] std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> : pointer to
+  /// OAuth object
+  Status(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
   /// @brief send request to statuses/update with specified status
   /// @details this function throws CocoaTweet::Exception::* if something happen

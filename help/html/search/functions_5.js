@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['faildmcommands_307',['failDMCommands',['../classCocoaTweet_1_1API_1_1Statuses_1_1Update.html#ad3f189f00bbcc3ba72d812074195abd0',1,'CocoaTweet::API::Statuses::Update']]],
-  ['favorite_308',['Favorite',['../classCocoaTweet_1_1API_1_1Favorites_1_1Favorite.html#aa0ade9ca6fc634f73892e5a4f26de519',1,'CocoaTweet::API::Favorites::Favorite::Favorite()=default'],['../classCocoaTweet_1_1API_1_1Favorites_1_1Favorite.html#ae80051130fa5c755464b6f6b237f4854',1,'CocoaTweet::API::Favorites::Favorite::Favorite(std::shared_ptr&lt; CocoaTweet::OAuth::OAuth1 &gt; _oauth)'],['../classCocoaTweet_1_1API_1_1API.html#a397db8cf7af9a4a3a34bc64169c04039',1,'CocoaTweet::API::API::favorite()'],['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a4877f4d0c48419f164e6b4607526401b',1,'CocoaTweet::API::Model::User::favorite(const long _favorite)'],['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a3325d3cf119aff3524b1595881116198',1,'CocoaTweet::API::Model::User::favorite() const']]],
-  ['follow_309',['follow',['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a14228ee59169cb3bcc05d47848606682',1,'CocoaTweet::API::Model::User::follow(const long _follow)'],['../classCocoaTweet_1_1API_1_1Model_1_1User.html#aed8d4700e85197e3bd0025108144616a',1,'CocoaTweet::API::Model::User::follow() const']]],
-  ['follower_310',['follower',['../classCocoaTweet_1_1API_1_1Model_1_1User.html#a3e7d0d21bcdb6b315bd4ad1163119ea6',1,'CocoaTweet::API::Model::User::follower(const long _follower)'],['../classCocoaTweet_1_1API_1_1Model_1_1User.html#af88fdcc7c1a8fa3cbd9dfdd39bdcc43f',1,'CocoaTweet::API::Model::User::follower() const']]],
-  ['fromjsonfile_311',['fromJsonFile',['../classCocoaTweet_1_1OAuth_1_1Key.html#a936a436c45030782697f442979e2a675',1,'CocoaTweet::OAuth::Key']]]
-];

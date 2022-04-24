@@ -40,9 +40,11 @@ public:
   void failDMCommands(bool _fail);
 
   /// @brief process request for endpoint
-  /// @param[in] std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth : pointer to oauth object
+  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer
+  /// to oauth object
   /// @param[out] CocoaTweet::API::Model::Tweet : request result
-  CocoaTweet::API::Model::Tweet process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth);
+  CocoaTweet::API::Model::Tweet process(
+      std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth);
 
 private:
   std::string status_;
