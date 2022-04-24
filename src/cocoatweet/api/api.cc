@@ -3,7 +3,6 @@
 #include <cocoatweet/authentication/bearer.h>
 #include <cocoatweet/authentication/plain.h>
 
-
 namespace CocoaTweet::API {
 API::API(CocoaTweet::Authentication::Key _key) {
   swapKey(_key);

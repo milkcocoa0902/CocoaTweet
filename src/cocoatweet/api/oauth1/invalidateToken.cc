@@ -18,9 +18,9 @@ const CocoaTweet::API::Model::OAuthToken InvalidateToken::process(
   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
   CocoaTweet::API::Model::OAuthToken oauthToken;
   HttpPost::process(oauth, [&oauthToken](const std::string& _rcv) {
-      std::cout << _rcv << std::endl;
+    std::cout << _rcv << std::endl;
     auto j = nlohmann::json::parse(_rcv);
-      oauthToken.oauthToken(j["access_token"]);
+    oauthToken.oauthToken(j["access_token"]);
   });
   return oauthToken;
 }
