@@ -5,6 +5,7 @@
 #include <cocoatweet/api/oauth1/accessToken.h>
 #include <cocoatweet/api/oauth1/requestToken.h>
 #include <cocoatweet/api/oauth1/authorize.h>
+#include <cocoatweet/api/oauth1/invalidateToken.h>
 #include <cocoatweet/api/model/oauthToken.h>
 #include <vector>
 #include <utility>
@@ -25,6 +26,7 @@ public:
   const std::string authorize(const CocoaTweet::API::Model::OAuthToken _oauthToken) const;
   const CocoaTweet::API::Model::OAuthToken accessToken(
       const CocoaTweet::API::Model::OAuthToken _oauthToken, const std::string _verifier) const;
+  const CocoaTweet::API::Model::OAuthToken invalidateToken() const;
 };
 } // namespace CocoaTweet::API::OAuth1
 

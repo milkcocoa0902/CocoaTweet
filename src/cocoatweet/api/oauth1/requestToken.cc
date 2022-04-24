@@ -14,7 +14,7 @@ void RequestToken::oauthCallback(const std::string& _oauthCallback) {
 
 CocoaTweet::API::Model::OAuthToken RequestToken::process(
     std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
-  auto key = oauth_.lock()->key();
+  auto key = _oauth.lock()->key();
   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
 

@@ -19,7 +19,7 @@ void AccessToken::oauthToken(const CocoaTweet::API::Model::OAuthToken _token) {
 
 const CocoaTweet::API::Model::OAuthToken AccessToken::process(
     std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
-  auto key = oauth_.lock()->key();
+  auto key = _oauth.lock()->key();
   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
   key.accessToken(oauthToken_.oauthToken());
   key.accessTokenSecret(oauthToken_.oauthTokenSecret());

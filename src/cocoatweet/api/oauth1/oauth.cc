@@ -34,4 +34,12 @@ const CocoaTweet::API::Model::OAuthToken OAuth::accessToken(
   accessToken.oauthVerifier(_verifier);
   return accessToken.process(oauth_);
 }
+
+const CocoaTweet::API::Model::OAuthToken OAuth::invalidateToken() const {
+  //   auto key = oauth_.lock()->key();
+  //   key.authType(CocoaTweet::Authentication::Key::AUTH_TYPE::OAUTH10A);
+  //   auto oauth = std::make_shared<CocoaTweet::Authentication::OAuth1>(key);
+  CocoaTweet::API::OAuth1::InvalidateToken invalidateToken;
+  return invalidateToken.process(oauth_);
+}
 } // namespace CocoaTweet::API::OAuth1
