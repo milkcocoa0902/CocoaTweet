@@ -1,5 +1,0 @@
-<map id="CocoaTweet::API::Statuses::Retweet" name="CocoaTweet::API::Statuses::Retweet">
-<area shape="rect" id="node1" title=" " alt="" coords="6,184,199,225"/>
-<area shape="rect" id="node2" href="$classCocoaTweet_1_1API_1_1Interface_1_1HttpPost.html" title="class for Send request with POST method" alt="" coords="5,95,200,136"/>
-<area shape="rect" id="node3" href="$classCocoaTweet_1_1API_1_1Interface_1_1HttpBase.html" title=" " alt="" coords="5,5,200,47"/>
-</map>

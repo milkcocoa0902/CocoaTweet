@@ -6,7 +6,7 @@
 #include "cocoatweet/api/status/userTimeline.h"
 
 namespace CocoaTweet::API::Statuses {
-Status::Status(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+Status::Status(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   oauth_ = _oauth;
 }
 

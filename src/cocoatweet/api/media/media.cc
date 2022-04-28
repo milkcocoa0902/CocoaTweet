@@ -1,7 +1,7 @@
 #include "cocoatweet/api/media/media.h"
 
 namespace CocoaTweet::API::Medias {
-Media::Media(std::shared_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+Media::Media(std::shared_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   oauth_ = _oauth;
 }
 

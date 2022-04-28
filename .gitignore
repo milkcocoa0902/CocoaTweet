@@ -1,3 +1,6 @@
 build/
 *.swp
 src/main.cc
+help/
+Testing/
+**/api_key.json

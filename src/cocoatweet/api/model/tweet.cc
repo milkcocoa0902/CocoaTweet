@@ -10,10 +10,9 @@ Tweet Tweet::parse(const std::string& _json) {
   tweet.createdAt(j["created_at"]);
   tweet.text(j["text"]);
   tweet.source(j["source"]);
-  if(j.contains("user")){
+  if (j.contains("user")) {
     tweet.user(CocoaTweet::API::Model::User(j["user"].dump()));
   }
-
 
   return tweet;
 }

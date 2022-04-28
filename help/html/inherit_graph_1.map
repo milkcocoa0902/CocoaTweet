@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCocoaTweet_1_1API_1_1groupInterface.html" title=" " alt="" coords="5,111,237,138"/>
-<area shape="rect" id="node2" href="$classCocoaTweet_1_1API_1_1DirectMessages_1_1DirectMessage.html" title="Entory point for statuses/*." alt="" coords="285,5,527,47"/>
-<area shape="rect" id="node3" href="$classCocoaTweet_1_1API_1_1Favorites_1_1Favorite.html" title=" " alt="" coords="307,71,505,112"/>
-<area shape="rect" id="node4" href="$classCocoaTweet_1_1API_1_1Medias_1_1Media.html" title="Entory point for statuses/*." alt="" coords="314,136,498,177"/>
-<area shape="rect" id="node5" href="$classCocoaTweet_1_1API_1_1Statuses_1_1Status.html" title="Entory point for statuses/*." alt="" coords="309,201,503,243"/>
-</map>

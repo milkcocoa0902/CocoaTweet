@@ -13,7 +13,7 @@ void UserTimeline::screenName(const std::string& _screenName) {
 }
 
 std::vector<CocoaTweet::API::Model::Tweet> UserTimeline::process(
-    std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+    std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   std::vector<CocoaTweet::API::Model::Tweet> tweet;
   HttpGet::process(_oauth, [&tweet](const std::string& _rcv) {
     auto json = nlohmann::json::parse(_rcv);

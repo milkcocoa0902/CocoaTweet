@@ -19,7 +19,7 @@ void Upload::media(const std::string& _media) {
 void Upload::mediaId(const std::string& _mediaId) {}
 
 CocoaTweet::API::Model::MediaStore Upload::process(
-    std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth) {
+    std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth) {
   auto extension = std::filesystem::path(media_).extension().string<char>();
   if (mimeType.count(extension) == 0) {
     throw new CocoaTweet::Exception::UnsupportedMediaTypeException(

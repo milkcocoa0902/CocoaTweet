@@ -2,7 +2,7 @@
 #define COCOATWEET_API_INTERFACE_HTTPPOST_H_
 
 #include <functional>
-#include "cocoatweet/oauth/oauth.h"
+#include "cocoatweet/authentication/authenticator.h"
 #include <cocoatweet/api/interface/httpBase.h>
 
 namespace CocoaTweet::API::Interface {
@@ -11,11 +11,11 @@ class HttpPost : public HttpBase {
 public:
 protected:
   /// @brief Send HTTP/POST using OAuth object
-  /// @param[in] std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth : pointer to OAuth object to
-  /// authenticate
+  /// @param[in] std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth : pointer
+  /// to OAuth object to authenticate
   /// @param[in] std::function<void(const unsigned int, const std::string&)> _callback :
   /// callback method for processing to response
-  void process(std::weak_ptr<CocoaTweet::OAuth::OAuth1> _oauth,
+  void process(std::weak_ptr<CocoaTweet::Authentication::AuthenticatorBase> _oauth,
                std::function<void(const std::string&)> _callback);
 };
 } // namespace CocoaTweet::API::Interface
