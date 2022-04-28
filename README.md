@@ -16,8 +16,15 @@ you can use these endpoint
 - statuses/user_timeline
 - favorites/create
 - favorites/destroy
+- users/show
 - media/upload(support: jpg, jpeg, png, gif, mp4)
 - direct_messages/events/new (message_create)
+- oauth/access_token
+- oauth/authorize
+- oauth/invalidate_token
+- oauth/request_token
+- oauth2/token
+- oauth2/invalidate_token
 
 # Dependency
 - libcurl(openssl version)
@@ -71,6 +78,8 @@ $ mingw32-make
 
 # How
 ## API Key Registration
+there're 4 ways to register API key  
+
 ### 1.Write Key into code
 write api key into code and create Key object use it.  
 ```
@@ -123,8 +132,9 @@ api.swapKey(key);
 ```
 
 
-### 4. Get BearerToken with AIP call
+### 4. Get BearerToken with API call
 if you want to call Twitter API using Bearer Token; OAuth2, you can do.
+also need consumer key and secret
 ```
 CocoaTweet::API::API api(key);
 auto bearerToken = api.oauth2().token();
@@ -177,8 +187,10 @@ api.favorite().destroy("tweet id");
 // get a timeline with screen name
 auto timeline = api.status().userTimeline("milkcocoa0902");
 
+auto user = api.user().show("milkcocoa0902");
+
 // send a direct message
-// you cau get recipient_id using https://idtwi.com/
+// you cau get recipient_id using user.show()
 api.directMessage().messageCreate("<recipient_id>", "Sent message using Cocoa Twitter Library");
 
 ```
